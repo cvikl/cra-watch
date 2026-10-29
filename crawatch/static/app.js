@@ -170,7 +170,7 @@
     });
     if (t.rollback_commit) rows.push(el("tr", { class: "rollback" }, el("td", { class: "mono" }, t.rollback_short), el("td", {}, "–"), el("td", { colspan: 4 }, "Last clean commit: roll back here and remove the dependency")));
     return el("section", { class: "doc-section" },
-      el("h3", { class: "sec-title" }, el("span", { class: "sec-no" }, "2"), "Affected components", el("span", { class: "sec-hint" }, `Origit taint for ${t.needle}: ${t.affected.length} commits, sessions ${t.session_labels.join(", ")}; first read ${fmtT(t.first_read?.at)}`)),
+      el("h3", { class: "sec-title" }, el("span", { class: "sec-no" }, "2"), "Affected components", el("span", { class: "sec-hint" }, `Origit taint for ${t.needle}: ${t.affected.length} commits, sessions ${t.session_labels.join(", ")}; first read ${fmtT(t.first_read?.at)}`, el("span", { class: "scroll-hint" }, " · scroll sideways for files and flags"))),
       el("div", { class: "tbl-x" }, el("table", { class: "tbl" }, el("thead", {}, el("tr", {}, ...["Commit", "Session", "Agent run", "Files written", "Approved by", "Sentinel flag"].map((h) => el("th", {}, h)))), el("tbody", {}, ...rows))));
   }
   function renderTriage(inc) {
