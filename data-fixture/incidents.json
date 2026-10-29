@@ -1,0 +1,467 @@
+[
+ {
+  "id": "inc_2280c39bcd",
+  "opened_at": "2026-10-29T23:38:01Z",
+  "awareness": "2026-10-29T23:38:01Z",
+  "status": "review",
+  "dependency": "fast-pay-utils",
+  "version": "2.1.0",
+  "advisory": {
+   "title": "GHSA-demo-f4st-pay0-2100: malicious code in fast-pay-utils 2.1.0",
+   "url": "https://github.com/cvikl/origit",
+   "content": "> **⚠️ SYNTHETIC ADVISORY — FOR DEMONSTRATION PURPOSES ONLY**\n> This advisory is entirely fictional and was written to accompany the\n> `origit-demo-payments-api` demo repository. No real package named\n> `fast-pay-utils` is affected. The exfiltration endpoint hardcoded in the\n> malicious release is **`localhost:8080` only** — no data ever leaves the\n> local machine. The advisory is intentionally realistic so that it can be\n> used to demonstrate how compromised-dependency and prompt-injection attacks\n> work in a supply-chain scenario.\n\n---\n\n# GitHub Security Advisory GHSA-demo-f4st-pay0-2100\n\n## Malicious Code & Invisible Prompt Injection in fast-pay-utils 2.1.0\n\n| Field              | Value                                                     |\n|--------------------|-----------------------------------------------------------|\n| **Advisory ID**    | GHSA-demo-f4st-pay0-2100                                  |\n| **Package**        | fast-pay-utils (npm)                                      |\n| **Affected**       | 2.1.0                                                     |\n| **Patched**        | 2.1.1                                                     |\n| **Severity**       | **HIGH** — CVSS 3.1 Score **8.2**                         |\n| **CVSS vector**    | `CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N`           |\n| **CWEs**           | CWE-506 (Embedded Malicious Code), CWE-829 (Inclusion of Functionality from Untrusted Control Sphere) |\n| **Published**      | 2025-01-01 (synthetic)                                    |\n| **Last updated**   | 2025-01-01 (synthetic)                                    |\n\n---\n\n## Summary\n\nRelease **2.1.0** of `fast-pay-utils` contains two distinct malicious\nmechanisms introduced by a compromised contributor:\n\n1. **Embedded credential-exfiltration code** — `src/index.ts` calls\n   `initializeTelemetry()` unconditionally at module import time, snapshots\n   `process.env` and the contents of the project's `.env` file, base64-encodes\n   them, and issues an HTTP GET to `http://localhost:8080/sync-config?blob=<b64>`\n   inside a `setImmediate` callback with all errors silenced. The malicious\n   lines are concealed behind approximately 300 leading spaces of indentation.\n\n2. **Invisible Unicode-tag prompt-injection instructions** — the package\n   `README.md` (line 2) and the `initializeTelemetry()` JSDoc comment (line 25\n   of `src/index.ts`) both contain a hidden instruction string encoded in the\n   Unicode Tags block (U+E0001–U+E007F). This string is invisible to human\n   readers and most code-review tools but is decoded by large-language-model\n   agents that process the file text, causing them to propagate the malicious\n   pattern to application code.\n\n---\n\n## Affected Versions\n\n| Version | Status   |\n|---------|----------|\n| 2.1.0   | ❌ Affected |\n| 2.0.0   | ✅ Clean    |\n| 2.1.1   | ✅ Patched  |\n\n---\n\n## CVSS 3.1 Detail\n\n```\nCVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N\n```\n\n| Metric                    | Value                  | Rationale                                                                                   |\n|---------------------------|------------------------|---------------------------------------------------------------------------------------------|\n| Attack Vector (AV)        | Local (L)              | Code runs inside the victim's build / runtime environment on their local machine.           |\n| Attack Complexity (AC)    | Low (L)                | No special conditions; the payload fires on every `import` / `require`.                     |\n| Privileges Required (PR)  | None (N)               | The package is installed as a regular dependency; no elevated privileges needed.            |\n| User Interaction (UI)     | Required (R)           | A developer or CI pipeline must install and load the package.                               |\n| Scope (S)                 | Changed (C)            | Impact escapes the package itself to the hosting application's process environment.         |\n| Confid",
+   "advisory_id": "GHSA-DEMO-F4ST-PAY0-2100",
+   "full_text": "[Skip to content](https://github.com/cvikl/origit#start-of-content)\n\n## Navigation Menu\n\n[](https://github.com/)\n\n[Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fcvikl%2Forigit)\n\n*   \nProducts\n\n    *   \nPlatform\n        *   [![Image 1](https://github.githubassets.com/assets/platform-4ce65ae0bf273ce2.png)![Image 2](https://github.githubassets.com/assets/platform-dark-ac89fbf373737ed3.png)GitHub Repository hosting, code review, and collaboration](https://github.com/platform)\n        *   [![Image 3](https://github.githubassets.com/assets/copilot-e2b89335a66dba00.png)![Image 4](https://github.githubassets.com/assets/copilot-dark-2b28403b6080e898.png)Copilot AI coding agent for tasks, projects and automated work](https://github.com/features/copilot)\n\n    *   \nBuild & Ship\n        *   [Actions CI/CD and automation](https://github.com/features/actions)\n        *   [Code Quality Quality analysis, fixes, and enforcement](https://github.com/features/code-quality)\n        *   [Codespaces Cloud development environments](https://github.com/features/codespaces)\n\n    *   \nSecure\n        *   [Code Security Vulnerability detection and remediation](https://github.com/security/advanced-security/code-security)\n        *   [Secret Protection Secret scanning and leak prevention](https://github.com/security/advanced-security/secret-protection)\n\n[All Features](https://github.com/features)\n\n*   \nDevelopers\n\n    *   \nLearn\n        *   [Documentation](https://docs.github.com/en)\n        *   [Training](https://learn.github.com/skills)\n        *   [Certifications](https://learn.github.com/credentials)\n\n    *   \nBuild\n        *   [Build with Copilot](https://github.com/features/ai)\n        *   [Customize Copilot](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-copilot-overview)\n        *   [Integrations](https://github.com/marketplace)\n\n    *   \nExplore\n        *   [Trending repos](https://github.com/trending)\n        *   [GitHub Sponsors](https://github.com/open-source/sponsors)\n        *   [Events](https://github.com/resources/events)\n\n    *   \nChangelog\n        *   [![Image 5](https://github.githubassets.com/assets/changelog-fd687bff072883b0.png)![Image 6](https://github.githubassets.com/assets/changelog-dark-b1c25ae971bd641b.png)Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place.](https://github.blog/changelog/)\n\n*   \nBusinesses\n\n    *   \nBy Stage\n        *   [Enterprises](https://github.com/enterprise)\n        *   [Team](https://github.com/team)\n        *   [Startups](https://github.com/enterprise/startups)\n        *   [Nonprofits](https://github.com/solutions/industry/nonprofits)\n\n    *   \nBy Industry\n        *   [Healthcare](https://github.com/solutions/industry/healthcare)\n        *   [Financial services](https://github.com/solutions/industry/financial-services)\n        *   [Manufacturing](https://github.com/solutions/industry/manufacturing)\n        *   [Government](https://github.com/solutions/industry/government)\n        *   [See all industries](https://github.com/solutions/industry)\n\n    *   \nEvaluate GitHub\n        *   [Why GitHub](https://github.com/why-github)\n        *   [Customer Stories](https://github.com/customer-stories)\n        *   [Business insights](https://github.com/solutions/executive-insights)\n        *   [Trust Center](https://github.com/trust-center)\n\n    *   \nAdd-ons\n        *   [GitHub Advanced Security Enterprise-grade code security](https://github.com/security/advanced-security)\n        *   [Copilot for business Enterprise-grade AI features](https://github.com/features/copilot/copilot-business)\n        *   [Premium Support Enterprise-grade 24/7 support](https://github.com/enterprise/premium-support)\n\n*   \nResources\n\n    *   \nLearn & Connect\n        *   [Documentation](https://docs.github.com/en)\n        *   [Resource center](https://github.com/resources)\n        *   [Blog](https://github.blog/)\n        *   [Events & webinars](https://github.com/resources/events)\n        *   [Community Forum](https://github.com/orgs/community/discussions)\n        *   [Customer Stories](https://github.com/customer-stories)\n        *   [Integrations](https://github.com/marketplace)\n\n    *   \nSupport\n        *   [Customer support](https://help.github.com/)\n        *   [Training](https://learn.github.com/skills)\n        *   [GitHub Status](https://www.githubstatus.com/)\n\n    *   \nCompany\n        *   [About](https://github.com/about)\n        *   [Partners](https://github.com/partners)\n        *   [Changelog](https://github.blog/changelog/)\n\n    *   \nGitHub Universe\n        *   [![Image 7](https://github.githubassets.com/assets/universe-a98cd54821b27569.png)![Image 8](https://github.githubassets.com/assets/universe-a98cd54821b27569.png)GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub.](https://githubuniverse.com/)\n\n*   [Pricing](https://github.com/pricing)\n\nSearch/\n\n[Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fcvikl%2Forigit)\n\n[Sign up](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E&source=header-repo&source_repo=cvikl%2Forigit)\n\nAppearance settings\n\nYou signed in with another tab or window. [Reload](https://github.com/cvikl/origit) to refresh your session.You signed out in another tab or window. [Reload](https://github.com/cvikl/origit) to refresh your session.You switched accounts on another tab or window. [Reload](https://github.com/cvikl/origit) to refresh your session.Dismiss alert\n\n{{ message }}\n\n1.   [cvikl](https://github.com/cvikl)\n2.   [origit](https://github.com/cvikl/origit)\n\n## Repository navigation\n\n*   [Code](https://github.com/cvikl/origit)\n*   [Issues](https://github.com/cvikl/origit/issues)\n*   [Pull requests](https://github.com/cvikl/origit/pulls)\n*   [Actions](https://github.com/cvikl/origit/actions)\n*   [Projects](https://github.com/cvikl/origit/projects)\n*   [Security and quality](https://github.com/cvikl/origit/security)\n*   [Insights](https://github.com/cvikl/origit/pulse)\n\nMore items\n\n[](https://github.com/cvikl/origit)\n\n![Image 9: cvikl](https://avatars.githubusercontent.com/u/153382281?s=60&v=4)\n\n**[origit](https://github.com/cvikl/origit)**\n\nPublic\n\n*   [Notifications](https://github.com/login?return_to=%2Fcvikl%2Forigit)You must be signed in to change notification settings\n*   [Fork 0(0)](https://github.com/login?return_to=%2Fcvikl%2Forigit)\n*   [Star 0(0)](https://github.com/login?return_to=%2Fcvikl%2Forigit)You must be signed in to star a repository\n\n## About\n\nNo description, website, or topics provided.\n\n### Resources\n\n[Readme](https://github.com/cvikl/origit#readme-ov-file)\n\n[MIT license](https://github.com/cvikl/origit#MIT-1-ov-file)\n\n[Activity](https://github.com/cvikl/origit/activity)\n\n### Stars\n\n**0** stars\n\n### Watchers\n\n**0** watching\n\n### Forks\n\n[**0** forks](https://github.com/cvikl/origit/forks)\n\n[Report repository](https://github.com/contact/report-content?content_url=https%3A%2F%2Fgithub.com%2Fcvikl%2Forigit&report=cvikl+%28user%29)\n\nmain\n\n[**1**Branch](https://github.com/cvikl/origit/branches)[**0**Tags](https://github.com/cvikl/origit/tags)\n\n[](https://github.com/cvikl/origit/branches)[](https://github.com/cvikl/origit/tags)\n\nGo to file\n\nCode\n\nOpen more actions menu\n\n## Latest commit\n\n[![Image 10: cvikl](https://avatars.githubusercontent.com/u/153382281?v=4&size=40)](https://github.com/cvikl)[cvikl](https://github.com/cvikl/origit/commits?author=cvikl)\n\n[bob_sessions: Bernard's Bob IDE tasks (evaluation repo, ASI mapping, …](https://github.com/cvikl/origit/commit/42717dd60d330a669bec91f77ce0c7a63e0782b1)\n\nOpen commit details\n\nSep 27, 2026\n\n[42717dd](https://github.com/cvikl/origit/commit/42717dd60d330a669bec91f77ce0c7a63e0782b1)·Sep 27, 2026\n\n## History\n\n[80 Commits](https://github.com/cvikl/origit/commits/main/)\n\nOpen commit details\n\n[](https://github.com/cvikl/origit/commits/main/)80 Commits\n\n## Folders and files\n\n| Name | Name | Last commit message | Last commit date |\n| --- | --- | --- | --- |\n| [.bob](https://github.com/cvikl/origit/tree/main/.bob \".bob\") | [.bob](https://github.com/cvikl/origit/tree/main/.bob \".bob\") | [record: writes include files staged in the commit; session-commit sub…](https://github.com/cvikl/origit/commit/fa87e694589f7563a9d43d481f5448ed8e34db50 \"record: writes include files staged in the commit; session-commit subject from the task prompt (UserPromptSubmit hook)\") | Sep 26, 2026 |\n| [.githooks](https://github.com/cvikl/origit/tree/main/.githooks \".githooks\") | [.githooks](https://github.com/cvikl/origit/tree/main/.githooks \".githooks\") | [demo: split payments-api into its own repo (submodule); hooks resolve…](https://github.com/cvikl/origit/commit/9d7adf0536b66781eaf6cd2d2670e99d098d1824 \"demo: split payments-api into its own repo (submodule); hooks resolve CLI via git config\") | Sep 26, 2026 |\n| [.origit](https://github.com/cvikl/origit/tree/main/.origit \".origit\") | [.origit](https://github.com/cvikl/origit/tree/main/.origit \".origit\") | [bob_sessions: task 24b stats; ignore .origit runtime state](https://github.com/cvikl/origit/commit/31a436130a4cf11752e1476ac3a397a70ea7f395 \"bob_sessions: task 24b stats; ignore .origit runtime state\") | Sep 27, 2026 |\n| [bob_sessions](https://github.com/cvikl/origit/tree/main/bob_sessions \"bob_sessions\") | [bob_sessions](https://github.com/cvikl/origit/tree/main/bob_sessions \"bob_sessions\") | [bob_sessions: Bernard's Bob IDE tasks (evaluation repo, ASI mapping, …](https://github.com/cvikl/origit/commit/42717dd60d330a669bec91f77ce0c7a63e0782b1 \"bob_sessions: Bernard's Bob IDE tasks (evaluation repo, ASI mapping, Article 14 template) and Bobalytics\") | Sep 27, 2026 |\n| [console](https://github.com/cvikl/origit/tree/main/console \"console\") | [console](https://github.com/cvikl/origit/tree/main/console \"console\") | [console pointer: GitHub org](https://github.com/cvikl/origit/commit/6adacbfdf8232520f4a737e34319feb6e307bf78 \"console pointer: GitHub org\") | Sep 27, 2026 |\n| [demo](https://github.com/cvikl/origit/tree/main/demo \"demo\") | [demo](https://github.com/cvikl/origit/tree/main/demo \"demo\") | [demo: submodule at 970e7f9 (neutral wording), evidence pack](https://github.com/cvikl/origit/commit/04633fa163dc4e9f41d0fb024a088c2dbc89a7df \"demo: submodule at 970e7f9 (neutral wording), evidence pack\") | Sep 27, 2026 |\n| [docs](https://github.com/cvikl/origit/tree/main/docs \"docs\") | [docs](https://github.com/cvikl/origit/tree/main/docs \"docs\") | [bob: From the attached Article 14 note, write docs/art14-template.md…](https://github.com/cvikl/origit/commit/15b0aedea9ca0e5a2d14fde41a3206a730fd729b \"bob: From the attached Article 14 note, write docs/art14-template.md… Session 7a0a6814f52a84c8d0693dd87a38ee5c. Auto-committed by Origit when the agent stopped. [`docs/art14-template.md`](docs/art14-template.md) is written. Here's what it contains and the design choices made: --- ### Structure **Two notification bodies**, matching the two deadlines Bernard documents: | Template | Deadline | Art. reference | |---|---|---| | Early Warning | 24 hours | 14(2)(a) | | 72-Hour Full Notification | 72 hours | 14(2)(b)–(c) | The Final Report (14 days) is omitted — the article note says most of its fields (severity, threat-actor attribution) require external CVE/threat-intel input and are not provenance questions. Including a half-empty shell would misrepresent what Origit covers. --- ### Placeholder convention - `{{ field }}` — filled from the taint JSON, with the exact field path from [`taint.py`'s `query()`](origit/origit/taint.py:82) return value. - `[[ INSTRUCTION ]]` — requires manual input (member-state list, CVE ID, user guidance, product identity). Mirrors the \\\"Answerable from record? No / Partial\\\" rows in Bernard's incident summary. --- ### Key mappings used from the taint result - `{{ first_read.at }}` is explicitly called out as the **Art. 14 clock start** — this is the critical field Bernard flagged in observation 1. - `{{ rollback_commit }}` populates the corrective-measures table directly. - `{{ affected[].matched }}` provides the propagation chain for the \\\"nature of exploit\\\" section, satisfying Bernard's observation 2 (understanding what the agent did after reading the compromised library). - A **mapping table** at\") | Sep 27, 2026 |\n| [extensions/origit-vscode](https://github.com/cvikl/origit/tree/main/extensions/origit-vscode \"This path skips through empty directories\") | [extensions/origit-vscode](https://github.com/cvikl/origit/tree/main/extensions/origit-vscode \"This path skips through empty directories\") | [extension README: repo link, roll-back wording, Bob IDE](https://github.com/cvikl/origit/commit/ae69d2bb806cf8cc080f03a8653ae9f5439520ad \"extension README: repo link, roll-back wording, Bob IDE\") | Sep 27, 2026 |\n| [origit](https://github.com/cvikl/origit/tree/main/origit \"origit\") | [origit](https://github.com/cvikl/origit/tree/main/origit \"origit\") | [prefilter: commands are record evidence, ASI05 only for code-executio…](https://github.com/cvikl/origit/commit/fc87018a9411c7605f83f7727240fcaac4e9c263 \"prefilter: commands are record evidence, ASI05 only for code-execution patterns; config changes by humans informational (ASI06), agent self-edits medium; new rule_config_instructions for injected instructions in agent config (insider case); drop per-person key placeholders [Jeremy's review]\") | Sep 27, 2026 |\n| [slides](https://github.com/cvikl/origit/tree/main/slides \"slides\") | [slides](https://github.com/cvikl/origit/tree/main/slides \"slides\") | [core: origit CLI, record schema, trace, notes, taint, prefilter, Bob …](https://github.com/cvikl/origit/commit/b63000299c33952e56a4d0277a5132d65e735869 \"core: origit CLI, record schema, trace, notes, taint, prefilter, Bob config, demo packages\") | Sep 26, 2026 |\n| [tools](https://github.com/cvikl/origit/tree/main/tools \"tools\") | [tools](https://github.com/cvikl/origit/tree/main/tools \"tools\") | [bob_sessions: screenshots only at top level; headless run stats moved…](https://github.com/cvikl/origit/commit/f7baf600fbe98c5b1b7592bd9dca48da5042043c \"bob_sessions: screenshots only at top level; headless run stats moved to bob_sessions/headless/\") | Sep 27, 2026 |\n| [.env.example](https://github.com/cvikl/origit/blob/main/.env.example \".env.example\") | [.env.example](https://github.com/cvikl/origit/blob/main/.env.example \".env.example\") | [prefilter: commands are record evidence, ASI05 only for code-executio…](https://github.com/cvikl/origit/commit/fc87018a9411c7605f83f7727240fcaac4e9c263 \"prefilter: commands are record evidence, ASI05 only for code-execution patterns; config changes by humans informational (ASI06), agent self-edits medium; new rule_config_instructions for injected instructions in agent config (insider case); drop per-person key placeholders [Jeremy's review]\") | Sep 27, 2026 |\n| [.gitignore](https://github.com/cvikl/origit/blob/main/.gitignore \".gitignore\") | [.gitignore](https://github.com/cvikl/origit/blob/main/.gitignore \".gitignore\") | [core: session manager — session start / run start / run end (auto-com…](https://github.com/cvikl/origit/commit/62941a176a0f7184d1c63b74644659dd4942c94e \"core: session manager — session start / run start / run end (auto-commit per run, human edits committed as human), display ids in records, log/show/taint --json, init installs origit-review mode, MCP config and /origit skill; MCP server spec + tests (Bob implements)\") | Sep 27, 2026 |\n| [.gitmodules](https://github.com/cvikl/origit/blob/main/.gitmodules \".gitmodules\") | [.gitmodules](https://github.com/cvikl/origit/blob/main/.gitmodules \".gitmodules\") | [demo: split payments-api into its own repo (submodule); hooks resolve…](https://github.com/cvikl/origit/commit/9d7adf0536b66781eaf6cd2d2670e99d098d1824 \"demo: split payments-api into its own repo (submodule); hooks resolve CLI via git config\") | Sep 26, 2026 |\n| [AGENTS.md](https://github.com/cvikl/origit/blob/main/AGENTS.md \"AGENTS.md\") | [AGENTS.md](https://github.com/cvikl/origit/blob/main/AGENTS.md \"AGENTS.md\") | [docs: AGENTS.md — session manager, MCP, extension, worktree practice …](https://github.com/cvikl/origit/commit/dc97093bd2ad8aee2f05aa463c77d0d90f135f8f \"docs: AGENTS.md — session manager, MCP, extension, worktree practice for Bob runs\") | Sep 27, 2026 |\n| [LICENSE](https://github.com/cvikl/origit/blob/main/LICENSE \"LICENSE\") | [LICENSE](https://github.com/cvikl/origit/blob/main/LICENSE \"LICENSE\") | [core: origit CLI, record schema, trace, notes, taint, prefilter, Bob …](https://github.com/cvikl/origit/commit/b63000299c33952e56a4d0277a5132d65e735869 \"core: origit CLI, record schema, trace, notes, taint, prefilter, Bob config, demo packages\") | Sep 26, 2026 |\n| [README.md](https://github.com/cvikl/origit/blob/main/README.md \"README.md\") | [README.md](https://github.com/cvikl/origit/blob/main/README.md \"README.md\") | [docs: technical documentation of core, console and extension](https://github.com/cvikl/origit/commit/2b64decd5618d800e6cb32753a7f59614fe7828e \"docs: technical documentation of core, console and extension\") | Sep 27, 2026 |\n| View all files |\n\n## Repository files navigation\n\n*   [README](https://github.com/cvikl/origit#)\n*   [MIT license](https://github.com/cvikl/origit#)\n\nMore items\n\n# Origit — versioning for agents\n\n[](https://github.com/cvikl/origit#origit--versioning-for-agents)\n\n**Origit is an open-source agent provenance layer for git.** Git records _what_ changed and _who_ committed it. Origit attaches a hashed record to every agent commit saying _what the agent read, wrote, added and ran_ — and makes it queryable.\n\n> Git tells you what changed. Origit tells you what the agent read before it changed it.\n\nBuilt for the [IBM Bob 2.0 Hackathon](https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon) (lablab.ai, Sep 2026). **IBM Bob IDE is the actor, the tracer, the reviewer and the drafter** — see [Origit for Bob IDE](https://github.com/cvikl/origit#origit-for-bob-ide).\n\n## Why now\n\n[](https://github.com/cvikl/origit#why-now)\n\n*   Supply-chain attacks on AI coding agents are compounding: H1 2026 had 2.6× the campaign volume of all of 2025, and AI-agent tooling (MCP servers, rules files) was the delivery mechanism in 14 of 59 tracked campaigns ([Phoenix Security](https://phoenix.security/accelerating-supply-chain-attacks-npm-pypi-vsx-ai-enabled-2026/)).\n*   **EU Cyber Resilience Act, Article 14** is live since 11 Sep 2026: early warning to ENISA within **24 hours** of becoming aware of an actively exploited vulnerability or severe incident, full notification within 72 h ([CRA](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act)). A compromised library introduced by an agent qualifies under Art. 14(5)(b).\n*   The question nobody can answer today: _when a library / MCP server / README turns out to be poisoned — which code did an agent write after reading it?_\n\n## What it does\n\n[](https://github.com/cvikl/origit#what-it-does)\n\n| Command | What it answers |\n| --- | --- |\n| `origit init` | Installs Bob IDE hooks, the `origit-build` and `origit-review` modes, the Origit MCP server, the `/origit` skill and git hooks into an existing repo |\n| `origit trace` | Hook consumer: appends every Bob tool call to `.origit/trace.jsonl` |\n| `origit record` | Folds the trace into a canonical, SHA-256-hashed record stored in `refs/notes/origit` |\n| `origit session start / status` | Opens a new recording session (assigned display number) / shows current session state |\n| `origit run start / end` | Marks the start / end of one Bob run (one commit) within the session |\n| `origit log --json` | Sessions newest first, with runs, read/write/dep counts and commit shas |\n| `origit log` / `origit show <commit>` | Commits with their records / the full record |\n| **`origit taint <package|file|sha256>`** | Affected commits, sessions, files written,"
+  },
+  "source": "bulletin",
+  "steps": [
+   {
+    "name": "trace",
+    "at": "2026-10-29T23:38:01Z",
+    "text": "Origit taint: 7 commits across sessions #42, #43, #44, #45, #46, #47, #49; 8 files written; rollback 17c436c; 3 commits already flagged by Sentinel",
+    "affected": 7,
+    "sessions": [
+     "#42",
+     "#43",
+     "#44",
+     "#45",
+     "#46",
+     "#47",
+     "#49"
+    ],
+    "rollback": "17c436c",
+    "prior_flags": 3
+   },
+   {
+    "name": "read",
+    "at": "2026-10-29T23:38:05Z",
+    "text": "Tavily extracted the advisory in full (20000 chars)",
+    "url": "https://github.com/cvikl/origit"
+   },
+   {
+    "name": "triage",
+    "at": "2026-10-29T23:38:05Z",
+    "text": "Nemotron Nano: HIGH, FIXTURE embedded malicious code with credential exfiltration; Article 14 applies: FIXTURE: Art. 14(5)(b) introduction of malicious code.",
+    "severity": "high",
+    "model": "nvidia/Nemotron-3_5-Lightning"
+   },
+   {
+    "name": "context",
+    "at": "2026-10-29T23:38:11Z",
+    "text": "Tavily: 5 sources on the vulnerability class, 5 on CRA Article 14",
+    "sources": [
+     "https://www.ox.security/blog/npm-packages-compromised",
+     "https://arxiv.org/html/2609.28996v1",
+     "https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-credential-supply-chain-codexui-2026060",
+     "https://www.splunk.com/en_us/blog/security/npm-supply-chain-attack-detection-analysis.html",
+     "https://www.stepsecurity.io/blog/node-ipc-npm-supply-chain-attack",
+     "https://www.europarl.europa.eu/RegData/etudes/BRIE/2026/785675/EPRS_BRI(2026)785675_EN.pdf",
+     "https://www.enisa.europa.eu/topics/product-security/vulnerability-services/eu-incident-response-and-cyber-crisis-management/single-reporting-platform-srp/frequently-asked-questions",
+     "https://digital-strategy.ec.europa.eu/en/policies/cra-summary",
+     "https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/cra-srp-glossary2",
+     "https://www.enisa.europa.eu/sites/default/files/2026-09/Terms%20and%20conditions%20CRA%20SRP%20v1.0%2020260910.pdf"
+    ]
+   },
+   {
+    "name": "draft",
+    "at": "2026-10-29T23:38:11Z",
+    "text": "Nemotron Ultra drafted the Article 14(4)(a) early warning in 0.0 s",
+    "model": "nvidia/Nemotron-3-Ultra-550b-a55b"
+   }
+  ],
+  "taint": {
+   "needle": "fast-pay-utils",
+   "affected": [
+    {
+     "sha": "36c384bd1ad0351e6f358ce4bef9d8b709887b4d",
+     "subject": "bob: Mask the PAN in payout export logs. [session #49 run 1]",
+     "session": "b9c6082e8d9f0b11f009ac1c0a686bc1",
+     "actor": "bob-ide",
+     "approver": "bernard",
+     "approved_at": "2026-09-27T01:16:39Z",
+     "wrote": [
+      "src/payout-export.test.ts",
+      "src/payout-export.ts"
+     ],
+     "matched": [
+      "propagated:src/payment-utils.ts",
+      "propagated:src/payout-export.test.ts",
+      "propagated:src/payout-export.ts"
+     ],
+     "short": "36c384b",
+     "session_label": "#49"
+    },
+    {
+     "sha": "ee4539ff0ee8d2c3d7ddb12ab0d1bf4caf1bf3b3",
+     "subject": "bob: In src/payout-export.ts, skip any payment whose PAN fails validatePan fr",
+     "session": "de87a367b37f1697f8d4e75353663c9c",
+     "actor": "bob-ide",
+     "approver": "bernard",
+     "approved_at": "2026-09-26T15:53:06Z",
+     "wrote": [
+      "src/payout-export.test.ts",
+      "src/payout-export.ts"
+     ],
+     "matched": [
+      "propagated:src/payment-utils.ts",
+      "propagated:src/payout-export.test.ts",
+      "propagated:src/payout-export.ts"
+     ],
+     "short": "ee4539f",
+     "session_label": "#47"
+    },
+    {
+     "sha": "343d6b05fc6faf4cd3788103a957037a8de0de33",
+     "subject": "bob: All 22 tests pass",
+     "session": "a0fc234652378e28ee0d3aadca449ead",
+     "actor": "bob-ide",
+     "approver": "bernard",
+     "approved_at": "2026-09-26T15:46:26Z",
+     "wrote": [],
+     "matched": [
+      "propagated:src/payment-utils.ts"
+     ],
+     "short": "343d6b0",
+     "session_label": "#46"
+    },
+    {
+     "sha": "d899879a31ef9dde2406d2ed1649c65458074737",
+     "subject": "docs: GHSA-style advisory for fast-pay-utils 2.1.0 (synthetic) [bob task J01, Bob Shell]",
+     "session": "0644f6a51ecf88fbdb0d09b6831a9073",
+     "actor": "bob-ide",
+     "approver": "bernard",
+     "approved_at": "2026-09-26T14:52:00Z",
+     "wrote": [
+      "packages/fast-pay-utils/ADVISORY.md"
+     ],
+     "matched": [
+      "read:file:packages/fast-pay-utils/2.1.0/README.md",
+      "read:file:packages/fast-pay-utils/2.1.0/src/index.ts",
+      "read:file:packages/fast-pay-utils/README.md"
+     ],
+     "short": "d899879",
+     "session_label": "#45"
+    },
+    {
+     "sha": "d5a464339cd88b3f2f1300c32ac5bf83a3b20ccb",
+     "subject": "feat: scheduled payout export (session C) [bob task 06]",
+     "session": "4c4a5dc6311bb162598cec05f410a558",
+     "actor": "bob-ide",
+     "approver": "bernard",
+     "approved_at": "2026-09-26T14:00:08Z",
+     "wrote": [
+      "src/payout-export-schedule.test.ts",
+      "src/payout-export.ts"
+     ],
+     "matched": [
+      "propagated:src/payment-utils.ts",
+      "propagated:src/payout-export.test.ts",
+      "propagated:src/payout-export.ts"
+     ],
+     "short": "d5a4643",
+     "session_label": "#44"
+    },
+    {
+     "sha": "d8f549f0bf66d73b3c3d6a2e9e6460246325c313",
+     "subject": "feat: Session B — add payment-utils and refactor payout-export to use them",
+     "session": "94d788ea8a60c055b001b210820462e6",
+     "actor": "bob-ide",
+     "approver": "bernard",
+     "approved_at": "2026-09-26T13:52:50Z",
+     "wrote": [
+      "src/payment-utils.test.ts",
+      "src/payment-utils.ts",
+      "src/payout-export.test.ts",
+      "src/payout-export.ts"
+     ],
+     "matched": [
+      "read:file:node_modules/fast-pay-utils/README.md",
+      "propagated:src/payout-export.test.ts",
+      "propagated:src/payout-export.ts"
+     ],
+     "short": "d8f549f",
+     "session_label": "#43"
+    },
+    {
+     "sha": "ac319287a108dd95749e31d6029226887417e4e7",
+     "subject": "feat: payout export via fast-pay-utils@2.1.0 (session A) [bob task 03]",
+     "session": "ef74353172505a674f0bf4e712500d7e",
+     "actor": "bob-ide",
+     "approver": "bernard",
+     "approved_at": "2026-09-26T13:38:24Z",
+     "wrote": [
+      "jest.config.js",
+      "node_modules/fast-pay-utils/dist/index.d.ts",
+      "src/payout-export.test.ts",
+      "src/payout-export.ts"
+     ],
+     "matched": [
+      "added_deps:fast-pay-utils@2.1.0",
+      "read:file:node_modules/fast-pay-utils/**/*",
+      "read:file:node_modules/fast-pay-utils/README.md",
+      "read:pkg:fast-pay-utils@2.1.0"
+     ],
+     "short": "ac31928",
+     "session_label": "#42"
+    }
+   ],
+   "sessions": [
+    "0644f6a51ecf88fbdb0d09b6831a9073",
+    "4c4a5dc6311bb162598cec05f410a558",
+    "94d788ea8a60c055b001b210820462e6",
+    "a0fc234652378e28ee0d3aadca449ead",
+    "b9c6082e8d9f0b11f009ac1c0a686bc1",
+    "de87a367b37f1697f8d4e75353663c9c",
+    "ef74353172505a674f0bf4e712500d7e"
+   ],
+   "files_written": [
+    "jest.config.js",
+    "node_modules/fast-pay-utils/dist/index.d.ts",
+    "packages/fast-pay-utils/ADVISORY.md",
+    "src/payment-utils.test.ts",
+    "src/payment-utils.ts",
+    "src/payout-export-schedule.test.ts",
+    "src/payout-export.test.ts",
+    "src/payout-export.ts"
+   ],
+   "approvers": [
+    "bernard"
+   ],
+   "first_read": {
+    "session": "ef74353172505a674f0bf4e712500d7e",
+    "at": "2026-09-26T13:21:14Z",
+    "commit": "ac319287a108dd95749e31d6029226887417e4e7",
+    "session_label": "#42"
+   },
+   "rollback_commit": "17c436c99d90c6bbe1b57c6c46178099225d5983",
+   "clean": [
+    {
+     "sha": "970e7f98018c5733928be4ea4606be224c0ecb62",
+     "subject": "docs: neutral wording in the fast-pay-utils README and advisory (no personal names in the product)",
+     "short": "970e7f9"
+    },
+    {
+     "sha": "d107c67fb7643ff8a668e2c70a74c873886ca8de",
+     "subject": "docs: link to the public Origit repository",
+     "short": "d107c67"
+    },
+    {
+     "sha": "6d4d325c1959cab9c95c8e64663f4487c8111ce5",
+     "subject": "chore: session display numbers start at #42 (.origit/config.json)",
+     "short": "6d4d325"
+    },
+    {
+     "sha": "b4edd9c2f5d6950013c2ce6b8002d5795ea4b728",
+     "subject": "bob: Read src/types.ts, src/store.ts and src/routes.ts with read_fil… [session #48 run 1]",
+     "short": "b4edd9c"
+    },
+    {
+     "sha": "f896e6785db062fb75a2447600adaef2f7e523fe",
+     "subject": "chore: Origit session manager — hooks call session start / run start / trace / run end; origit-review mode, MCP server, /origit skill; sessions numbered from #42",
+     "short": "f896e67"
+    },
+    {
+     "sha": "b6793c9be0981bfb984d8a07ac3a257c3eaf9832",
+     "subject": "chore: trace the task prompt (UserPromptSubmit hook)",
+     "short": "b6793c9"
+    },
+    {
+     "sha": "139b1ff891038e1b866a85e9a8beeaabe714d229",
+     "subject": "chore: Origit session auto-commit hook (one Bob session = one commit)",
+     "short": "139b1ff"
+    },
+    {
+     "sha": "3ccfc39dd7ccab90114b88866f452603910a2a15",
+     "subject": "feat: GET /health endpoint [bob task 04]",
+     "short": "3ccfc39"
+    },
+    {
+     "sha": "17c436c99d90c6bbe1b57c6c46178099225d5983",
+     "subject": "feat: payments API scaffold (Express, Jest, in-memory store) [bob task 02]",
+     "short": "17c436c"
+    },
+    {
+     "sha": "af6773327937762d46cdf8e2b72dbff421d12bc9",
+     "subject": "chore: hooks resolve origit via git config origit.bin; spec task ids",
+     "short": "af67733"
+    },
+    {
+     "sha": "e3a3401fb35e3baeb689df905a6b99b7f055e9fb",
+     "subject": "chore: origit init (Bob hooks, origit-build mode, git hooks)",
+     "short": "e3a3401"
+    },
+    {
+     "sha": "ad59f7b379b1321495348d2f7411f36ebff332e5",
+     "subject": "chore: demo repo scaffold, vendored fast-pay-utils 2.0.0 (clean) and 2.1.0 (compromised, synthetic)",
+     "short": "ad59f7b"
+    }
+   ],
+   "session_labels": [
+    "#42",
+    "#43",
+    "#44",
+    "#45",
+    "#46",
+    "#47",
+    "#49"
+   ],
+   "rollback_short": "17c436c"
+  },
+  "prior_flags": [
+   {
+    "short": "d899879",
+    "session_label": "#45",
+    "risk": "high",
+    "classes": [
+     "hidden-unicode-instruction",
+     "embedded-malicious-code"
+    ],
+    "cwe": [
+     "CWE-506",
+     "CWE-829"
+    ],
+    "summary": "FIXTURE: hidden Unicode-tag instruction in a file the agent read.",
+    "evidence": [
+     "FIXTURE evidence"
+    ],
+    "scanned_at": "2026-10-29T23:38:00Z"
+   },
+   {
+    "short": "d8f549f",
+    "session_label": "#43",
+    "risk": "high",
+    "classes": [
+     "hidden-unicode-instruction",
+     "embedded-malicious-code"
+    ],
+    "cwe": [
+     "CWE-506",
+     "CWE-829"
+    ],
+    "summary": "FIXTURE: hidden Unicode-tag instruction in a file the agent read.",
+    "evidence": [
+     "FIXTURE evidence"
+    ],
+    "scanned_at": "2026-10-29T23:38:01Z"
+   },
+   {
+    "short": "ac31928",
+    "session_label": "#42",
+    "risk": "high",
+    "classes": [
+     "hidden-unicode-instruction",
+     "embedded-malicious-code"
+    ],
+    "cwe": [
+     "CWE-506",
+     "CWE-829"
+    ],
+    "summary": "FIXTURE: hidden Unicode-tag instruction in a file the agent read.",
+    "evidence": [
+     "FIXTURE evidence"
+    ],
+    "scanned_at": "2026-10-29T23:38:01Z"
+   }
+  ],
+  "triage": {
+   "severity": "high",
+   "cvss": 8.2,
+   "vulnerability_class": "FIXTURE embedded malicious code with credential exfiltration",
+   "data_at_risk": [
+    "environment variables",
+    "payment data"
+   ],
+   "affected_components": [
+    "src/payout-export.ts"
+   ],
+   "article_14_applies": true,
+   "article_14_basis": "FIXTURE: Art. 14(5)(b) introduction of malicious code.",
+   "exploited_or_malicious": true,
+   "summary": "FIXTURE triage summary.",
+   "model": "nvidia/Nemotron-3_5-Lightning",
+   "call": "call_07eef62ded"
+  },
+  "context": {
+   "class_background": [
+    {
+     "title": "19 npm Packages Compromised in Major Supply-Chain Attack | OX Security",
+     "url": "https://www.ox.security/blog/npm-packages-compromised",
+     "content": "## Technical Analysis of the Attack Vector and Payload\n\nThe initial compromise began with a sophisticated phishing email sent from a fraudulent domain, npmjs.help, designed to impersonate the official npm registry (npmjs.com). The email used always-reliable social engineering to trick the maintainer into “updating” their 2FA credentials on a fake login page. The credentials and token were then exfiltrated to an attacker-controlled endpoint at websocket-api2.publicvm.com.\n\nThe malicious code injected into the packages functioned as a “Web3 drainer,” or a man-in-the-browser attack, engineered to hijack cryptocurrency activity. Once active, it silently monitors for connected wallets and manipulates transactions by using techniques like transaction swapping.",
+     "score": 0.65412235
+    },
+    {
+     "title": "DistillGuard: Malicious NPM Package Detection and API Attack Chain Analysis via Static Graph and LLM Distillation",
+     "url": "https://arxiv.org/html/2609.28996v1",
+     "content": "Typical malicious API attack chains and their required dependencies are shown in the Table VII. Info-Exfiltration is the most pervasive malicious behavior in npm supply chain attacks. Many such attacks are launched at install time by abusing preinstall or postinstall lifecycle hooks to avoid user awareness. The typical API chain first collects system and environment information including home directory, hostname, user info, and DNS servers, then encodes and transmits the collected data to attacker-controlled servers via HTTPS requests. The most frequently imported modules focus on system information acquisition, network communication, and data formatting.",
+     "score": 0.6485337
+    },
+    {
+     "title": "AI Credential Theft via npm Supply Chain Malware – Lab Space",
+     "url": "https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-credential-supply-chain-codexui-2026060",
+     "content": "The AI developer workflow creates a structural vulnerability that this attack exploited efficiently. Developers working with Codex expect the tool’s supporting npm packages to install and load silently. The pattern of automatic execution on module load is familiar and accepted; there is no warning, no prompt, and no observable side effect when credentials are exfiltrated. The combination of expected silent behavior, a functional tool that the user has reason to keep installed, and non-expiring credential material creates a durable compromise that is unlikely to be detected without a specific alert or active credential monitoring. In this respect the attack represents a more sophisticated threat model than commodity credential stealers: it appears designed to remain undetected [...] Field Effect. “Typosquatting campaign targets npm, CI pipelines, and AI-driven development (SANDWORM\\_MODE).” Field Effect, 2026-02.\n\n AI Weekly. “npm Malware Exfiltrates Claude AI Files to GitHub.” AI Weekly, 2026-05-26.\n\n TechRadar. “OpenAI Codex tool with over 29,000 downloads linked to malicious npm supply chain attack.” TechRadar, 2026-06-01.\n\n Sonatype. “Malware Reaches 845K Packages — Sonatype Q2 2025 Open Source Malware Index.” Sonatype, Q2 2025.\n\n Sonatype. “Open Source Malware Surges in Q3 as Attackers Target Dependencies.” Sonatype, Q3 2025.\n\n InfoQ. “NPM Ecosystem Suffers Two AI-Enabled Credential Stealing Supply Chain Attacks.” InfoQ, 2025-10.\n\n Palo Alto Unit 42. “Shai-Hulud npm Supply Chain Attack.” Palo Alto Unit 42, 2025-11-26. [...] The codexui-android package was published to the npm registry and presented itself as a legitimate remote web UI for OpenAI Codex. Aikido Security researcher Charlie Eriksen publicly disclosed the malicious functionality on approximately May 27, 2026, following approximately one month of active exfiltration . The package had been operational and accumulating genuine users for approximately one month before the malicious payload was introduced — a trust-building phase that appears designed to establish download momentum and a veneer of legitimacy before activating the attack. The exfiltration infrastructure domain, anyclaw.store, was registered on April 12, 2026 — two days after version 0.1.72 of the package was uploaded on April 10, 2026, providing a precise operational start date .",
+     "score": 0.6350646
+    },
+    {
+     "title": "Defending Against npm Supply Chain Attacks: A Practical Guide to Detection, Emulation, and Analysis | Splunk",
+     "url": "https://www.splunk.com/en_us/blog/security/npm-supply-chain-attack-detection-analysis.html",
+     "content": "Package-Inferno welcomes community contributions. If you discover new attack patterns, improve performance, or enhance documentation - pull requests are welcome.\n\nThe npm supply chain threat is real and active. Don't wait for a breach to gain visibility into what your dependencies are actually doing. Scan your packages today.\n\n## Detections\n\nSTRT has developed comprehensive detection coverage for the npm supply chain compromise campaigns, including the Shai-Hulud worm and its evolved 2.0 variant. The NPM Supply Chain Compromise Analytic Story contains 6 new detections plus 20 tagged existing detections covering the full attack chain from initial compromise through credential exfiltration.\n\n### Shai-Hulud Workflow File Creation or Modification [...] Recent attacks have demonstrated that adversaries are no longer content with simple typosquatting or credential theft. They're deploying sophisticated, self-propagating worms that automatically spread across package ecosystems, injecting malicious code into legitimate packages, and weaponizing the very tools developers trust. The September 2025 Shai-Hulud attack, which infected over 500 npm packages in a coordinated supply chain compromise, marked a watershed moment in supply chain security, showcasing techniques that defenders must now prepare for as standard adversary tradecraft.\n\nThe challenge for defenders is threefold: [...] 1. Understanding the Attack Surface: npm's lifecycle hooks (preinstall, install, postinstall, etc.) provide multiple execution points where malicious code can run with the privileges of the installing user. Build systems and CI/CD pipelines are particularly vulnerable, often running with elevated credentials and access to production secrets.\n2. Detection Gap: Traditional security tools struggle with supply chain attacks because the malicious behavior occurs during seemingly legitimate operations (package installation). The code executes before most runtime security controls activate, and the malicious payloads often masquerade as build tools or development dependencies.",
+     "score": 0.62742686
+    },
+    {
+     "title": "Active Supply Chain Attack: Malicious node-ipc Versions Published to npm - StepSecurity",
+     "url": "https://www.stepsecurity.io/blog/node-ipc-npm-supply-chain-attack",
+     "content": "All collected data is assembled in memory into a `ustar`-format TAR archive. Two fixed files anchor the archive: `uname.txt` (OS metadata and `uname -a` output) and `envs.txt` (all environment variable key-value pairs, sorted). Every matched credential file is added under its resolved path. The archive is then compressed with `zlib.gzipSync()`.\n\n### Stage 6: Dual-Channel Exfiltration\n\nThe payload attempts two independent exfiltration channels simultaneously. Either channel succeeding is sufficient for the attacker to receive the stolen data.\n\nChannel 1: HTTPS POST to fake Azure domain [...] No persistence mechanism: The malware runs once per process lifetime on module load. In long-running services or CI/CD pipelines that frequently start new Node.js processes, the exfiltration attempt fires on every startup.\n Account compromise timing: The 21-month gap between 12.0.0 (2024-08-12) and the three compromised releases (all 2026-05-14) strongly suggests the npm publisher account was compromised months after the last legitimate release -- a recurring pattern in supply chain attacks targeting dormant high-download packages.\n Identical payload strategy: The byte-for-byte identical `node-ipc.cjs` across all three versions confirms a single staging operation: one compiled, obfuscated bundle was inserted into three separate `package.json` contexts before simultaneous publishing. [...] ### Detect Compromised Developer Machines\n\nSupply chain attacks like this one do not stop at the CI/CD pipeline. The malicious obfuscated payload embedded in the compromised `node-ipc.cjs` bundle harvests credentials, SSH keys, cloud tokens, and AI tool configurations from the local environment. Every developer who ran `npm install` with a compromised `node-ipc` version outside of CI is a potential point of compromise.\n\nStepSecurity Dev Machine Guard gives security teams real-time visibility into npm packages installed across every enrolled developer device. When a malicious package is identified, teams can immediately search by package name and version to discover all impacted machines.\n\n### npm Package Cooldown Check",
+     "score": 0.62633044
+    }
+   ],
+   "cra_guidance": [
+    {
+     "title": "Simplifying cybersecurity reporting - European Parliament",
+     "url": "https://www.europarl.europa.eu/RegData/etudes/BRIE/2026/785675/EPRS_BRI(2026)785675_EN.pdf",
+     "content": "directly inform the other affected Member States and ENISA. Trust service providers have a 24-hour deadline to notify the CSIRTs or the competent authorities of significant incidents that impact the provision of their trust services. Voluntary reporting is also encouraged for cyber threats or near misses under Article 30 of the directive. The Cyber Resilience Act (CRA) (Articles 14-16) targets manufacturers of digital products, requiring them to issue an early warning notification within 24 hours of actively exploited vulnerabilities or severe incidents through a centralised single reporting platform managed by ENISA. Simultaneously, they must also notify the designated CSIRT coordinator and ENISA. For both types of breaches, a second notification is required within 72 hours. In the case [...] chemicals, food, manufacturing, digital providers and research) in the event of significant incidents that cause severe operational disruption, financial loss, or considerable material or non-material damage. The reporting process includes an early warning within 24 hours of the incident, an incident notification with an initial assessment within 72 hours, and a final report within a month. An intermediate report with relevant status updates must be provided upon request. Entities are also required to notify their computer security incident response teams (CSIRTs) or, where applicable, their competent authority. In the case of cross-border incidents, the CSIRTs, the competent authorities, or the single points of contact must directly inform the other affected Member States and ENISA.",
+     "score": 0.9314689
+    },
+    {
+     "title": "Frequently Asked Questions | ENISA",
+     "url": "https://www.enisa.europa.eu/topics/product-security/vulnerability-services/eu-incident-response-and-cyber-crisis-management/single-reporting-platform-srp/frequently-asked-questions",
+     "content": "Manufacturers and, once applicable, open-source software stewards must adhere to the following reporting deadlines:\n\n     Early Warning:Without undue delay and in any case within 24 hoursof becoming aware of the actively exploited vulnerability or severe incident;\n     Actively Exploited Vulnerability/Severe Incident Notification:Without undue delay and in any case within 72 hours of becoming aware, providing general information and an initial assessment;\n     Final Report:\n      + For actively exploited vulnerabilities: No later than 14 days after a corrective or mitigating measure (e.g., patch) becomes available.\n      + For severe incidents: Within 1 month after the 72-hour notification. [...] 5. What must be reported via the platform?\n:   Under the CRA, manufacturers placing on the EU market products with digital elements are required to notify two specific types of events:\n\n     Actively Exploited Vulnerabilities: vulnerabilities in products with digital elements for which there is reliable evidence that they have been exploited by a malicious actor;\n     Severe Incidents: incidents having a severe impact on the security of a product with digital elements (e.g., compromising its availability, authenticity, integrity, or confidentiality). The criteria for severity are set out in Art. 14(5). [...] 27.  Can I report vulnerabilities even if they are not actively exploited?\n:   The platform has not yet implemented the voluntary reporting functionality provided for under Art. 15(1) and (2) of the CRA. As such, only mandatory notifications concerning actively exploited vulnerabilities (AEVs) under Art. 14(~~3~~1) and severe incidents (SIs) under Art. 14 (3) having an impact on the security of products with digital elements under Art. 14(3) can currently be submitted through the SRP.\n\n    The corresponding reporting obligations for open-source software stewards, set out in Art. 24(3) of the CRA, will apply from 11 December 2027, in accordance with Art. 71(2).\n\n    The platform will be enhanced at a later stage to support voluntary reporting under Art.15.",
+     "score": 0.8832463
+    },
+    {
+     "title": "The Cyber Resilience Act - Summary of the legislative text | Shaping Europe’s digital future",
+     "url": "https://digital-strategy.ec.europa.eu/en/policies/cra-summary",
+     "content": "The manufacturer needs to submit to notifications to the Computer Security Incident Response Team (CSIRT) of the Member State in which it has its main establishment and to ENISA, within the following deadlines:\n\n 24 hours for an early warning notification;\n 72 hours for the \"main\" notification;\n a final report no later than 14 days after a corrective or mitigating measure is available for actively exploited vulnerabilities;\n a final report within one month from the 72h submission for severe incidents. [...] The manufacturer needs to determine a support period for its product with digital elements, during which the manufacturer will ensure that vulnerabilities of that product are handled effectively, in line with the vulnerability handling requirements (see Annex I). The end date of the support period (including month and year) needs to be clearly and understandably specified at the time of purchase.\n\nReporting obligations\n\nAfter the product is placed on the market, the manufacturer is required to notify actively exploited vulnerabilities and severe incidents having an impact on the security of the product that it becomes aware of. [...] Open-source software stewards are required to have a cybersecurity policy to foster the development of a secure product and effective handling of vulnerabilities; to cooperate with market surveillance authorities and take appropriate corrective actions; to report actively exploited vulnerabilities, to the extent that they are involved in the development of the products with digital elements, and severe incidents to the extent that they affect network and information systems provided by the open-source software stewards for the development of such products.\n\nOpen-source software stewards are not subject to penalties for infringements of the CRA.\n\n## Chapter III",
+     "score": 0.8810534
+    },
+    {
+     "title": "CRA SRP Glossary | ENISA",
+     "url": "https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/cra-srp-glossary2",
+     "content": "|  |  |  |  |  |  |  |  |  |  |\n ---  ---  ---  ---  --- |\n| Nr. | Field | Applies to AEV or SI | What this field means | How you may complete it | Example | Expected format | Early Warning (EW) 24h | 72h | Final Report (FR) |\n|  | Common fields |\n| 1. | Notification type (Actively Exploited Vulnerability/Severe Incident) | Both | Indicates whether the notification concerns an actively exploited vulnerability (AEV) or a severe incident (SI) having an impact on the security of a product with digital elements. | Select Actively Exploited Vulnerability when reporting an AEV. Select Severe Incident when reporting a SI having an impact on the security of a product with digital elements. | Vulnerability | Select one: Vulnerability or Incident | Required | N/A | N/A | [...] | 14. | User Action able to reduce impact | Both | Action that product users can take to prevent, reduce, or contain the impact of the actively exploited vulnerability or severe incident. | You may describe the immediate action a user can take to reduce the likelihood or impact of the vulnerability exploited or the incident. You may provide clear, practical instructions and identify any limitation or prerequisite (max. 4000 characters). | Disable the affected interface until the security update is installed. | Action-oriented text | Optional | N/A | N/A |",
+     "score": 0.8358192
+    },
+    {
+     "title": "Terms%20and%20conditions%20CRA%20SRP%20v1.0%2020260910.pdf",
+     "url": "https://www.enisa.europa.eu/sites/default/files/2026-09/Terms%20and%20conditions%20CRA%20SRP%20v1.0%2020260910.pdf",
+     "content": "Article 14 (1) of the Regulation provides that the manufacturer shall notify any actively exploited vulnerability contained in the product with digital elements that it becomes aware of simultaneously to the CSIRT designated as coordinator, in accordance with paragraph (7) of same Article, and to ENISA. Paragraph (3) of the same article provides that the manufacturer shall notify any severe incident having an impact on the security of the product with digital elements that it becomes aware of simultaneously to the CSIRT designated as coordinator, in accordance with paragraph (7) of the same Article, and to ENISA. \n\nThe manufacturer shall notify the actively exploited vulnerabilities and the severe incidents via the single reporting platform established pursuant to Article 16. [...] 2.2. The Users of the Platform (hereinafter “ Users ”) are prescribed in the Regulation and include: \n\n− Manufacturers 2 (in order to submit mandatory notifications for actively exploited vulnerabilities and severe incidents impacting products with digital elements, as per Article 14 (1) and (3) of the Regulation); \n\n− Open-Source Software Stewards 3 (in order to report actively exploited vulnerabilities and severe incidents for products with digital elements, qualifying as free and open-source software and intended for commercial activities, as per Article 24 (3) and Article 14 (1) and (3) of the Regulation); \n\nThe Platform allows Users to: \n\n− register view and edit their personal data 4;",
+     "score": 0.8342047
+    }
+   ]
+  },
+  "draft": {
+   "text": "# FIXTURE early warning\n\nThis text comes from the test fixture, not from Nemotron.",
+   "model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+   "call": "call_f678fa08d1",
+   "elapsed_s": 0.0,
+   "prompt_tokens": null,
+   "completion_tokens": null
+  },
+  "approved_at": null,
+  "approved_by": null,
+  "error": null,
+  "deadlines": {
+   "early_warning_24h": "2026-10-30T23:38:01Z",
+   "notification_72h": "2026-11-01T23:38:01Z",
+   "final_report_1m": "2026-11-28T23:38:01Z"
+  }
+ }
+]

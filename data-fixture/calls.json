@@ -1,0 +1,127 @@
+[
+ {
+  "id": "call_1bc04fc450",
+  "at": "2026-10-29T23:38:00Z",
+  "provider": "nebius",
+  "op": "sentinel-classify",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 7645
+ },
+ {
+  "id": "call_bc9e9c14be",
+  "at": "2026-10-29T23:38:01Z",
+  "provider": "nebius",
+  "op": "sentinel-classify",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 3031
+ },
+ {
+  "id": "call_46a311ad19",
+  "at": "2026-10-29T23:38:01Z",
+  "provider": "nebius",
+  "op": "sentinel-classify",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 2874
+ },
+ {
+  "id": "call_740ca18f16",
+  "at": "2026-10-29T23:38:01Z",
+  "provider": "nebius",
+  "op": "sentinel-classify",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 3339
+ },
+ {
+  "id": "call_0d92f86ed8",
+  "at": "2026-10-29T23:38:01Z",
+  "provider": "nebius",
+  "op": "sentinel-classify",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 9134
+ },
+ {
+  "id": "call_c4ebee624e",
+  "at": "2026-10-29T23:38:05Z",
+  "provider": "tavily",
+  "op": "advisory-extract",
+  "model": null,
+  "elapsed_s": 4.28,
+  "urls": [
+   "https://github.com/cvikl/origit"
+  ],
+  "extracted": 1,
+  "failed": [],
+  "chars": 34427
+ },
+ {
+  "id": "call_07eef62ded",
+  "at": "2026-10-29T23:38:05Z",
+  "provider": "nebius",
+  "op": "cve-triage",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 18239
+ },
+ {
+  "id": "call_41c7bd32f6",
+  "at": "2026-10-29T23:38:08Z",
+  "provider": "tavily",
+  "op": "class-background",
+  "model": null,
+  "elapsed_s": 2.79,
+  "query": "FIXTURE embedded malicious code with credential exfiltration npm supply chain attack analysis",
+  "results": 5,
+  "urls": [
+   "https://www.ox.security/blog/npm-packages-compromised",
+   "https://arxiv.org/html/2609.28996v1",
+   "https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-credential-supply-chain-codexui-2026060",
+   "https://www.splunk.com/en_us/blog/security/npm-supply-chain-attack-detection-analysis.html",
+   "https://www.stepsecurity.io/blog/node-ipc-npm-supply-chain-attack"
+  ]
+ },
+ {
+  "id": "call_ff95729dc2",
+  "at": "2026-10-29T23:38:11Z",
+  "provider": "tavily",
+  "op": "cra-guidance",
+  "model": null,
+  "elapsed_s": 2.62,
+  "query": "Cyber Resilience Act Article 14 early warning 24 hours ENISA notification actively exploited vulnerability severe incident",
+  "results": 5,
+  "urls": [
+   "https://www.europarl.europa.eu/RegData/etudes/BRIE/2026/785675/EPRS_BRI(2026)785675_EN.pdf",
+   "https://www.enisa.europa.eu/topics/product-security/vulnerability-services/eu-incident-response-and-cyber-crisis-management/single-reporting-platform-srp/frequently-asked-questions",
+   "https://digital-strategy.ec.europa.eu/en/policies/cra-summary",
+   "https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/cra-srp-glossary2",
+   "https://www.enisa.europa.eu/sites/default/files/2026-09/Terms%20and%20conditions%20CRA%20SRP%20v1.0%2020260910.pdf"
+  ]
+ },
+ {
+  "id": "call_f678fa08d1",
+  "at": "2026-10-29T23:38:11Z",
+  "provider": "nebius",
+  "op": "article14-draft",
+  "model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+  "elapsed_s": 0.0,
+  "tier": "ultra",
+  "fixture": true,
+  "prompt_chars": 29146
+ }
+]

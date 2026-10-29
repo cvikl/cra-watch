@@ -1,0 +1,146 @@
+[
+ {
+  "id": "ev_19c01d6e05",
+  "at": "2026-10-29T23:38:00Z",
+  "kind": "sentinel",
+  "text": "Sentinel scan started over the Origit store",
+  "stage": "sentinel"
+ },
+ {
+  "id": "ev_935bc60da3",
+  "at": "2026-10-29T23:38:00Z",
+  "kind": "sentinel",
+  "text": "d899879 #45: HIGH hidden-unicode-instruction, embedded-malicious-code",
+  "stage": "sentinel",
+  "sha": "d899879a31ef9dde2406d2ed1649c65458074737",
+  "risk": "high"
+ },
+ {
+  "id": "ev_193ce1e056",
+  "at": "2026-10-29T23:38:01Z",
+  "kind": "sentinel",
+  "text": "d8f549f #43: HIGH hidden-unicode-instruction, embedded-malicious-code",
+  "stage": "sentinel",
+  "sha": "d8f549f0bf66d73b3c3d6a2e9e6460246325c313",
+  "risk": "high"
+ },
+ {
+  "id": "ev_92b79b7c50",
+  "at": "2026-10-29T23:38:01Z",
+  "kind": "sentinel",
+  "text": "3ccfc39 #43: HIGH hidden-unicode-instruction, embedded-malicious-code",
+  "stage": "sentinel",
+  "sha": "3ccfc39dd7ccab90114b88866f452603910a2a15",
+  "risk": "high"
+ },
+ {
+  "id": "ev_4b925ed7bc",
+  "at": "2026-10-29T23:38:01Z",
+  "kind": "sentinel",
+  "text": "ac31928 #42: HIGH hidden-unicode-instruction, embedded-malicious-code",
+  "stage": "sentinel",
+  "sha": "ac319287a108dd95749e31d6029226887417e4e7",
+  "risk": "high"
+ },
+ {
+  "id": "ev_da43028033",
+  "at": "2026-10-29T23:38:01Z",
+  "kind": "sentinel",
+  "text": "17c436c #42: HIGH hidden-unicode-instruction, embedded-malicious-code",
+  "stage": "sentinel",
+  "sha": "17c436c99d90c6bbe1b57c6c46178099225d5983",
+  "risk": "high"
+ },
+ {
+  "id": "ev_15a321f3bc",
+  "at": "2026-10-29T23:38:01Z",
+  "kind": "sentinel",
+  "text": "Sentinel scan finished: 5 of 10 agent commits carry a risk flag",
+  "stage": "sentinel"
+ },
+ {
+  "id": "ev_7215454f94",
+  "at": "2026-10-29T23:38:01Z",
+  "kind": "detect",
+  "text": "Advisory matched watched dependency fast-pay-utils: GHSA-demo-f4st-pay0-2100: malicious code in fast-pay-utils 2.1.0",
+  "stage": "detect",
+  "incident": "inc_2280c39bcd",
+  "url": "https://github.com/cvikl/origit"
+ },
+ {
+  "id": "ev_57f54e7e35",
+  "at": "2026-10-29T23:38:01Z",
+  "kind": "trace",
+  "text": "Origit taint: 7 commits across sessions #42, #43, #44, #45, #46, #47, #49; 8 files written; rollback 17c436c; 3 commits already flagged by Sentinel",
+  "stage": "trace",
+  "incident": "inc_2280c39bcd",
+  "affected": 7,
+  "sessions": [
+   "#42",
+   "#43",
+   "#44",
+   "#45",
+   "#46",
+   "#47",
+   "#49"
+  ],
+  "rollback": "17c436c",
+  "prior_flags": 3
+ },
+ {
+  "id": "ev_b436cf1828",
+  "at": "2026-10-29T23:38:05Z",
+  "kind": "read",
+  "text": "Tavily extracted the advisory in full (20000 chars)",
+  "stage": "read",
+  "incident": "inc_2280c39bcd",
+  "url": "https://github.com/cvikl/origit"
+ },
+ {
+  "id": "ev_339b17b5b0",
+  "at": "2026-10-29T23:38:05Z",
+  "kind": "triage",
+  "text": "Nemotron Nano: HIGH, FIXTURE embedded malicious code with credential exfiltration; Article 14 applies: FIXTURE: Art. 14(5)(b) introduction of malicious code.",
+  "stage": "triage",
+  "incident": "inc_2280c39bcd",
+  "severity": "high",
+  "model": "nvidia/Nemotron-3_5-Lightning"
+ },
+ {
+  "id": "ev_5f04077e84",
+  "at": "2026-10-29T23:38:11Z",
+  "kind": "context",
+  "text": "Tavily: 5 sources on the vulnerability class, 5 on CRA Article 14",
+  "stage": "context",
+  "incident": "inc_2280c39bcd",
+  "sources": [
+   "https://www.ox.security/blog/npm-packages-compromised",
+   "https://arxiv.org/html/2609.28996v1",
+   "https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-credential-supply-chain-codexui-2026060",
+   "https://www.splunk.com/en_us/blog/security/npm-supply-chain-attack-detection-analysis.html",
+   "https://www.stepsecurity.io/blog/node-ipc-npm-supply-chain-attack",
+   "https://www.europarl.europa.eu/RegData/etudes/BRIE/2026/785675/EPRS_BRI(2026)785675_EN.pdf",
+   "https://www.enisa.europa.eu/topics/product-security/vulnerability-services/eu-incident-response-and-cyber-crisis-management/single-reporting-platform-srp/frequently-asked-questions",
+   "https://digital-strategy.ec.europa.eu/en/policies/cra-summary",
+   "https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/cra-srp-glossary2",
+   "https://www.enisa.europa.eu/sites/default/files/2026-09/Terms%20and%20conditions%20CRA%20SRP%20v1.0%2020260910.pdf"
+  ]
+ },
+ {
+  "id": "ev_a207b8c872",
+  "at": "2026-10-29T23:38:11Z",
+  "kind": "draft",
+  "text": "Nemotron Ultra drafted the Article 14(4)(a) early warning in 0.0 s",
+  "stage": "draft",
+  "incident": "inc_2280c39bcd",
+  "model": "nvidia/Nemotron-3-Ultra-550b-a55b"
+ },
+ {
+  "id": "ev_6d1a597c73",
+  "at": "2026-10-29T23:38:11Z",
+  "kind": "review",
+  "text": "Draft ready for human review",
+  "stage": "review",
+  "incident": "inc_2280c39bcd"
+ }
+]

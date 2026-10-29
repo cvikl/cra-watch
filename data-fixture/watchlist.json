@@ -1,0 +1,102 @@
+[
+ {
+  "name": "fast-pay-utils",
+  "version": "2.1.0",
+  "registry": "npm",
+  "added_in": "ac31928",
+  "bulletins": [],
+  "enabled": true,
+  "last_checked": null,
+  "last_result": null
+ },
+ {
+  "name": "typescript",
+  "version": "5.6.3",
+  "registry": "npm",
+  "added_in": "17c436c",
+  "bulletins": [],
+  "enabled": true,
+  "last_checked": null,
+  "last_result": null
+ },
+ {
+  "name": "ts-jest",
+  "version": "29.2.5",
+  "registry": "npm",
+  "added_in": "17c436c",
+  "bulletins": [],
+  "enabled": true,
+  "last_checked": null,
+  "last_result": null
+ },
+ {
+  "name": "supertest",
+  "version": "7.0.0",
+  "registry": "npm",
+  "added_in": "17c436c",
+  "bulletins": [],
+  "enabled": true,
+  "last_checked": null,
+  "last_result": null
+ },
+ {
+  "name": "jest",
+  "version": "29.7.0",
+  "registry": "npm",
+  "added_in": "17c436c",
+  "bulletins": [],
+  "enabled": true,
+  "last_checked": null,
+  "last_result": null
+ },
+ {
+  "name": "express",
+  "version": "4.21.2",
+  "registry": "npm",
+  "added_in": "17c436c",
+  "bulletins": [],
+  "enabled": true,
+  "last_checked": null,
+  "last_result": null
+ },
+ {
+  "name": "@types/supertest",
+  "version": "6.0.2",
+  "registry": "npm",
+  "added_in": "17c436c",
+  "bulletins": [],
+  "enabled": true,
+  "last_checked": null,
+  "last_result": null
+ },
+ {
+  "name": "@types/node",
+  "version": "22.10.2",
+  "registry": "npm",
+  "added_in": "17c436c",
+  "bulletins": [],
+  "enabled": true,
+  "last_checked": null,
+  "last_result": null
+ },
+ {
+  "name": "@types/jest",
+  "version": "29.5.14",
+  "registry": "npm",
+  "added_in": "17c436c",
+  "bulletins": [],
+  "enabled": true,
+  "last_checked": null,
+  "last_result": null
+ },
+ {
+  "name": "@types/express",
+  "version": "4.17.21",
+  "registry": "npm",
+  "added_in": "17c436c",
+  "bulletins": [],
+  "enabled": true,
+  "last_checked": null,
+  "last_result": null
+ }
+]
