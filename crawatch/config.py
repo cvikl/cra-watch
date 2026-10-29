@@ -33,6 +33,9 @@ class Settings:
     fake_llm: bool = field(default_factory=lambda: _env("CRAWATCH_FAKE_LLM") == "1")
     review_token: str = field(default_factory=lambda: _env("CRAWATCH_TOKEN"))
     monitor_interval_s: int = field(default_factory=lambda: int(_env("CRAWATCH_MONITOR_INTERVAL", "300")))
+    # Vendor bulletin feed for the demo dependency (a public URL Tavily can read; the synthetic advisory in demo/advisories)
+    demo_bulletin: str = field(default_factory=lambda: _env("CRAWATCH_DEMO_BULLETIN", "https://raw.githubusercontent.com/cvikl/cra-watch/main/demo/advisories/GHSA-demo-f4st-pay0-2100.md"))
+    demo_dependency: str = field(default_factory=lambda: _env("CRAWATCH_DEMO_DEPENDENCY", "fast-pay-utils"))
 
     @property
     def nebius_ready(self) -> bool:

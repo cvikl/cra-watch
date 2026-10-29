@@ -22,8 +22,9 @@ def default_watchlist() -> list[dict[str, Any]]:
     from . import origit_bridge as O
     items = []
     for d in O.dependencies():
+        bulletins = [settings.demo_bulletin] if d["name"] == settings.demo_dependency and settings.demo_bulletin else []
         items.append({"name": d["name"], "version": d["version"], "registry": d["registry"], "added_in": d["added_in"],
-                      "bulletins": [], "enabled": True, "last_checked": None, "last_result": None})
+                      "bulletins": bulletins, "enabled": True, "last_checked": None, "last_result": None})
     return items
 
 
