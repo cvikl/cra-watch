@@ -26,7 +26,9 @@
   ];
   const STATUS_ORDER = ["detected", "trace", "read", "triage", "context", "draft", "review", "filed"];
 
-  let state = null, selectedIncident = null, selectedCommit = null, clockTimer = null;
+  let state = null, selectedIncident = null, selectedCommit = null, clockTimer = null, watchOpen = false;
+  const incNo = (inc) => inc.id.replace("inc_", "INC-").toUpperCase();
+  const check = () => { const s = document.createElementNS("http://www.w3.org/2000/svg", "svg"); s.setAttribute("viewBox", "0 0 16 16"); s.setAttribute("aria-label", "done"); s.innerHTML = '<path d="M3 8.5l3.2 3.2L13 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>'; return s; };
 
   // ------------------------------------------------------------------ data
   async function api(path, opts = {}) {
@@ -51,21 +53,23 @@
     $("#product").textContent = state.product;
     const c = state.config, n = state.commits.length;
     const items = [
-      ["Nebius Token Factory", c.nebius, c.fake_llm ? "fixture mode" : (c.nebius ? "connected" : "no key")],
-      ["Nemotron Nano", c.nebius, c.nano], ["Nemotron Ultra", c.nebius, c.ultra],
-      ["Tavily", c.tavily, c.tavily ? "connected" : "no key"], ["Origit", true, `${n} agent commits`],
+      ["Nebius Token Factory", c.nebius, c.fake_llm ? "fixture mode" : (c.nebius ? "connected" : "no key"), null],
+      ["Nemotron Nano", c.nebius, null, c.nano], ["Nemotron Ultra", c.nebius, null, c.ultra],
+      ["Tavily", c.tavily, c.tavily ? null : "no key", null], ["Origit", true, `${n} commits`, "agent commits with Origit records"],
     ];
-    $("#systems").replaceChildren(...items.map(([name, on, id]) => el("li", { class: on ? "on" : "off", title: id }, el("span", { class: "dot" }), name, el("span", { class: "sys-id" }, id))));
+    $("#systems").replaceChildren(...items.map(([name, on, id, title]) => el("li", { class: on ? "on" : "off", title: title || id || name }, el("span", { class: "dot" }), name, id ? el("span", { class: "sys-id" }, id) : null)));
   }
 
   // ------------------------------------------------------------------ register
   function renderWatchlist() {
     const list = $("#watchlist");
-    list.replaceChildren(...state.watchlist.map((d) => el("li", {},
+    const shown = watchOpen ? state.watchlist : state.watchlist.slice(0, 4);
+    list.replaceChildren(...shown.map((d) => el("li", {},
       el("span", { class: "dep" }, d.name, " ", el("span", { class: "ver" }, d.version ? `@${d.version}` : "")),
       el("span", { class: d.last_result && /^(CVE|GHSA)/.test(d.last_result) ? "hit num" : "num", title: "last poll result" }, d.last_result || "not polled"),
       el("span", { class: "meta" }, el("span", {}, d.added_in ? `added in ${d.added_in}` : "manual"), el("span", {}, d.bulletins?.length ? `${d.bulletins.length} bulletin feed${d.bulletins.length > 1 ? "s" : ""}` : "advisory search"), d.last_checked ? el("span", {}, `polled ${hhmm(d.last_checked)}`) : null),
     )));
+    if (state.watchlist.length > 4) list.append(el("li", { style: "display:block;border:0;padding:.2rem 0 0" }, el("button", { class: "watch-more", onclick: () => { watchOpen = !watchOpen; render(); } }, watchOpen ? "Show fewer" : `Show all ${state.watchlist.length} watched`)));
     $("#monitor-note").textContent = `Polls NVD, GitHub Advisories, OSV and vendor bulletins through Tavily every ${Math.round(state.config.interval_s / 60)} min on a Nebius Serverless Job.`;
     const b = $("#btn-monitor"); b.classList.toggle("busy", !!state.jobs.monitor); b.disabled = !state.config.tavily;
   }
@@ -125,7 +129,7 @@
       const st = inc ? stepStatus(inc, key) : "pending";
       const rec = inc && (key === "detect" ? { at: inc.opened_at, text: `${inc.advisory.advisory_id || "Advisory"} via ${inc.source} feed` } : inc.steps.find((s) => s.name === key));
       const text = key === "review" && inc ? (inc.status === "filed" ? `Approved by ${inc.approved_by}` : inc.status === "review" ? "Awaiting your approval" : "") : rec?.text;
-      return el("li", { class: `step ${st}` }, el("span", { class: "st-no" }, `STEP ${n + 1}`), el("span", { class: "st-name" }, name), el("span", { class: "st-actor" }, actor),
+      return el("li", { class: `step ${st}` }, el("span", { class: "st-no" }, `STEP ${n + 1}`), el("span", { class: "st-name" }, name, st === "done" ? check() : null), el("span", { class: "st-actor" }, actor),
         text ? el("p", { class: "st-text" }, text) : null, rec?.at ? el("span", { class: "st-time" }, hhmm(rec.at)) : null);
     }));
   }
@@ -136,7 +140,7 @@
     const stampText = { detected: "Detected", trace: "Tracing", read: "Reading", triage: "Triage", context: "Context", draft: "Drafting", review: "Awaiting approval", filed: "Filed", failed: "Pipeline failed" }[inc.status] || inc.status;
     const doc = el("article", { class: "doc" },
       el("header", { class: "doc-head" },
-        el("div", { class: "doc-no" }, el("span", { class: "label" }, "Incident record"), el("span", { class: "value" }, inc.id.replace("inc_", "INC-").toUpperCase()), el("span", { class: "sub" }, `Opened ${fmtT(inc.opened_at)} · early warning under CRA Art. 14(4)(a)`)),
+        el("div", { class: "doc-no" }, el("span", { class: "value" }, incNo(inc)), el("span", { class: "sub" }, `Incident record · opened ${fmtT(inc.opened_at)} · early warning under CRA Art. 14(4)(a)`)),
         el("div", { class: "doc-status" }, el("span", { class: `stamp ${stampClass}` }, stampText))),
       el("section", { class: "fields" },
         field("Dependency", `${inc.dependency}${inc.version ? "@" + inc.version : ""}`, "npm, introduced by an agent"),
@@ -167,7 +171,7 @@
     if (t.rollback_commit) rows.push(el("tr", { class: "rollback" }, el("td", { class: "mono" }, t.rollback_short), el("td", {}, "–"), el("td", { colspan: 4 }, "Last clean commit: roll back here and remove the dependency")));
     return el("section", { class: "doc-section" },
       el("h3", { class: "sec-title" }, el("span", { class: "sec-no" }, "2"), "Affected components", el("span", { class: "sec-hint" }, `Origit taint for ${t.needle}: ${t.affected.length} commits, sessions ${t.session_labels.join(", ")}; first read ${fmtT(t.first_read?.at)}`)),
-      el("table", { class: "tbl" }, el("thead", {}, el("tr", {}, ...["Commit", "Session", "Agent run", "Files written", "Approved by", "Sentinel flag"].map((h) => el("th", {}, h)))), el("tbody", {}, ...rows)));
+      el("div", { class: "tbl-x" }, el("table", { class: "tbl" }, el("thead", {}, el("tr", {}, ...["Commit", "Session", "Agent run", "Files written", "Approved by", "Sentinel flag"].map((h) => el("th", {}, h)))), el("tbody", {}, ...rows))));
   }
   function renderTriage(inc) {
     const tri = inc.triage, ctx = inc.context || {};
@@ -255,13 +259,17 @@
   // ------------------------------------------------------------------ clock
   function startClock(inc) {
     clearInterval(clockTimer);
-    const node = $("#clock"); if (!node || !inc) return;
-    const due = parse(inc.deadlines.early_warning_24h);
+    const node = $("#clock"), band = $("#band-clock"), bt = $(".bc-time", band);
+    const live = currentIncident();
+    if (!live) { band.hidden = true; if (!node) return; }
+    else { band.hidden = false; $(".bc-no", band).textContent = incNo(live); $(".bc-label", band).textContent = live.status === "filed" ? "filed after" : "early warning due in"; }
+    const target = inc || live; if (!target) return;
+    const due = parse(target.deadlines.early_warning_24h);
     const tick = () => {
-      if (inc.status === "filed") { node.textContent = dur(parse(inc.approved_at) - parse(inc.awareness)); node.classList.add("stopped"); return; }
-      const left = due - Date.now();
-      node.textContent = (left < 0 ? "-" : "") + dur(Math.abs(left));
-      node.classList.toggle("over", left < 0);
+      let text, cls;
+      if (target.status === "filed") { text = dur(parse(target.approved_at) - parse(target.awareness)); cls = "stopped"; }
+      else { const left = due - Date.now(); text = (left < 0 ? "-" : "") + dur(Math.abs(left)); cls = left < 0 ? "over" : ""; }
+      for (const n of [node, bt]) { if (!n) continue; n.textContent = text; n.classList.toggle("stopped", cls === "stopped"); n.classList.toggle("over", cls === "over"); }
     };
     tick(); clockTimer = setInterval(tick, 1000);
   }

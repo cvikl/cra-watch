@@ -6,9 +6,8 @@
 <title>CRA Watch</title>
 <meta name="description" content="Autonomous EU Cyber Resilience Act Article 14 agent: Tavily monitors, Origit traces, Nemotron on Nebius classifies and drafts, a person approves.">
 <link rel="icon" href="/static/mark.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
+<link rel="preload" href="/static/fonts/archivo-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/static/fonts/archivo.css">
 <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
@@ -23,6 +22,7 @@
     <span class="label">Product</span><span id="product" class="value">{{ product }}</span>
   </div>
   <ul class="systems" id="systems" aria-label="Connected systems"></ul>
+  <a class="band-clock" id="band-clock" href="#report" hidden><span class="bc-no"></span><span class="bc-time num"></span><span class="bc-label"></span></a>
 </header>
 
 <div class="desk">
@@ -55,7 +55,7 @@
 <template id="tpl-empty">
   <article class="doc">
     <header class="doc-head">
-      <div class="doc-no"><span class="label">Document</span><span class="value">Pre-incident checks</span></div>
+      <div class="doc-no"><span class="value">Pre-incident checks</span><span class="sub">Sentinel register and advisory watch, before any incident</span></div>
       <div class="doc-status"><span class="stamp stamp-quiet">No open incident</span></div>
     </header>
     <section class="fields fields-3">
