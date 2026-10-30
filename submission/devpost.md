@@ -14,7 +14,7 @@ Article 14 of the EU Cyber Resilience Act has applied since 11 September 2026: a
 1. **Monitor.** A Nebius Serverless Job polls NVD, GitHub Advisories, OSV and vendor bulletins through Tavily for every dependency an agent added. A match opens an incident and starts the 24 h clock.
 2. **Trace.** `origit taint` returns every agent commit downstream of the component, the sessions, files written, approver, first-read time and the last clean commit to roll back to. Deterministic, milliseconds.
 3. **Read.** Tavily extracts the advisory in full so the models work from the real text.
-4. **Triage.** NVIDIA Nemotron 3.5 Lightning (the Nano tier) classifies severity, vulnerability class, data at risk and whether Article 14 applies, with structured JSON output.
+4. **Triage.** NVIDIA Nemotron 3 Nano 30B (the Nano tier) classifies severity, vulnerability class, data at risk and whether Article 14 applies, with structured JSON output.
 5. **Context.** Tavily fetches background on the vulnerability class and the CRA Article 14 guidance.
 6. **Draft.** NVIDIA Nemotron 3 Ultra writes the Article 14(4)(a) early warning from the advisory, the taint result, the triage and the guidance. Anything not in the evidence stays a placeholder.
 7. **Review.** The compliance lead reads the incident record, approves, and the stamp shows how much of the 24 h window was used. Nothing is sent automatically.
@@ -47,10 +47,10 @@ Origit (github.com/cvikl/origit, MIT, September 2026) existed before the submiss
 
 ## Built with
 
-Nebius Token Factory, Nebius Serverless Jobs, Nebius Serverless Endpoints, NVIDIA Nemotron 3 Ultra, NVIDIA Nemotron 3.5 Lightning, Tavily, Origit, Python, FastAPI.
+Nebius Token Factory, Nebius Serverless Jobs, Nebius Serverless Endpoints, NVIDIA Nemotron 3 Ultra, NVIDIA Nemotron 3 Nano, Tavily, Origit, Python, FastAPI.
 
 ## Feedback on Nebius Token Factory and NVIDIA tools
 
 - Token Factory: the OpenAI-compatible API and `json_schema` output worked first time; billing setup requiring a card before the hackathon promo code can be applied cost us hours on the deadline day, a promo path that bypasses the card would help hackathon teams.
 - Serverless Jobs: clear CLI; a native schedule (cron) field would remove the re-create-from-CI step.
-- Nemotron 3.5 Lightning as the classifier tier is fast and cheap enough to run on every commit.
+- Nemotron 3 Nano as the classifier tier is fast and cheap enough to run on every commit.

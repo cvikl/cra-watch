@@ -16,7 +16,7 @@ from typing import Any
 
 from openai import OpenAI
 
-from . import store
+from . import origit_bridge as O, store
 from .config import settings
 
 PROMPTS = Path(__file__).parent / "prompts"
@@ -53,7 +53,7 @@ def _parse_json(text: str) -> dict[str, Any]:
 
 
 def chat(tier: str, system: str, user: str, *, op: str, json_schema: dict[str, Any] | None = None,
-         max_tokens: int = 2000, temperature: float = 0.1) -> tuple[str, dict[str, Any]]:
+         max_tokens: int = 2000, temperature: float = 0.1, think: bool = False) -> tuple[str, dict[str, Any]]:
     """Returns (text, meta). ``tier`` is "nano" or "ultra"."""
     model = settings.nemotron_nano if tier == "nano" else settings.nemotron_ultra
     if settings.fake_llm:
@@ -61,7 +61,9 @@ def chat(tier: str, system: str, user: str, *, op: str, json_schema: dict[str, A
         text = fixtures.answer(op, user)
         meta = store.record_call("nebius", op, model, 0.0, tier=tier, fixture=True, prompt_chars=len(system) + len(user))
         return text, meta
-    kwargs: dict[str, Any] = {}
+    # Nemotron 3 reasons by default and spends the token budget on its hidden chain of thought; the classifier and
+    # the drafter both work from evidence in the prompt, so thinking is off and every token is answer.
+    kwargs: dict[str, Any] = {"extra_body": {"chat_template_kwargs": {"enable_thinking": think}}}
     if json_schema:
         kwargs["response_format"] = {"type": "json_schema", "json_schema": {"name": op.replace("-", "_"), "schema": json_schema}}
     t0 = time.time()
@@ -146,7 +148,8 @@ def _taint_brief(t: dict[str, Any]) -> dict[str, Any]:
     return {
         "needle": t["needle"],
         "affected": [{"commit": c["short"], "session": c["session_label"], "subject": c["subject"], "wrote": c["wrote"],
-                      "matched": c["matched"], "approver": c["approver"], "approved_at": c["approved_at"]} for c in t["affected"]],
-        "sessions": t["session_labels"], "files_written": t["files_written"], "approvers": t["approvers"],
-        "first_read": t["first_read"], "rollback_commit": t["rollback_short"],
+                      "matched": c["matched"], "approved_by_role": "human approver" if c["approver"] else None, "approved_at": c["approved_at"]} for c in t["affected"]],
+        "sessions": t["session_labels"], "files_written": t["files_written"], "approver_roles": ["human approver"] if t["approvers"] else [],
+        "first_read_of_component": {"session": (t["first_read"] or {}).get("session_label"), "at": (t["first_read"] or {}).get("at"), "commit": O.short((t["first_read"] or {}).get("commit") or "") or None},
+        "rollback_commit": t["rollback_short"],
     }

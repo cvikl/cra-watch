@@ -90,12 +90,12 @@ def _run(inc: dict[str, Any]) -> dict[str, Any]:
     # 5. Ultra drafts the early warning from everything above
     context = {
         "manufacturer": settings.manufacturer, "product": settings.product_name,
-        "awareness": inc["awareness"], "deadlines": inc["deadlines"],
+        "awareness": inc["awareness"], "deadlines": {**inc["deadlines"], "note": "early warning 24 h and notification 72 h run from awareness; the final report is due one month after the corrective measure is available, the date given is indicative"},
         "advisory": {"title": adv.get("title"), "url": adv.get("url"), "text": (adv.get("full_text") or adv.get("content") or "")[:12000]},
         "triage": {k: v for k, v in tri.items() if k not in ("model", "call")},
         "taint": nemotron._taint_brief(t), "prior_sentinel_flags": inc["prior_flags"],
-        "class_background": [{"title": r["title"], "url": r["url"], "excerpt": r["content"][:700]} for r in ctx_class],
-        "cra_guidance": [{"title": r["title"], "url": r["url"], "excerpt": r["content"][:700]} for r in ctx_cra],
+        "web_background_on_vulnerability_class_from_tavily": [{"title": r["title"], "url": r["url"], "excerpt": r["content"][:700]} for r in ctx_class],
+        "cra_article_14_guidance_from_tavily": [{"title": r["title"], "url": r["url"], "excerpt": r["content"][:700]} for r in ctx_cra],
     }
     draft = nemotron.draft_article14(context)
     inc["draft"] = draft

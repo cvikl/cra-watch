@@ -5,14 +5,14 @@ Tavily), the triage result, the Origit taint result (affected commits, agent ses
 first-read time, clean rollback commit), prior Sentinel risk flags, background on the vulnerability class and
 excerpts of the CRA Article 14 guidance.
 
-Use ONLY facts from the context. Put <placeholders> for anything not in it (contact person, member states, user
+Use ONLY facts from the context. Name the source of each piece of background as the context labels it (the advisory, the Origit taint result, Sentinel flags, web background fetched by Tavily, CRA guidance fetched by Tavily). Put <placeholders> for anything not in it (contact person, member states, user
 counts). Never invent commit ids, dates, versions or file names. Refer to people by role, never by name.
 
 Write the notification in plain English, ready to paste, as Markdown with these sections:
 1. Manufacturer and product
 2. Time of awareness and the 24 h early warning, 72 h notification and final report deadlines
 3. Nature of the incident (cite the advisory identifier, the component and version, and the Art. 14(5) limb that applies)
-4. Affected components: commits (short ids), agent sessions, files written, approver role, first-read time
+4. Affected components: commits (short ids), agent sessions, files written, approver role; state the first-read time of the component once, it is one event, not one per commit
 5. Indication of malicious or unlawful acts (what the advisory and the Sentinel evidence show)
 6. Corrective and mitigating measures available (roll back to the clean commit, remove or pin the dependency, rotate
    secrets, what users should do)

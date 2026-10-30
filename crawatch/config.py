@@ -21,7 +21,7 @@ class Settings:
     nebius_api_key: str = field(default_factory=lambda: _env("NEBIUS_API_KEY"))
     nebius_base_url: str = field(default_factory=lambda: _env("NEBIUS_BASE_URL", "https://api.tokenfactory.nebius.com/v1/"))
     # Tiered Nemotron: the small, fast model classifies; the large model drafts the legal notification.
-    nemotron_nano: str = field(default_factory=lambda: _env("NEMOTRON_NANO", "nvidia/Nemotron-3_5-Lightning"))
+    nemotron_nano: str = field(default_factory=lambda: _env("NEMOTRON_NANO", "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"))
     nemotron_ultra: str = field(default_factory=lambda: _env("NEMOTRON_ULTRA", "nvidia/Nemotron-3-Ultra-550b-a55b"))
     tavily_api_key: str = field(default_factory=lambda: _env("TAVILY_API_KEY"))
     data_dir: Path = field(default_factory=lambda: Path(_env("CRAWATCH_DATA", str(ROOT / "data"))))

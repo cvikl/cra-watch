@@ -13,7 +13,7 @@ warning and puts it in front of a reviewer, inside the 24-hour window. Built for
 |---|---|---|
 | **Monitor** | Polls NVD, GitHub Advisories, OSV and vendor bulletins for every watched dependency. A match (package name + CVE/GHSA id) opens an incident. | Tavily search + extract, on a **Nebius Serverless Job** |
 | **Provenance** | `origit taint <dependency>`: every agent commit downstream of the dependency, the sessions, files written, approver, first-read time and the last clean commit to roll back to. Deterministic, milliseconds. | [Origit](https://github.com/cvikl/origit) (MIT, prior work, vendored) |
-| **Triage** | Severity, vulnerability class, data at risk, whether Article 14 applies and on which limb. | **NVIDIA Nemotron 3.5 Lightning** (Nano tier) via Nebius Token Factory |
+| **Triage** | Severity, vulnerability class, data at risk, whether Article 14 applies and on which limb. | **NVIDIA Nemotron 3 Nano 30B** (Nano tier) via Nebius Token Factory |
 | **Context** | The full advisory text, background on the vulnerability class, and the CRA Article 14 guidance, fetched and fed to the drafter. | Tavily extract + search |
 | **Draft** | The Article 14(4)(a) early warning, from the advisory, the taint result, the triage and the guidance. Placeholders for anything not in the evidence. | **NVIDIA Nemotron 3 Ultra** via Nebius Token Factory |
 | **Review** | A compliance lead reads the record, approves, the clock stops. Nothing is sent automatically. | the web console (Nebius Serverless Endpoint) |
@@ -51,7 +51,7 @@ everywhere they appear so they can never pass for model output.
 - **Monitor**: `nebius/monitor-job.sh` creates the Serverless Job that runs `cra-watch monitor --loop` with the keys
   from SecretStash. Serverless Jobs are triggered, not perpetual: the job polls for its lifetime (up to 168 h) and is
   re-created on a schedule.
-- **Models**: `NEMOTRON_NANO` (default `nvidia/Nemotron-3_5-Lightning`) and `NEMOTRON_ULTRA` (default
+- **Models**: `NEMOTRON_NANO` (default `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B`) and `NEMOTRON_ULTRA` (default
   `nvidia/Nemotron-3-Ultra-550b-a55b`), any Token Factory model id works.
 
 ## The demo
