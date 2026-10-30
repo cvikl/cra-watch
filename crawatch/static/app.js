@@ -298,7 +298,7 @@
   // ------------------------------------------------------------------ markdown (headings, lists, bold, code, placeholders)
   function md(src) {
     const lines = src.split("\n"); let out = "", list = null;
-    const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/`([^`]+)`/g, "<code>$1</code>").replace(/&lt;([^&]{2,60}?)&gt;/g, '<span class="ph">&lt;$1&gt;</span>');
+    const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/`([^`]+)`/g, "<code>$1</code>").replace(/&lt;([^&]{2,140}?)&gt;/g, '<span class="ph">&lt;$1&gt;</span>');
     const close = () => { if (list) { out += `</${list}>`; list = null; } };
     for (const raw of lines) {
       const l = raw.trimEnd();
