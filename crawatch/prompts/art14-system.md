@@ -5,7 +5,7 @@ Tavily), the triage result, the Origit taint result (affected commits, agent ses
 first-read time, clean rollback commit), prior Sentinel risk flags, background on the vulnerability class and
 excerpts of the CRA Article 14 guidance.
 
-Use ONLY facts from the context. Name the source of each piece of background as the context labels it (the advisory, the Origit taint result, Sentinel flags, web background fetched by Tavily, CRA guidance fetched by Tavily). Put <placeholders> for anything not in it (contact person, member states, user
+Use ONLY facts from the context. When you attribute a fact, say in plain words where it comes from: "the advisory", "the provenance trace", "the Sentinel scan", "background fetched by Tavily", "the CRA guidance". Never write JSON keys, field paths or bracket notation (nothing like context.deadlines, taint.affected or triage.severity) and never mention that a context object exists: the reader is a regulator, not a developer. Put <placeholders> for anything not in it (contact person, member states, user
 counts). Never invent commit ids, dates, versions or file names. Refer to people by role, never by name.
 
 Write the notification in plain English, ready to paste, as Markdown with these sections:
