@@ -36,6 +36,10 @@ All Nemotron inference runs through Nebius Token Factory.
 | **Tavily** | Three uses: advisory feed polling (domain-restricted search over NVD, GitHub Advisories, OSV, cve.org, Snyk, Socket plus registered vendor bulletins), full-text extraction of the matched advisory, and grounding searches for the vulnerability class and the CRA Article 14 guidance that feed the drafter. Each call is shown on screen under "Sources read" and in the run ledger. |
 | **Provenance engine** | A hashed record on every agent commit (what the agent read, wrote, added and ran, who approved) stored as git notes; the taint query walks those records to return the affected commits, sessions, files, first-read time and the last clean commit. Deterministic, no model involved. |
 
+Token Factory usage for the build and the load test (1 to 30 Oct 2026, 5.65M Ultra input tokens, 0.90M Ultra output tokens, 6.2M Nano tokens):
+
+![Nebius Token Factory usage](submission/figures/token-factory-usage.png)
+
 
 ## Why private inference
 
