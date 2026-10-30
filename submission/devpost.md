@@ -2,8 +2,10 @@
 
 **Project name:** CRA Watch
 **Tagline:** When a CVE hits a dependency your AI coding agent used, you have 24 hours under the EU Cyber Resilience Act. CRA Watch finds what the agent touched, drafts the Article 14 early warning on private Nemotron inference, and puts it in front of a human in minutes.
-**Track:** Coding and Agentic Engineering
+**Track:** Best Apps and Agents
 **Also entering:** Best Use of Tavily
+**Live demo:** https://cra-watch.vantapointlabs.com (read-only for visitors; the actions need the review token)
+**Repository:** https://github.com/cvikl/cra-watch (MIT)
 
 ## Inspiration
 

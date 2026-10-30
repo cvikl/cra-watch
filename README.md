@@ -3,7 +3,7 @@
 **Autonomous EU Cyber Resilience Act Article 14 agent.** When a security advisory hits a dependency that an AI coding
 agent introduced, CRA Watch traces which agent sessions and commits are affected, drafts the Article 14(4)(a) early
 warning and puts it in front of a reviewer, inside the 24-hour window. Built for the
-[Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackathon.devpost.com/), Coding and Agentic Engineering track.
+[Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackathon.devpost.com/), Best Apps and Agents track. Live: https://cra-watch.vantapointlabs.com
 
 > Git tells you what changed. Origit tells you what the agent read before it changed it. CRA Watch turns that into the filing.
 
