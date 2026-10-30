@@ -43,7 +43,7 @@ ADVISORY_SOURCE = re.compile(
 
 def _names_package(name: str, text: str) -> bool:
     """Whole-word match: `jest` must not match `jest-config-...`, `typescript` must not match `typescript-sdk`."""
-    return re.search(r"(?<![\w@/.-])" + re.escape(name.lower()) + r"(?![\w-])", (text or "").lower()) is not None
+    return re.search(r"(?<![\w@.-])" + re.escape(name.lower()) + r"(?![\w-])", (text or "").lower()) is not None
 
 
 def _is_match(dep: dict[str, Any], title: str, text: str, url: str, *, bulletin: bool = False) -> str | None:
