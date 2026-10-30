@@ -29,7 +29,7 @@ where = ["."]
 include = ["crawatch*"]
 
 [tool.setuptools.package-data]
-crawatch = ["templates/*", "static/*", "static/vendor/*", "prompts/*"]
+crawatch = ["templates/*", "static/*", "static/vendor/*", "static/fonts/*", "prompts/*"]
 
 [tool.uv.sources]
 origit = { path = "vendor/origit" }

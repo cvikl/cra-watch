@@ -1,415 +1,322 @@
 ---
 name: CRA Watch
-description: A page of the Origit console in daylight. Glass panels on paper, pills for everything you touch, one clock.
+description: A one-column compliance document on Primer CSS. White page, Primer's type and colours, one red clock.
 colors:
-  ink: "#0d1117"
-  fg: "#1f2328"
-  fg-2: "#424a53"
-  muted: "#59636e"
-  muted-2: "#818b98"
-  paper: "#f6f8fa"
-  panel: "rgba(255, 255, 255, .78)"
-  panel-solid: "#ffffff"
-  topbar: "rgba(255, 255, 255, .72)"
-  tile: "#f6f8fa"
-  tile-2: "#eaeef2"
-  btn: "#f6f8fa"
-  btn-hover: "#eaeef2"
-  tab-selected: "#ffffff"
-  hair: "rgba(31, 35, 40, .15)"
-  hair-2: "rgba(31, 35, 40, .08)"
-  glass-border: "rgba(31, 35, 40, .1)"
-  link: "#0969da"
-  link-bg: "rgba(9, 105, 218, .1)"
-  accent: "#9a6700"
-  accent-bg: "rgba(212, 167, 44, .2)"
-  danger: "#d1242f"
-  danger-bg: "rgba(255, 129, 130, .22)"
-  ok: "#1a7f37"
-  ok-bg: "rgba(74, 194, 107, .22)"
-  green-btn: "#1f883d"
-  purple: "#8250df"
-  tab: "#fd8c73"
+  fg-default: "#1f2328"
+  fg-muted: "#59636e"
+  fg-on-emphasis: "#ffffff"
+  link-blue: "#0969da"
+  verified-green: "#1a7f37"
+  amber: "#9a6700"
+  deadline-red: "#d1242f"
+  bg-default: "#ffffff"
+  bg-muted: "#f6f8fa"
+  bg-accent-muted: "#ddf4ff"
+  bg-attention-muted: "#fff8c5"
+  bg-success-muted: "#dafbe1"
+  bg-danger-muted: "#ffebe9"
+  border-default: "#d1d9e0"
+  border-muted: "#d1d9e0b3"
+  accent-emphasis: "#0969da"
+  danger-emphasis: "#cf222e"
+  done-purple: "#8250df"
+  neutral-emphasis: "#59636e"
+  button-green: "#1f883d"
+  button-green-hover: "#1c8139"
+  button-default-bg: "#f6f8fa"
+  button-default-hover: "#eff2f5"
+  mark-tile: "#24292f"
+  mark-arc: "#ff8182"
 typography:
   display:
-    fontFamily: "Onest, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif"
-    fontSize: "40px"
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif"
+    fontSize: "56px"
     fontWeight: 600
     lineHeight: 1
-    letterSpacing: "-0.03em"
-    fontFeature: "tabular-nums"
-  headline:
-    fontFamily: "Onest, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif"
-    fontSize: "22px"
-    fontWeight: 600
-    lineHeight: 1.25
     letterSpacing: "-0.02em"
-  title:
-    fontFamily: "Onest, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif"
-    fontSize: "15px"
+  headline:
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif"
+    fontSize: "24px"
     fontWeight: 600
     lineHeight: 1.25
-    letterSpacing: "-0.015em"
+  title:
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif"
+    fontSize: "16px"
+    fontWeight: 600
+    lineHeight: 1.5
   body:
-    fontFamily: "Onest, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif"
-    fontSize: "13px"
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif"
+    fontSize: "14px"
     fontWeight: 400
     lineHeight: 1.5
-    letterSpacing: "-0.005em"
-    fontFeature: "tabular-nums"
   label:
-    fontFamily: "Onest, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif"
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif"
     fontSize: "12px"
     fontWeight: 500
     lineHeight: 1.5
-    letterSpacing: "0"
-  key:
-    fontFamily: "'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-    fontSize: "10px"
-    fontWeight: 600
-    letterSpacing: "0.06em"
   mono:
-    fontFamily: "'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-    fontSize: "11.5px"
+    fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
+    fontSize: "12px"
     fontWeight: 400
-    letterSpacing: "0"
+    lineHeight: 1.5
 rounded:
-  pill: "999px"
-  lg: "16px"
-  tile: "12px"
-  md: "10px"
-  code: "6px"
-  dot: "50%"
+  sm: "4px"
+  md: "6px"
+  pill: "9999px"
+  circle: "50%"
 spacing:
-  2xs: "2px"
   xs: "4px"
-  sm: "6px"
-  md: "8px"
-  lg: "10px"
-  xl: "12px"
-  2xl: "16px"
-  3xl: "24px"
-  gutter: "32px"
+  sm: "8px"
+  base: "12px"
+  md: "16px"
+  lg: "24px"
+  xl: "32px"
 components:
-  button:
-    backgroundColor: "{colors.btn}"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.pill}"
-    padding: "0 16px"
-    height: "36px"
-  button-hover:
-    backgroundColor: "{colors.btn-hover}"
-    textColor: "{colors.fg}"
-  button-ghost:
-    backgroundColor: "{colors.btn}"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.pill}"
-    padding: "0 13px"
-    height: "30px"
+  button-default:
+    backgroundColor: "{colors.button-default-bg}"
+    textColor: "{colors.fg-default}"
+    typography: "{typography.body}"
+    rounded: "{rounded.md}"
+    padding: "5px 16px"
+  button-default-hover:
+    backgroundColor: "{colors.button-default-hover}"
+  button-small:
+    backgroundColor: "{colors.button-default-bg}"
+    textColor: "{colors.fg-default}"
     typography: "{typography.label}"
+    rounded: "{rounded.md}"
+    padding: "3px 12px"
   button-primary:
-    backgroundColor: "{colors.green-btn}"
-    textColor: "{colors.panel-solid}"
-    rounded: "{rounded.pill}"
-    padding: "0 20px"
-    height: "40px"
+    backgroundColor: "{colors.button-green}"
+    textColor: "{colors.fg-on-emphasis}"
+    typography: "{typography.body}"
+    rounded: "{rounded.md}"
+    padding: "5px 16px"
   button-primary-hover:
-    backgroundColor: "{colors.ok}"
-    textColor: "{colors.panel-solid}"
-  pill-system:
+    backgroundColor: "{colors.button-green-hover}"
+  button-primary-large:
+    backgroundColor: "{colors.button-green}"
+    textColor: "{colors.fg-on-emphasis}"
+    typography: "{typography.body}"
+    rounded: "0.5em"
+    padding: "0.75em 1.5em"
+  label-neutral:
     backgroundColor: "transparent"
-    textColor: "{colors.muted}"
-    rounded: "{rounded.pill}"
-    padding: "3px 9px"
-  pill-sha:
-    backgroundColor: "{colors.link-bg}"
-    textColor: "{colors.link}"
-    rounded: "{rounded.pill}"
-    height: "22px"
-    width: "72px"
-    typography: "{typography.mono}"
-  counter:
-    backgroundColor: "rgba(31, 35, 40, .1)"
-    textColor: "{colors.fg-2}"
+    textColor: "{colors.fg-default}"
+    typography: "{typography.label}"
     rounded: "{rounded.pill}"
     padding: "0 6px"
-    height: "20px"
-  stamp:
-    backgroundColor: "rgba(31, 35, 40, .08)"
-    textColor: "{colors.fg-2}"
+  label-accent:
+    textColor: "{colors.link-blue}"
+  label-attention:
+    textColor: "{colors.amber}"
+  label-danger:
+    textColor: "{colors.deadline-red}"
+  label-success:
+    textColor: "{colors.verified-green}"
+  label-large:
+    typography: "{typography.label}"
     rounded: "{rounded.pill}"
-    padding: "0 10px"
-    height: "24px"
-  stamp-live:
-    backgroundColor: "{colors.accent-bg}"
-    textColor: "{colors.accent}"
+    padding: "0 8px"
+  state-open:
+    backgroundColor: "{colors.button-green}"
+    textColor: "{colors.fg-on-emphasis}"
+    typography: "{typography.body}"
     rounded: "{rounded.pill}"
-    padding: "0 10px"
-    height: "24px"
-  stamp-ok:
-    backgroundColor: "{colors.ok-bg}"
-    textColor: "{colors.ok}"
-    rounded: "{rounded.pill}"
-    padding: "0 10px"
-    height: "24px"
-  stamp-fail:
-    backgroundColor: "{colors.danger-bg}"
-    textColor: "{colors.danger}"
-    rounded: "{rounded.pill}"
-    padding: "0 10px"
-    height: "24px"
-  stamp-filed:
-    backgroundColor: "{colors.ok-bg}"
-    textColor: "{colors.ok}"
-    rounded: "{rounded.tile}"
-    padding: "8px 14px"
-  severity-high:
-    backgroundColor: "{colors.danger-bg}"
-    textColor: "{colors.danger}"
-    rounded: "{rounded.pill}"
-    padding: "0 9px"
-    height: "22px"
-  severity-medium:
-    backgroundColor: "{colors.accent-bg}"
-    textColor: "{colors.accent}"
-    rounded: "{rounded.pill}"
-    padding: "0 9px"
-    height: "22px"
-  severity-low:
-    backgroundColor: "{colors.link-bg}"
-    textColor: "{colors.link}"
-    rounded: "{rounded.pill}"
-    padding: "0 9px"
-    height: "22px"
-  panel:
-    backgroundColor: "{colors.panel}"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.lg}"
-    padding: "20px 22px 24px"
-  register-block:
-    backgroundColor: "{colors.panel}"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.lg}"
-    padding: "16px 18px 14px"
-  tile:
-    backgroundColor: "{colors.tile}"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.tile}"
-    padding: "12px 14px"
-  step:
-    backgroundColor: "{colors.panel-solid}"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.tile}"
-    padding: "12px 12px 14px"
-  sheet:
-    backgroundColor: "{colors.panel-solid}"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.tile}"
-    padding: "22px 26px 18px"
-  callout:
-    backgroundColor: "{colors.tile}"
-    textColor: "{colors.muted}"
-    rounded: "{rounded.tile}"
-    padding: "12px 14px"
-  notice:
-    backgroundColor: "rgba(255, 129, 130, .14)"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.lg}"
-    padding: "14px 18px"
-  tab:
-    backgroundColor: "transparent"
-    textColor: "{colors.fg-2}"
-    rounded: "{rounded.pill}"
-    padding: "0 14px"
-    height: "32px"
-  tab-selected:
-    backgroundColor: "{colors.tab-selected}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-    padding: "0 14px"
-    height: "32px"
+    padding: "4px 12px"
+  state-merged:
+    backgroundColor: "{colors.done-purple}"
+    textColor: "{colors.fg-on-emphasis}"
+  state-closed:
+    backgroundColor: "{colors.danger-emphasis}"
+    textColor: "{colors.fg-on-emphasis}"
+  state-draft:
+    backgroundColor: "{colors.neutral-emphasis}"
+    textColor: "{colors.fg-on-emphasis}"
+  box:
+    backgroundColor: "{colors.bg-default}"
+    rounded: "{rounded.md}"
+    padding: "16px"
+  box-header:
+    backgroundColor: "{colors.bg-muted}"
+    textColor: "{colors.fg-default}"
+    typography: "{typography.body}"
+    padding: "16px"
+  box-row-selected:
+    backgroundColor: "{colors.bg-accent-muted}"
+  draft-sheet:
+    backgroundColor: "{colors.bg-default}"
+    textColor: "{colors.fg-default}"
+    typography: "{typography.body}"
+    rounded: "{rounded.md}"
+    padding: "24px"
+  draft-placeholder:
+    backgroundColor: "{colors.bg-attention-muted}"
+    rounded: "{rounded.sm}"
+    padding: "0 3px"
+  top-bar:
+    backgroundColor: "{colors.bg-default}"
+    textColor: "{colors.fg-default}"
+    typography: "{typography.title}"
+    padding: "12px 0"
+  countdown:
+    textColor: "{colors.deadline-red}"
+    typography: "{typography.display}"
+  countdown-stopped:
+    textColor: "{colors.verified-green}"
 ---
 
 # Design System: CRA Watch
 
 ## Overview
 
-**Creative North Star: "The Origit Console, in Daylight"**
+**Creative North Star: "The Filing, Read Top to Bottom"**
 
-CRA Watch is not a product with its own look. It is one page of the Origit console (origit.uk, the provenance console the founder built in September 2026) rendered for a lit office instead of a dark room. Every piece of grammar is Origit's: frosted glass panels with 16px corners floating on a ground that carries three faint radial glows (blue top-left, purple top-right, green bottom-centre), pills for every button, tag, tab and counter, SHA chips in link blue mono, session numbers in purple mono, Onest at a 13px base with Origit's nine-step size ramp, SF Mono for identifiers. What changed is only the light: the dark `#0d1117` ground became `#f6f8fa` paper, the panels became white at 78% opacity, the GitHub-dark accents became their GitHub-light counterparts. A reviewer who knows the console recognises it immediately; nothing on the page asks to be learned.
+CRA Watch is a single 760px column read like a document: title and status, the time left, the pipeline that produced the evidence, two folded details, the draft, one green button. It inherits Primer CSS directly (GitHub's design system, vendored at `crawatch/static/vendor/primer.css`, light theme fixed through `data-color-mode="light"` on the root element). Nothing is themed or wrapped; the page is Primer's type ramp, colour variables, Box, Label, State, btn and TimelineItem, and the only custom stylesheet (`crawatch/static/app.css`, 23 lines) adds what Primer has no word for: the countdown sizes, the 760px page and its sticky white top bar, and column grids inside Box rows. The draft is rendered by marked, sanitised by DOMPurify and typeset by Primer's `markdown-body` inside a Box.
 
-Colour is role-bound, not decorative. Link blue is the colour of anything that is a reference (SHAs, hunks, low risk, the running step, focus); amber is the colour of waiting and caution (the "awaiting approval" tag, medium severity, fixture markers, placeholders in the draft); red is the live clock, danger and failure; green is health, approval and the one primary action. Everything else is five greys on paper. The build refuses the category dashboard (no KPI cards, no charts, no feed) and the terminal (no log dump); the machinery is shown once, in words, with the model id and the time it took, inside the same glass.
+The world is quiet and bordered. White page, default ink, muted grey for everything secondary, 1px hairlines where a panel is needed. Status is said with pills: outline Labels classify (risk, source kind, a system up or down), filled State pills state the lifecycle of the incident (awaiting approval, filed, pipeline failed, demo running). Colour is reserved for meaning: blue is a link or a commit SHA, amber is a warning, red is the deadline and the failed step, green is the done step, the stopped clock and the approve button. The operational registers (watched dependencies, Sentinel register, journal, run ledger) live in a collapsed `details` in the footer so the reviewer's column stays the filing.
 
-Density is Origit's: 13px body, 12px labels, 11.5px metadata, hairlines between rows, tiles for fields. Depth is real but soft: panels blur what is behind them and cast a diffuse ink-tinted shadow; tiles, steps and the draft sheet sit flat inside them. Motion is state only: a sweep on the running step, a spin in a busy button, the approval stamp pressing onto the sheet.
+The product is branded CRA Watch only. The top bar carries a 24px clock-face mark in default ink and the words "CRA Watch"; the provenance engine behind the blast-radius trace is not named in the UI and has no mark, colour or typeface here. The earlier direction contract for this surface named an Origit-derived world (glass panels, glows, Onest at 13px, a dark console bar, two columns); the build supersedes it. Where brief and build disagree, the build is the system.
 
 **Key Characteristics:**
-- Inherited world: origit.uk's component grammar and type ramp; the palette is its light counterpart, hue for hue.
-- Paper ground with three fixed radial glows (blue, purple, green) under frosted white glass panels.
-- Pills everywhere you touch or read a status: buttons, tags, tabs, SHAs, counters, system chips.
-- Four role colours (link blue, amber, danger red, verified green) plus purple for session ids; five greys for text.
-- Onest 13px base, nine fixed pixel sizes, tabular numerals on the whole page, SF Mono for identifiers.
-- Three corner sizes: 16px glass, 12px tiles, 10px rows and code blocks; everything else is a pill.
+- Primer components first; custom CSS only where Primer has no component (countdown sizes, page column and top bar, row grids).
+- System font stack at 14px; no webfont, no build step.
+- One display size on the page: the 56px countdown (40px below 544px).
+- Outline pills classify, filled pills state lifecycle.
+- Flat: hairlines and a grey Box header carry depth; the only shadows are Primer's own resting button shadow and State ring.
+- One column, 760px, white edge to edge; nothing dark but the favicon.
 
 ## Colors
 
-GitHub-light on paper: the Origit console's dark accents transposed to their light-mode equivalents, with ink-tinted translucency where the original used near-black.
+The palette is Primer's light theme used verbatim through its CSS variables (`--fgColor-*`, `--bgColor-*`, `--borderColor-*`); the frontmatter records the resolved values for tooling, the stylesheet never writes a hex except `#fff` on the two filled timeline badges.
 
 ### Primary
-- **Link Blue** (`link`): the reference colour. Commit SHAs, diff hunks, the "more" link, the running step's sweep, the low-risk cell of the Sentinel scale, low severity, text selection and every keyboard focus ring. In the band clock the incident number sits in it. Its tint (`link-bg`, 10%) backs SHA pills, the current commit row and low-severity chips.
+- **Link Blue** (`--fgColor-accent`, `--bgColor-accent-emphasis`): the advisory link under the title, source URLs, commit SHAs in the affected-commit and Sentinel rows, `Label--accent` for low risk, the running pipeline step's filled badge, and the selected commit row's wash (`--bgColor-accent-muted`). It is the colour of "this links to evidence".
 
 ### Secondary
-- **Verified Green** (`ok`): health and resolution. The stopped clock, "on" system pills, completed step bars, the step checkmark, approval stamps, the rollback row, added diff lines. Its tint (`ok-bg`) backs the approval stamps and the rollback row. **Action Green** (`green-btn`): the fill of the single primary button, which hovers to `ok`.
-- **Danger Red** (`danger`): the live countdown, "off" system pills, failed step bars, high and critical severity, watchlist hits, error journal keys, deleted diff lines and the error notice border. Its tint (`danger-bg`) backs high-severity chips, the fail stamp, deleted lines and the notice.
+- **Deadline Red** (`--fgColor-danger`): the running countdown (56px in the column, 14px in the top bar), `Label--danger` on high and critical risk and on a CVE/GHSA hit in the watchlist, detected and error journal verbs. `--bgColor-danger-emphasis` fills the failed step badge and the closed State pill ("Pipeline failed"); the error flash uses `--bgColor-danger-muted`.
+- **Verified Green** (`--fgColor-success`): the stopped countdown after approval, `Label--success` on the "live" dot and the approval stamp, the filed journal verb, the done step badge (`--bgColor-success-emphasis`), the open State pill ("Awaiting approval", "Demo running"), and the primary button ("Run the live demo", "Approve and file"). The rollback row's wash is `--bgColor-success-muted`.
 
 ### Tertiary
-- **Audit Amber** (`accent`): waiting and caution. The "awaiting approval" tag, medium severity, the medium cells of the Sentinel scale, the FIXTURE marker in the ledger, placeholder text in the draft. Its tint (`accent-bg`) backs the live stamp, medium chips and placeholders.
-- **Session Purple** (`purple`): Origit session numbers (`#42`) under a SHA, in mono. Nothing else.
-- **Tab Coral** (`tab`): the 2px inset underline of the selected incident tab, inherited from Origit's selected-tab mark. Never used as text or fill.
+- **Amber** (`--fgColor-attention`): `Label--attention` on medium risk and on "fixture" calls in the run ledger. `--bgColor-attention-muted` highlights `<placeholder>` fields inside the draft.
+- **Done Purple** (`--bgColor-done-emphasis`): the merged State pill only, meaning "Filed". Appears nowhere else.
 
 ### Neutral
-- **Ink** (`ink`): the brand name, the mark, selected tab text, and the mask colour for the sideways-scroll fade.
-- **Foreground** (`fg`): body text, values, headings, step names, prose.
-- **Foreground 2** (`fg-2`): secondary reading text: table cells, step text, commit subjects, stamps, counters, tabs at rest, journal rows.
-- **Muted** (`muted`): labels, register headings, hints, sub lines, actors, legends, "quiet" states, pending step names.
-- **Muted 2** (`muted-2`): timestamps, system ids, idle dots, the signature line, the scrollbar thumb.
-- **Paper** (`paper`): the page ground under the glows. **Tile** (`tile`, same value): field tiles, callouts, evidence lines, diff blocks, default button fill (`btn`). **Tile 2** (`tile-2`): button hover and the mid tone of the skeleton sweep.
-- **Panel** (`panel`): the frosted glass of documents, register blocks and the ledger, 78% white. **Panel Solid** (`panel-solid`): ladder steps, the draft sheet, the selected tab, primary button text. **Topbar** (`topbar`): the band's glass, 72% white.
-- **Hair** (`hair`) and **Hair 2** (`hair-2`): 15% and 8% ink rules. `hair` borders controls, system pills, the band and table heads; `hair-2` divides rows, fields and steps. **Glass Border** (`glass-border`): the 10% ink edge of every frosted panel.
+- **Default Ink** (`--fgColor-default`): body text, the h1, section heads, the brand, step names.
+- **Muted Ink** (`--fgColor-muted`): all secondary text: the subtitle line, clock captions, actors, step descriptions, details summaries, the whole footer, timestamps, "clean" and "–".
+- **Page White** (`--bgColor-default`): page, top bar, Box body, draft sheet.
+- **Panel Grey** (`--bgColor-muted`): Box headers, default button fill, evidence blocks (`color-bg-subtle`), the pending timeline badge ground.
+- **Hairline** (`--borderColor-default`, `--borderColor-muted`): the top bar's bottom rule, Box borders and headers; Box-row dividers and the timeline spine use the translucent muted variant.
+- **Mark Slate** (#24292f) and **Mark Arc** (#ff8182): the favicon only, a dark tile with a 35% white clock ring, a white hand and a red arc from 12 to 3 marking the 24-hour window. The page itself has no dark surface; `theme-color` is white.
 
 ### Named Rules
-**The Light Counterpart Rule.** Every colour here is the GitHub-light counterpart of the Origit console's dark token of the same name (`--link #4493f8` to `#0969da`, `--danger #f85149` to `#d1242f`, `--ok #3fb950` to `#1a7f37`, `--accent #d29922` to `#9a6700`, `--purple #a371f7` to `#8250df`). A new colour must have a dark twin in origit.uk's `:root` or it does not belong.
+**The Primer Variable Rule.** Colour is written as a Primer variable (`var(--fgColor-danger)`), never as a bare hex. A colour with no Primer light-theme variable is not a colour this system has.
 
-**The Reference Blue Rule.** Blue means "this points at something": a SHA, a hunk, a link, focus. It is never a brand colour and never fills a button.
+**The Risk Ladder Rule.** Risk maps to Primer semantics and nothing else: none is muted text reading "clean", low is `Label--accent`, medium is `Label--attention`, high and critical are `Label--danger`. The word is always printed inside the pill; colour never carries risk alone.
 
-**The Tinted State Rule.** Status chips, stamps and severity pills are always text in a role colour on that colour's own translucent tint, never a solid fill with white text. The only solid fill on the page is the primary button.
+**The One Red Rule.** Red at display size belongs to the countdown. Elsewhere red is 12px pill text or a journal verb. When the clock stops it turns green; nothing else on the page changes colour at approval.
 
 ## Typography
 
-**Display Font:** Onest variable (wght 400 to 700), self-hosted woff2 under the OFL, with -apple-system, "SF Pro Text", "Segoe UI", Helvetica and Arial as fallbacks
-**Body Font:** Onest (same file)
-**Label/Mono Font:** "SF Mono", ui-monospace, Menlo, Consolas for SHAs, session numbers, evidence, diffs, timestamps and uppercase keys
+**Display Font:** Primer system stack (-apple-system, BlinkMacSystemFont, Segoe UI, Noto Sans, Helvetica, Arial)
+**Body Font:** the same stack
+**Label/Mono Font:** ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono
 
-**Character:** Origit's console voice: a geometric grotesque at small sizes, tightened a little (-0.005em body, -0.015em headings, -0.03em on the clock), weights 400, 500 and 600 only (700 appears once, on the filed stamp). Tabular numerals are on for the whole body so the clock, counts and times never jitter.
+**Character:** Whatever the reviewer's operating system considers plain. No webfont is loaded and there is no build step; the page reads like GitHub on the same machine. Monospace marks identifiers and machine facts (SHAs, timestamps, file paths, model ids, token counts) and nothing prose-like.
 
 ### Hierarchy
-The ramp is nine pixel tokens in `:root`, Origit's sizes exactly, and every `font-size` in app.css uses one (the only exceptions are the 10px and 10.5px mono keys and the 28px mobile clock):
-
-| Token | Size | Used for |
-|---|---|---|
-| `--fs-display` | 40px, 600, line-height 1, -0.03em | the early-warning countdown only (28px under 768px); red while running, green when stopped |
-| `--fs-title` | 22px, 600, -0.02em | the incident title (h1) in the document head |
-| `--fs-h` | 19px, 600 | the band clock's time (-0.02em); the draft's h1 |
-| `--fs-xl` | 15px, 600 | section titles, the brand name, the draft's h2 and h3 |
-| `--fs-lg` | 14px | field values (500), step names (600), the primary button, the draft prose (line-height 1.6, 72ch), the signature line, the filed stamp |
-| `--fs-base` | 13px, line-height 1.5 | body, default buttons (500), incident tabs (500, 600 selected) |
-| `--fs-md` | 12.5px | tables, register rows, the band's product line, sub lines, notices, callouts, the flag grid, sources |
-| `--fs-sm` | 12px | labels and register headings (500, muted), table heads, ghost buttons, the ledger summary, section hints |
-| `--fs-xs` | 11.5px | system pills, SHAs, stamps (600), severity pills (500), journal, metadata, evidence, diffs, hints |
-
-Mono keys (`STEP 1`, journal kinds, `via`) are 10px, 600, uppercase, 0.06em, muted; step timestamps are 10.5px mono. Inline code in the draft is 88% of its line on a 6px-cornered tint.
+- **Display** (600, 56px, 40px below 544px, line-height 1, -0.02em, tabular numerals): the countdown, red while running, green when stopped. The only element above Primer's ramp.
+- **Headline** (600, 24px, 22px below 768px, line-height 1.25; Primer `f2 lh-condensed`): the h1, which is the incident number ("INC-...") or "No open incident". One per page, with the State pill beside it.
+- **Title** (600, 16px; Primer `f4`): the two section heads "Pipeline" and "Early warning", and the brand wordmark in the top bar. Box titles in the footer registers are Primer's `Box-title` at 14px/600.
+- **Body** (400, 14px, line-height 1.5): the subtitle line under the h1, step names (600) with actors (muted), the draft (`markdown-body` pulled down from Primer's 16px to 14px so the filing reads at page size), the top-bar clock.
+- **Label** (500 in pills, 400 elsewhere, 12px; Primer `f6` and `Label`): clock captions, step descriptions and times, details lists, the approval stamp, every footer register row, the footer note.
+- **Mono** (400, 12px, tabular numerals): SHAs, HH:MM:SS, paths, model ids, token counts, evidence blocks.
 
 ### Named Rules
-**The Nine Sizes Rule.** New type uses one of the nine `--fs-*` tokens. No rem, no clamp, no eleventh size; the ramp is Origit's and it is shared across both consoles.
+**The One Display Rule.** One number on the page is 56px, and it is the time left. The h1 stops at 24px; section heads at 16px.
 
-**The Quiet Label Rule.** Labels are 12px, 500, muted, sentence case, no tracking, directly above or beside the value they name. Uppercase tracking is reserved for the 10px mono keys (step numbers, journal kinds, source routes) and never applied to Onest.
-
-**The Mono Identifier Rule.** Anything a machine issued (SHA, session number, advisory id, timestamp, file path, diff) is set in SF Mono at 11.5px or below. Prose is never mono; identifiers are never Onest.
+**The Tabular Time Rule.** Anything that ticks or is compared in a column (countdown, top-bar clock, step times, ledger latencies) sets `font-variant-numeric: tabular-nums`.
 
 ## Layout
 
-The page is a sticky 58px glass band over a desk grid: a 316px register column and a fluid report column (`316px minmax(0, 1fr)`), 24px gutter, `24px 32px 48px` padding, capped at 1400px and centred. The band is a four-column grid (brand, manufacturer and product, system pills right-aligned, clock) with a 20px gap and 32px side padding; it blurs the page behind it (18px blur, 160% saturate) and rules itself off with a hairline. The register sticks under the band (top 74px) only on viewports at least 1100px tall; otherwise it scrolls.
+One column. `.page` is 760px wide, centred, with 16px side padding; it is the measure of the top bar, the main column and the footer alike. The top bar (`.top`) is sticky, white, 12px tall padding, a 1px hairline underneath: the mark and wordmark at left, the product name muted beside it (hidden below 544px), and, once an incident exists, a right-aligned link to `#report` carrying the incident number in 12px muted and the clock in 14px/600 red or green.
 
-Inside a document: a head row with the title left and status tag right, closed by a hairline after 14px; six equal field tiles with a 10px gap (the clock tile spans two), 16px above and 4px below; sections open with 22px of top padding and a numbered 15px title whose counter is a pill. The ladder is seven equal tiles with an 8px gap. Sources read is a two-column CSS column list with a 24px gutter. The signature block is two columns, 16px gap, above a full-width action row with 10px gaps.
+`main` has 32px vertical padding (`py-5`) and reads downward in fixed order: h1 row (title left, State pill and optional small demo button right, 32px below via `mb-4` + caption), countdown block (12px caption, 56px clock, 12px deadlines line, 32px below), "Pipeline" head and the condensed timeline, an optional error flash (16px above), then two native `details` (16px and 8px above) whose summaries are muted sentences ("8 affected commits across sessions #42, #47, roll back to a1b2c3d", "4 sources read by Tavily") and whose bodies are a Box of grid rows or a 12px list, then the "Early warning" section 32px below with the draft Box at 24px padding and an action row 12px below it.
 
-Rhythm is on a 2px grid with 8/10/12/16/24 doing the work: 6px between pills, 8px between tiles and inside rows, 10px between fields and under titles, 12px tile padding, 16px between register blocks and stacked documents, 24px the gutter, 32px the page margin. Register rows are 9px (watch), 7px (commits) and 6px (journal) tall-padded, divided by `hair-2`.
+The footer repeats the column at 12px muted with 24px vertical padding: a `details` whose summary names the four registers, then four Boxes stacked at 16px, then a one-paragraph note 24px below.
 
-Responsive behaviour (two breakpoints):
-- **Under 1100px:** single column; the register goes static above the report; the ladder wraps to four tiles, fields to three with the clock spanning all three; tables scroll sideways inside a full-bleed wrapper with a 28px fade mask at the right edge, and a "scroll sideways" hint appears in the section title.
-- **Under 768px:** the band becomes a static two-column grid with the product line and system pills hidden, and the clock row inside it becomes the sticky element (92% white, hairlines top and bottom, full-bleed); desk and document padding tighten to 16px; fields and the ladder go two-up; the clock drops to 28px; the signature block and sources stack; the filed stamp moves inline above the prose.
+Inside Boxes the rhythm is Primer's stack: header and body at 16px padding, rows at 16px with a top hairline. Row content uses `.row-grid` (CSS grid, 8px gap, items centred) with per-register columns: commit rows (64px SHA, fluid subject, auto pill), watch rows (fluid, auto pill), journal rows (56px time, fluid), ledger rows (56px, 110px, fluid, 100px, 60px), affected rows (64px SHA, 36px session, fluid, auto pill; items start-aligned). One breakpoint, 543px: the ledger collapses to time and provider, the affected row's pill drops to a full-width second line, and the clock steps down to 40px.
+
+The pipeline is Primer's condensed `TimelineItem`: a 2px spine in the muted hairline, 16px badges, 4px top padding per step, step name 14px/600 with actor appended muted and time floated right at 12px, description 12px muted. It always begins with Sentinel ("Nemotron Nano, at commit time") and ends with Review ("A person reads it and approves").
 
 ## Elevation & Depth
 
-Glass on paper, Origit's depth model with light-mode shadows. Documents, register blocks, the ledger and the band are translucent white panels (`panel`, `topbar`) that blur and saturate what is behind them (24px blur for panels, 18px for the band), edged with a 10% ink `glass-border`, and lifted by one diffuse, ink-tinted shadow. Inside the glass everything is flat: tiles, steps and the draft sheet are solid or tinted fills with hairline borders and no shadow. Buttons carry a 1px hairline shadow at rest that disappears on press. The selected incident tab lifts 1px with a coral underline inset. Nothing hovers or scales except the 1px press on buttons and the stamp landing.
+Flat. Depth is drawn, not cast: panels are white Boxes with a 1px `--borderColor-default` border and a `--bgColor-muted` header, rows divide by translucent hairlines, the top bar separates from the column by a single hairline and stays above it only because it is sticky. Selection and emphasis are tonal washes (accent-muted on the selected commit, success-muted on the rollback row, attention-muted on draft placeholders, danger-muted behind an error flash). The only shadows on the page are Primer's own: the resting 1px button shadow and the inset 1px ring on State pills and the done badge. No custom shadow exists in the overrides, and none should be added.
 
 ### Shadow Vocabulary
-- **Glass lift** (`box-shadow: 0 8px 24px rgba(31, 35, 40, .08), 0 1px 2px rgba(31, 35, 40, .06)`): every frosted panel (documents, register blocks, ledger). The light twin of Origit's `0 12px 32px rgba(1,4,9,.5)`.
-- **Control rest** (`box-shadow: 0 1px 2px rgba(31, 35, 40, .06)`): default and ghost buttons; `0 2px 6px rgba(31, 35, 40, .15)` on the primary. Removed on `:active`.
-- **Tab lift** (`box-shadow: inset 0 -2px 0 #fd8c73, 0 1px 3px rgba(31, 35, 40, .12)`): the selected incident tab only.
+- **Button rest** (`box-shadow: 0px 1px 0px 0px #1f23280a`): Primer `btn` and `btn-primary` at rest; never applied by hand.
+- **State ring** (`box-shadow: inset 0 0 0 1px <emphasis border>`): Primer `State` pills; keeps the filled pill crisp on white.
+- **Running badge halo** (`box-shadow: 0 0 .2em var(--borderColor-accent-muted)`): Primer's own treatment on the active timeline badge.
 
 ### Named Rules
-**The Glass Casts, Tiles Don't Rule.** Only translucent panels (`panel`, `topbar`) blur and cast the glass-lift shadow. Anything inside a panel (tile, step, sheet, callout, evidence, diff) is flat with a hairline or no border.
-
-**The Fixed Glow Rule.** The three radial glows are on `body` with `background-attachment: fixed`; they are the only gradients on the page besides the running-step sweep and the skeleton. No gradient fills on components.
+**The Drawn Depth Rule.** New surfaces get a 1px border and, if they need a lid, a `Box-header` fill. They do not get a shadow, a blur or a gradient.
 
 ## Shapes
 
-Rounded glass, pill controls. Three corner sizes carry the containment hierarchy: 16px (`lg`) for the frosted panels, the notice and the ledger; 12px (`tile`) for field tiles, ladder steps, the draft sheet, callouts, diff blocks and the filed stamp; 10px (`md`) for hovered commit rows, evidence lines and the focus ring. Everything the reviewer presses or reads as a status is a full pill (999px): buttons, system pills, SHAs, counters, stamps, severity, incident tabs and their track, the band clock's incident number. Inline code is 6px; the Sentinel scale cells are 2px; dots are 6px circles. The 12px tile radius is written as a literal in app.css rather than a token; keep it at 12px.
-
-Borders are quiet: 1px `glass-border` on glass, 1px `hair` on controls and system pills (tinted to the role colour at 35% when a pill is on or off), 1px `hair-2` on tiles and steps, hairlines between rows. The one dashed border is the unscanned Sentinel scale. Nothing rotates; the stamp lands square. The brand mark is a 26px monochrome clock face (a ring, a hub and four ticks) in `ink`.
+Primer's two radii carry the page: 6px (`--borderRadius-medium`) on Boxes, buttons, the draft sheet, the evidence blocks (`rounded-2`); and the full pill (`--borderRadius-full`, 2em on State) on every status token. Timeline badges are 16px circles. Primer's `btn-large` on the approve button rounds at 0.5em (7px at 14px), a half-step the system tolerates because it is Primer's. The one custom radius is 4px on the amber placeholder highlight inside the draft, sized to sit inside a 14px line. Borders are 1px throughout; the only 2px stroke is the timeline spine. The favicon is a 64px tile with a 14px corner; the top-bar mark is the same clock face as a 24px stroked circle in `currentColor`.
 
 ## Components
 
 ### Buttons
-Origit's pills: soft grey, hairline border, a whisper of shadow, pressed down one pixel.
-- **Shape:** full pill (999px), 1px `hair` border.
-- **Default:** `btn` fill, `fg` text, 36px tall, 0 16px, 13px / 500, rest shadow `0 1px 2px rgba(31,35,40,.06)`. Hover goes to `btn-hover`. Active translates down 1px and drops the shadow. Disabled sits at 45% opacity. Transitions 0.15s on background, transform and shadow.
-- **Ghost:** the same pill at 30px tall, 0 13px, 12px text; used for register actions (Poll feeds, Run scan).
-- **Primary:** `green-btn` fill with white text, 40px tall, 0 20px, 14px, shadow `0 2px 6px rgba(31,35,40,.15)`; hovers to `ok`. Used once per page: Approve and file.
-- **Busy:** text goes transparent and a 14px two-tone ring in `fg` spins in place (0.7s linear).
-- **Focus:** 2px `link` outline, 2px offset, 10px radius, on every control.
+- **Shape:** Primer `btn`, 6px corners, 1px border, 14px/500 text, 5px 16px padding, 80ms ease-out transition on colour and shadow.
+- **Default small** (`btn btn-sm`, 12px text, 3px 12px padding): panel-grey fill, default ink, hairline border. "Poll feeds" and "Run scan" in footer Box headers, "Copy" and "Download" right-aligned under the draft, "Re-run" inside the error flash, "Run the live demo" beside the title once filed.
+- **Primary** (`btn btn-primary`): button green fill, white text, translucent dark border. "Run the live demo" beside the "No open incident" title. Disabled while a precondition is unmet; while running it is replaced by a `State--open` "Demo running" pill.
+- **Primary large** (`btn btn-primary btn-large`, 0.75em 1.5em, 0.5em radius): the single "Approve and file" button under the draft, with a 12px muted sentence beside it. The only large control on the page.
+- **Hover / Focus:** Primer defaults: darker green or lighter grey on hover, 2px link-blue outline on `:focus-visible`. Busy state is a label change ("Working…"), never a spinner.
 
 ### Chips
-- **System pill:** hairline-bordered pill, 3px 9px, 11.5px `muted` text, a 6px dot (`muted-2` idle). On: `ok` text, dot and a 35% green border. Off: `danger` text, dot and a 35% red border. A faint mono system id (max 160px, ellipsed) may follow.
-- **SHA pill:** 72 by 22px, `link` mono 11.5px on `link-bg`, centred; a `purple` 600 mono session number sits under it.
-- **Counter:** 20px pill, 10% ink fill, `fg-2` 11.5px / 500; the section number in every section title.
-- **Stamp (status tag):** 24px pill, 0 10px, 11.5px / 600, 8% ink fill with `fg-2` text. Variants: quiet (`muted` text), live (`accent` on `accent-bg`, "awaiting approval"), ok (`ok` on `ok-bg`), fail (`danger` on `danger-bg`).
-- **Severity:** 22px pill, 0 9px, 11.5px / 500. High and critical: `danger` on `danger-bg`. Medium: `accent` on `accent-bg`. Low: `link` on `link-bg`.
-- **Live pill:** the journal's "live" indicator, the system pill's grammar with a `::before` dot that goes green when the stream opens.
+- **Label** (outline pill, 12px/500, 18px line, 0 6px padding, hairline border in `currentColor`): classification. Neutral for source kind ("advisory", "class", "CRA"), "not polled", "offline". `Label--accent` low risk, `Label--attention` medium risk and "fixture", `Label--danger` high and critical risk and a CVE/GHSA hit, `Label--success` "live". The severity Label sits inline in the subtitle under the h1 ("high 8.2"); Sentinel flags on affected rows read "Sentinel high". `Label--large` (22px line, 0 8px) is the approval stamp, "Approved and filed HH:MM:SS after awareness", which replaces the approve button.
+- **State** (filled pill, 14px/500, 4px 12px padding, 2em radius, white text, inset 1px ring): lifecycle only. `State--open` green "Awaiting approval" and "Demo running", `State--merged` purple "Filed", `State--closed` red "Pipeline failed", `State--draft` grey for any other status. One State per page, beside the h1.
 
 ### Cards / Containers
-- **Document and register block (glass):** `panel` fill, 24px blur and 160% saturate, 1px `glass-border`, 16px corners, glass-lift shadow. Document padding 20px 22px 24px (16px 16px 20px on mobile); register block 16px 18px 14px with a 30px head row holding a 12px muted heading and its ghost button. Stacked documents are 16px apart.
-- **Tile (field):** `tile` fill, 12px corners, 12px 14px padding, no border; a 12px label over a 14px / 500 value with an optional 11.5px muted sub line. Values break anywhere so hashes never overflow.
-- **Step:** `panel-solid` fill, 1px `hair-2`, 12px corners, 12px 12px 14px padding, clipped, with a 3px state bar across its top edge.
-- **Sheet:** `panel-solid`, 1px `hair-2`, 12px corners, 22px 26px 18px padding (16px on mobile); prose at 14px / 1.6 / 72ch. The only white surface with long text.
-- **Callout:** `tile` with 1px `hair-2`, 12px corners, 12px 14px, 12.5px `muted` text. **Notice:** 14% danger wash with a 35% `danger` border, 16px corners, 14px 18px, 12.5px `fg` text; its button borrows a 45% red border.
-- **Ledger:** a details element whose summary is a glass bar (12px 18px, 12px / 500 muted, counts right); open, its corners square off at the bottom and a glass well (max 320px, own scroll) holds the call table. FIXTURE calls are marked in `accent` 600.
-- **Evidence line:** `tile` with a 25% red hairline, 10px corners, 8px 12px, 11.5px mono. **Diff:** `tile`, 12px corners, 11.5px/20px mono, rows tinted `ok-bg` (add), `danger-bg` (del) and `link-bg` with `link` text (hunk).
+- **Box**: white, 1px hairline, 6px corners. `Box-header` panel grey with a 14px/600 `Box-title` and a right-aligned `btn-sm` or Label; `Box-row` 16px padding with a top hairline hosting a `row-grid`. Used for the four footer registers and for the affected-commit list inside its details.
+- **Draft sheet** (`markdown-body Box p-4`): the Box at 24px padding carrying the rendered Markdown at 14px, with `<placeholder>` runs on amber (`.ph`).
+- **Selected row**: `commit-row.selected` takes the accent-muted wash; `cursor: pointer`, `role="button"`, `tabindex="0"`; the commit detail renders below the register as a `Box-row` with 12px mono evidence blocks on `color-bg-subtle` at 8px padding.
+- **Rollback row**: the last affected row on `color-bg-success`, "Last clean commit".
+- **Details**: native `details` with a muted `summary` sentence; no Box around the disclosure, the Box (or list) sits inside 8px below the summary. Three uses: affected commits, sources, the footer registers.
+- **Error flash**: Primer `flash flash-error`, danger-muted fill, 6px corners, message left and `btn-sm` "Re-run" right.
 
 ### Inputs / Fields
-There are no text inputs. The field tile is the input-like unit (see Tile above). The signature line is a 30px-tall `muted-2` bottom rule that fills with the approver's name at 14px / 600.
+No text inputs exist on the page; the console is read, open and approve. The one prompt is the browser's own `window.prompt` for the review token on a public deployment.
 
 ### Navigation
-- **Band:** sticky 58px glass strip (`topbar`, 18px blur, hairline beneath). Brand: 26px ink mark, "Origit" 15px / 600 with "Console" in `muted` 500, then a 12.5px `muted` product subtitle. Manufacturer and product as inline label and value pairs. System pills right-aligned. The band clock behind a hairline left rule: incident number as a `link` mono pill on `link-bg`, time at 19px / 600 in `danger` (`ok` when stopped), an 11.5px muted label beneath. Under 768px the band is static and the clock row is the sticky element.
-- **Incident tabs:** Origit's segmented pill track (8% ink fill, 3px padding, 2px gaps); each tab a 32px pill in `fg-2` 13px / 500; the selected tab is white, `ink`, 600, with the coral underline inset and a 1px lift.
-- **Register rows:** commit rows are 10px-cornered, bleed 8px outside the block, hover to 4% ink and sit on `link-bg` when current.
+- **Top bar** (`.top`): sticky white, hairline below, 12px vertical padding, `.page` measure. Brand link in default ink at 16px/600 with the 24px mark, no underline on hover; product name muted beside it; the mini clock (`.clock-mini`) right-aligned as a link to `#report`, incident number 12px muted then the time 14px/600 red or green.
+- No tabs, no sidebar, no breadcrumbs. Incidents other than the current one are not navigated to in this build.
 
-### Step Ladder (signature component)
-Seven white tiles in one row with 8px gaps. Each step: a 10px mono key (`STEP 1`), a 14px / 600 name, an 11.5px `muted` actor line, an 11.5px `fg-2` text block clamped to seven lines, and a 10.5px mono `muted-2` timestamp. The 3px top bar carries state: 12% ink when pending (and the name drops to `muted`), `ok` when done (with a 12px green inline checkmark after the name), `danger` when failed, and when running a `link` sweep scrolling across a `link-bg` track (1.1s linear). Reduced motion stops the sweep.
+### Timeline (signature)
+Primer `TimelineItem TimelineItem--condensed`: 16px badge on a 2px muted spine, step name 14px/600 default ink with the actor muted (`· Tavily`, `· Nemotron Ultra on Nebius`), time floated right at 12px, description 12px muted. Badge states: done is Primer's `TimelineItem-badge--success` (green fill, white check octicon), running is accent-emphasis fill with a white dot, failed is danger-emphasis fill with a white x, pending is a muted dot on panel grey. Eight steps: Sentinel, then detect, trace, read, triage, context, draft, review.
 
-### Clock (signature component)
-The early-warning countdown is the display face: 40px / 600 / -0.03em tabular figures in `danger`, in a tile spanning two field columns, with the three deadlines beneath in 11.5px muted mono-aligned figures. It turns `ok` and stops on approval. A 19px copy rides in the band so the reviewer can read the draft without losing the time.
-
-### Approval Stamp (signature component)
-On approval the sheet gets a stamp top right: "Approved · Filed" over the elapsed time since awareness, `ok` 700 / 14px on `ok-bg` with a 45% green border, 12px corners, 8px 14px padding, the small line in 11.5px `fg-2` mono. It presses in over 0.35s with `cubic-bezier(.2, .9, .3, 1)` from scale 1.4 and fades by 60%; the prose's first block clears it with right padding. Under reduced motion the stamp appears without the press. Under 768px it sits inline above the prose.
-
-### Sentinel Scale
-Four 8px-tall cells with 2px gaps and 2px corners, 12% ink when empty, filled left to right: one `link` (low), two `accent` (medium), three `danger` (high), four `danger` (critical); dashed `hair` outline when unscanned. A 28 by 6px copy sits in the legend.
+### Countdown (signature)
+`.clock`: 56px/600 (40px below 544px), line-height 1, -0.02em, tabular numerals, `--fgColor-danger` while running, `--fgColor-success` once `stopped`. It sits between a 12px caption ("Early warning due in" or "Filed after") and a 12px line with awareness, 24 h and 72 h times, 32px above the Pipeline head. The top bar mirrors it at 14px. Approval swaps the approve button for the `Label--success Label--large` stamp and flips both clocks green; that is the whole approval animation.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** build every new container as Origit glass: `panel` fill, 24px blur and 160% saturate, 1px `glass-border`, 16px corners, the glass-lift shadow; put tiles (`tile`, 12px corners, no shadow) inside it for fields.
-- **Do** make every control and status a pill (999px) with text in a role colour on that colour's translucent tint; the only solid-filled control is the green primary.
-- **Do** pick colours by role: `link` for references and focus, `accent` for waiting and medium, `danger` for the live clock and failure, `ok` for health and approval, `purple` for session numbers only.
-- **Do** use one of the nine `--fs-*` sizes, weights 400 to 600, and keep labels at 12px / 500 muted sentence case with no tracking.
-- **Do** set identifiers (SHAs, session numbers, timestamps, paths, diffs) in SF Mono at 11.5px or below; keep the 10px uppercase mono key for ordinals and kinds only.
-- **Do** check any new token against origit.uk's `:root`; it needs a dark twin there (The Light Counterpart Rule).
-- **Do** give every live or running state a motion that stops under `prefers-reduced-motion` and leaves the state legible.
+- **Do** reach for a Primer component before writing CSS: Box for any panel, Label for any classification, State for any lifecycle status, btn for any action, TimelineItem for any sequence, flash for any inline error, native `details` for anything folded.
+- **Do** write colour as a Primer variable (`var(--fgColor-danger)`), as `app.css` does; the only literal allowed is `#fff` on a filled badge.
+- **Do** keep the type ramp to Primer's `f2` (24px), `f4` (16px), body (14px), `f6` (12px) and mono at 12px; the 56px countdown is the single exception.
+- **Do** keep everything inside the 760px `.page` measure, including any new header or footer content.
+- **Do** put identifiers and machine facts (SHAs, times, paths, model ids, token counts) in `text-mono` with tabular numerals.
+- **Do** lay out Box-row content with `row-grid` and an 8px gap, collapsing to fewer columns below 544px, as the ledger and affected rows do.
+- **Do** print the risk word inside its pill (`low`, `medium`, `high`, `critical`) and reserve "clean" and "–" in muted text for none and unscanned.
+- **Do** use `btn-primary` only for the step that advances the incident (run the demo, approve and file), and `btn-large` only for approve.
 
 ### Don't:
-- **Don't** add a chart, a KPI card, a dark panel, a solid coloured chip or a gradient fill; the only gradients are the three fixed body glows and the sweep.
-- **Don't** cast shadows on anything inside a glass panel; tiles, steps, the sheet and callouts are flat.
-- **Don't** use a fourth corner size: 16px glass, 12px tiles, 10px rows and code, 999px pills.
-- **Don't** fill a button with blue, or use blue as a brand colour; blue points at things.
-- **Don't** set Onest in uppercase or with letter-spacing above 0; tracked uppercase exists only in the 10px mono keys.
-- **Don't** introduce a second sans or a display face; Onest 400 to 700 carries everything, SF Mono carries identifiers.
+- **Don't** add glass, backdrop blur, background glows, gradients or custom shadows; the rebuild dropped the earlier Origit-style glass world and the page is flat by construction.
+- **Don't** add a dark bar or dark panel; the page is white edge to edge and the favicon is the only dark tile.
+- **Don't** load a webfont or add a build step; the system stack at 14px is the typeface.
+- **Don't** hard-code a hex that Primer already names, and don't invent a colour Primer's light theme lacks.
+- **Don't** name or brand the provenance engine in the UI; the product is CRA Watch, the top bar carries only its mark and wordmark.
+- **Don't** use a filled State pill for classification or an outline Label for lifecycle; the two pill families are not interchangeable.
+- **Don't** add a second column or a second display-size number; the filing reads top to bottom and the countdown owns 56px.
+- **Don't** signal with colour alone; every coloured token on the page carries its word (the risk pill, the step name, the journal verb).

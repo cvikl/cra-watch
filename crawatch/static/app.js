@@ -30,7 +30,6 @@
     ["triage", "Triage", "Nemotron Nano"], ["context", "Context", "Tavily search"], ["draft", "Draft", "Nemotron Ultra"], ["review", "Review", "a person"],
   ];
   const ORDER = ["detected", "trace", "read", "triage", "context", "draft", "review", "filed"];
-  const RISK_LABEL = { none: "", low: "Label--accent", medium: "Label--attention", high: "Label--danger", critical: "Label--danger" };
 
   let state = null, selectedIncident = null, selectedCommit = null, clockTimer = null, watchOpen = false;
 
@@ -51,19 +50,37 @@
 
   // ------------------------------------------------------------------ render
   const currentIncident = () => state.incidents.length ? (state.incidents.find((i) => i.id === selectedIncident) || state.incidents[0]) : null;
+  const sev = (r) => ({ low: "p", medium: "h", high: "d", critical: "d", none: "n" }[r] || "n");
   function render() {
     const inc = currentIncident();
-    $("#report").replaceChildren(inc ? renderIncident(inc) : renderEmpty());
+    renderHero(inc);
+    $("#report").replaceChildren(...(inc ? renderIncident(inc) : renderEmpty()));
     renderWatchlist(); renderCommits(); renderJournal(); renderLedger();
     startClock(inc);
   }
   function demoButton(cls) {
     const d = state.demo || {}, running = !!state.jobs.demo;
-    if (running) return el("span", { class: "State State--open" }, "Demo running");
+    if (running) return el("span", { class: "s p" }, "demo running");
     return el("button", { class: cls, type: "button", disabled: !d.available || !d.can_start, title: d.reason || "Sentinel, detection, trace, triage and draft run with real calls while you watch. About a minute.", onclick: (e) => act(e.target, "/api/demo/run") }, "Run the live demo");
   }
-  function title(text, right, sub) {
-    return el("div", { class: "d-flex flex-items-start mb-4" }, el("div", { class: "flex-auto" }, el("h1", { class: "f2 text-semibold lh-condensed" }, text), sub ? el("div", { class: "color-fg-muted mt-1" }, sub) : null), right);
+  function renderHero(inc) {
+    const product = $("#app").dataset.product, c = state.config, running = !!state.jobs.demo, last = state.events[state.events.length - 1];
+    $("#eyebrow").textContent = `${product} · Nebius Token Factory · Nemotron Nano + Ultra · Tavily`;
+    const body = $("#hero-body"); body.replaceChildren();
+    if (!inc) {
+      $("#headline").textContent = running ? "Sentinel is scanning. Watch the record fill in." : "No open incident. Sentinel is watching every commit.";
+      body.append(el("p", { class: "lede" }, running && last ? last.text : "When an advisory names a dependency a coding agent used, the record below opens, the 24-hour clock starts, and the early warning is drafted before anyone has read the advisory. A person files it."),
+        el("div", { class: "cta" }, demoButton("btn primary"), el("span", { class: "note" }, "Real calls to Nemotron Nano, Nemotron Ultra and Tavily, about a minute.")));
+      return;
+    }
+    const adv = inc.advisory, tri = inc.triage;
+    $("#headline").textContent = inc.status === "filed" ? `Filed ${dur(parse(inc.approved_at) - parse(inc.awareness))} after awareness.`
+      : inc.status === "review" ? `${inc.dependency} ${inc.version || ""} is compromised. The draft is ready.` : inc.status === "failed" ? "The pipeline stopped. The clock did not." : `${inc.dependency} ${inc.version || ""} is compromised. The clock is running.`;
+    body.append(el("div", { class: "advisory" }, el("span", { class: "cite" }, adv.url ? el("a", { href: adv.url, target: "_blank", rel: "noopener" }, adv.advisory_id || "advisory") : adv.advisory_id || "advisory", ` · ${inc.dependency}${inc.version ? "@" + inc.version : ""} (npm)`, tri && tri.cvss ? ` · CVSS ${tri.cvss}` : "", ` · ${inc.source} feed, ${fmtT(inc.opened_at)}`), adv.title || "Advisory matched a watched dependency."),
+      el("p", { class: "lede" }, tri ? tri.summary : "The pipeline is tracing which agent sessions and commits are downstream of the component."),
+      el("div", { class: "cta" }, inc.status === "review" ? el("a", { class: "btn primary", href: "#draft" }, "Review the early warning") : null, inc.status === "filed" ? demoButton("btn primary") : null,
+        inc.draft ? el("a", { class: "btn", href: `/api/incidents/${inc.id}/draft.md`, download: `${inc.id}-early-warning.md` }, "Download the draft") : null,
+        el("a", { class: "btn", href: "https://github.com/cvikl/cra-watch", rel: "noopener" }, "Source on GitHub")));
   }
   function stepStatus(inc, key) {
     const idx = ORDER.indexOf(key === "detect" ? "detected" : key), cur = ORDER.indexOf(inc.status);
@@ -73,105 +90,94 @@
     if (idx === cur + 1 && inc.status !== "review") return "running";
     return "pending";
   }
-  function timeline(inc) {
+  function steps(inc) {
     const scanned = state.commits.filter((c) => c.flag), flagged = scanned.filter((c) => c.flag.risk !== "none");
-    const running = !!state.jobs.sentinel || (!!state.jobs.demo && !inc && !scanned.length);
-    const items = [{ name: "Sentinel", actor: "Nemotron Nano, at commit time", st: running ? "running" : scanned.length ? "done" : "pending",
-      text: scanned.length ? `${scanned.length} agent commits scanned, ${flagged.length} flagged before any advisory${flagged.length ? ": " + flagged.map((c) => `${c.session_label} ${c.flag.risk}`).join(", ") : ""}` : "Reads what each agent commit read and wrote; flags vulnerability patterns before a CVE exists.",
-      at: scanned.length ? scanned[0].flag.scanned_at : null }];
+    const sRunning = !!state.jobs.sentinel || (!!state.jobs.demo && !inc && !scanned.length);
+    const items = [{ name: "Sentinel.", actor: "Nemotron Nano · at commit time", st: sRunning ? "running" : scanned.length ? "done" : "pending", at: scanned.length ? scanned[0].flag.scanned_at : null,
+      text: scanned.length ? `${scanned.length} agent commits scanned, ${flagged.length} flagged before any advisory: ${flagged.map((c) => `${c.session_label} ${c.flag.risk}`).join(", ") || "none"}.` : "Reads what each agent commit read and wrote and flags vulnerability patterns before a CVE exists." }];
+    const explain = { detect: "Tavily polls NVD, GitHub Advisories, OSV and the vendor bulletins for every watched dependency.", trace: "The provenance records give the affected commits, sessions, files and the last clean commit to roll back to.", read: "Tavily reads the advisory in full.", triage: "Severity, data at risk, and whether Article 14 applies.", context: "Background on the vulnerability class and the CRA Article 14 guidance.", draft: "The Article 14(4)(a) early warning, from the evidence only.", review: "A person reads it and approves. Nothing is sent without them." };
     for (const [key, name, actor] of STEPS) {
       const st = inc ? stepStatus(inc, key) : "pending";
-      const rec = inc && (key === "detect" ? { at: inc.opened_at, text: `${inc.advisory.advisory_id || "Advisory"} matched on the ${inc.source} feed` } : inc.steps.find((s) => s.name === key));
-      const text = !inc ? { detect: "Tavily polls NVD, GitHub Advisories, OSV and vendor bulletins.", trace: "Provenance records give the affected commits, sessions, files and the clean rollback commit.", read: "Tavily reads the advisory in full.", triage: "Severity, data at risk, does Article 14 apply.", context: "Background on the vulnerability class and the CRA guidance.", draft: "The Article 14(4)(a) early warning, from the evidence only.", review: "A person reads it and approves. Nothing is sent without them." }[key]
-        : key === "review" ? (inc.status === "filed" ? `Approved by the ${inc.approved_by}` : inc.status === "review" ? "Waiting for your approval below" : "") : st === "failed" ? "Stopped here" : rec?.text;
-      items.push({ name, actor, st, text, at: rec?.at });
+      const rec = inc && (key === "detect" ? { at: inc.opened_at, text: `${inc.advisory.advisory_id || "Advisory"} matched on the ${inc.source} feed.` } : inc.steps.find((s) => s.name === key));
+      const text = !inc ? explain[key] : key === "review" ? (inc.status === "filed" ? `Approved by the ${inc.approved_by}.` : inc.status === "review" ? "Waiting for approval below." : explain.review) : st === "failed" ? "Stopped here." : rec?.text || explain[key];
+      items.push({ name: name + ".", actor, st, at: rec?.at, text });
     }
-    return el("div", {}, ...items.map((it, n) => el("div", { class: "TimelineItem TimelineItem--condensed" },
-      el("div", { class: it.st === "done" ? "TimelineItem-badge TimelineItem-badge--success" : `TimelineItem-badge ${it.st}`, html: it.st === "done" ? ICON.check : it.st === "failed" ? ICON.x : ICON.dot }),
-      el("div", { class: "TimelineItem-body" },
-        el("div", {}, el("span", { class: "text-semibold color-fg-default" }, it.name), el("span", { class: "color-fg-muted" }, ` · ${it.actor}`), it.at ? el("span", { class: "f6 color-fg-muted float-right" }, hhmm(it.at)) : null),
-        it.text ? el("div", { class: "f6 color-fg-muted" }, it.text) : null))));
+    return el("ol", { class: "steps" }, ...items.map((it) => el("li", { class: it.st }, el("div", {}, el("strong", {}, it.name), " ", el("span", { class: "text" }, it.text)), el("span", { class: "tag" }, it.st === "done" && it.at ? `${it.actor} · ${hhmm(it.at)}` : it.st === "running" ? `${it.actor} · running` : it.st === "failed" ? `${it.actor} · failed` : it.actor))));
   }
+  function statTile(value, label, cls) { return el("div", {}, el("b", { class: cls || "" }, value), el("span", {}, label)); }
   function renderIncident(inc) {
-    const adv = inc.advisory, tri = inc.triage, t = inc.taint, filed = inc.status === "filed";
-    const stateLabel = { filed: ["State State--merged", "Filed"], failed: ["State State--closed", "Pipeline failed"], review: ["State State--open", "Awaiting approval"] }[inc.status] || ["State State--draft", inc.status];
-    const root = el("div", {},
-      title(incNo(inc), el("div", { class: "d-flex flex-items-center" }, el("span", { class: `${stateLabel[0]} mr-2` }, stateLabel[1]), filed ? demoButton("btn btn-sm") : null),
-        el("span", {}, `${inc.dependency}${inc.version ? "@" + inc.version : ""} · `, adv.url ? el("a", { href: adv.url, target: "_blank", rel: "noopener" }, adv.advisory_id || "advisory") : adv.advisory_id || "advisory", tri ? el("span", {}, " · ", el("span", { class: `Label ${RISK_LABEL[tri.severity] || ""}` }, `${tri.severity}${tri.cvss ? " " + tri.cvss : ""}`)) : null)),
-      el("div", { class: "mb-5" },
-        el("div", { class: "f6 color-fg-muted" }, filed ? "Filed after" : "Early warning due in"),
-        el("div", { class: "clock", id: "clock" }, "–"),
-        el("div", { class: "f6 color-fg-muted mt-1" }, `Awareness ${fmtT(inc.awareness)} · 24 h ${fmtT(inc.deadlines.early_warning_24h)} · 72 h ${fmtT(inc.deadlines.notification_72h)}`)),
-      el("h2", { class: "f4 text-semibold mb-2" }, "Pipeline"), timeline(inc),
-      inc.error ? el("div", { class: "flash flash-error d-flex flex-items-center mt-3" }, el("span", { class: "flex-auto" }, inc.error), el("button", { class: "btn btn-sm", type: "button", onclick: (e) => act(e.target, `/api/incidents/${inc.id}/rerun`) }, "Re-run")) : null,
-    );
-    if (t) root.append(el("details", { class: "mt-4" }, el("summary", { class: "color-fg-muted" }, `${t.affected.length} affected commits across sessions ${t.session_labels.join(", ")}, roll back to ${t.rollback_short || "n/a"}`),
-      el("div", { class: "Box mt-2" }, ...t.affected.map((c) => { const f = (inc.prior_flags || []).find((x) => x.short === c.short); return el("div", { class: "Box-row row-grid affected-row f6" }, el("span", { class: "text-mono color-fg-accent" }, c.short), el("span", { class: "color-fg-muted" }, c.session_label), el("span", {}, c.subject.replace(/^bob: /, ""), el("div", { class: "color-fg-muted text-mono" }, c.wrote.join(", "))), f ? el("span", { class: `Label ${RISK_LABEL[f.risk]}` }, `Sentinel ${f.risk}`) : el("span")); }),
-        t.rollback_commit ? el("div", { class: "Box-row row-grid affected-row f6 color-bg-success" }, el("span", { class: "text-mono color-fg-accent" }, t.rollback_short), el("span"), el("span", {}, "Last clean commit"), el("span")) : null)));
-    const ctx = inc.context || {}, srcs = [["advisory", adv.url, adv.title], ...(ctx.class_background || []).map((r) => ["class", r.url, r.title]), ...(ctx.cra_guidance || []).map((r) => ["CRA", r.url, r.title])].filter((x) => x[1]);
-    if (srcs.length) root.append(el("details", { class: "mt-2" }, el("summary", { class: "color-fg-muted" }, `${srcs.length} sources read by Tavily`), el("ul", { class: "list-style-none mt-2 f6" }, ...srcs.map(([via, url, tt]) => el("li", { class: "py-1" }, el("span", { class: "Label mr-2" }, via), el("a", { href: url, target: "_blank", rel: "noopener" }, tt || url))))));
-    root.append(renderDraft(inc));
-    return root;
-  }
-  function renderDraft(inc) {
-    const d = inc.draft, sec = el("section", { class: "mt-5" }, el("h2", { class: "f4 text-semibold mb-2" }, "Early warning", d ? el("span", { class: "f6 color-fg-muted text-normal ml-2" }, `drafted by Nemotron Ultra in ${d.elapsed_s} s`) : null));
-    if (!d) { sec.append(el("p", { class: "color-fg-muted" }, inc.status === "failed" ? "No draft: the pipeline stopped before Nemotron Ultra ran." : "The draft appears here once Nemotron Ultra has read the advisory, the trace, the triage and the CRA guidance.")); return sec; }
-    const html = DOMPurify.sanitize(marked.parse(d.text)).replace(/&lt;([^&]{2,140}?)&gt;/g, '<span class="ph">&lt;$1&gt;</span>');
-    sec.append(el("div", { class: "markdown-body Box p-4", html }));
-    const foot = el("div", { class: "d-flex flex-items-center flex-wrap mt-3" });
-    if (inc.status === "review") foot.append(el("button", { class: "btn btn-primary btn-large mr-3", type: "button", onclick: (e) => act(e.target, `/api/incidents/${inc.id}/approve`, { by: "compliance lead" }) }, "Approve and file"), el("span", { class: "f6 color-fg-muted" }, "Approval stops the clock. You paste the text into the ENISA platform yourself."));
-    if (inc.status === "filed") foot.append(el("span", { class: "Label Label--success Label--large mr-3" }, `Approved and filed ${dur(parse(inc.approved_at) - parse(inc.awareness))} after awareness`), el("span", { class: "f6 color-fg-muted" }, `${inc.approved_by} · ${fmtT(inc.approved_at)}`));
-    foot.append(el("span", { class: "ml-auto" }, el("button", { class: "btn btn-sm mr-1", type: "button", onclick: (e) => copyDraft(e.target, inc) }, "Copy"), el("a", { class: "btn btn-sm", href: `/api/incidents/${inc.id}/draft.md`, download: `${inc.id}-early-warning.md` }, "Download")));
-    sec.append(foot);
-    return sec;
+    const t = inc.taint, tri = inc.triage, filed = inc.status === "filed", out = [];
+    out.push(el("section", {}, el("p", { class: "label" }, "The clock"), el("h2", {}, filed ? "Article 14(4)(a) early warning, filed" : "Article 14(4)(a) early warning, due within 24 hours of awareness"),
+      el("div", { class: "stats" },
+        el("div", {}, el("b", { class: `clock${filed ? " stopped" : ""}`, id: "clock" }, "–"), el("span", {}, filed ? "time from awareness to filing" : "left in the 24-hour window")),
+        statTile(fmtT(inc.awareness).replace(" UTC", ""), "awareness, UTC"),
+        statTile(tri ? `${tri.severity} ${tri.cvss || ""}` : inc.status === "failed" ? "–" : "…", tri ? "severity, Nemotron Nano" : "severity"),
+        statTile(t ? `${t.affected.length} → ${(inc.prior_flags || []).length}` : "…", t ? `affected commits across ${t.sessions.length} sessions; ${(inc.prior_flags || []).length} already flagged by Sentinel before the advisory` : "affected commits"))));
+    out.push(el("section", {}, el("p", { class: "label" }, "Pipeline"), el("h2", {}, "Eight steps, one of them a person"), steps(inc),
+      inc.error ? el("div", { class: "flash" }, el("span", {}, inc.error), el("button", { class: "btn small", type: "button", onclick: (e) => act(e.target, `/api/incidents/${inc.id}/rerun`) }, "Re-run")) : null));
+    if (t) {
+      const flags = Object.fromEntries((inc.prior_flags || []).map((f) => [f.short, f]));
+      out.push(el("section", {}, el("p", { class: "label" }, "Blast radius"), el("h2", {}, `What the agent wrote after reading ${inc.dependency}`),
+        el("p", {}, `First read in session ${t.first_read?.session_label || "–"} on ${fmtT(t.first_read?.at)}. Roll back to `, el("code", {}, t.rollback_short || "n/a"), " and remove the dependency."),
+        el("div", { class: "tbl" }, el("table", {}, el("thead", {}, el("tr", {}, ...["Commit", "Session", "Agent run", "Files written", "Sentinel"].map((h) => el("th", {}, h)))),
+          el("tbody", {}, ...t.affected.map((c) => { const f = flags[c.short]; return el("tr", {}, el("td", {}, el("code", {}, c.short)), el("td", {}, c.session_label), el("td", {}, c.subject.replace(/^bob: /, "")), el("td", {}, el("code", {}, c.wrote.join(", ") || "–")), el("td", {}, f ? el("span", { class: `s ${sev(f.risk)}` }, f.risk) : el("span", { class: "s n" }, "none"))); }),
+            t.rollback_commit ? el("tr", { class: "rollback" }, el("td", {}, el("code", {}, t.rollback_short)), el("td"), el("td", { colspan: 3 }, "Last clean commit")) : null)))));
+    }
+    const ctx = inc.context || {}, srcs = [["advisory", inc.advisory.url, inc.advisory.title], ...(ctx.class_background || []).map((r) => ["background", r.url, r.title]), ...(ctx.cra_guidance || []).map((r) => ["CRA guidance", r.url, r.title])].filter((x) => x[1]);
+    const d = inc.draft;
+    const draft = el("section", { id: "draft" }, el("p", { class: "label" }, "Early warning"), el("h2", {}, d ? "Drafted by Nemotron Ultra, filed by a person" : "Waiting for the draft"));
+    if (!d) draft.append(el("p", {}, inc.status === "failed" ? "No draft: the pipeline stopped before Nemotron Ultra ran." : "The draft appears here once Nemotron Ultra has read the advisory, the trace, the triage and the CRA guidance."));
+    else {
+      draft.append(el("div", { class: "doc", html: DOMPurify.sanitize(marked.parse(d.text)).replace(/&lt;([^&]{2,140}?)&gt;/g, '<span class="ph">&lt;$1&gt;</span>') }));
+      const cta = el("div", { class: "cta" });
+      if (inc.status === "review") cta.append(el("button", { class: "btn primary", type: "button", onclick: (e) => act(e.target, `/api/incidents/${inc.id}/approve`, { by: "compliance lead" }) }, "Approve and file"), el("span", { class: "note" }, "Approval stops the clock. You paste the text into the ENISA reporting platform yourself."));
+      if (filed) cta.append(el("span", { class: "s v" }, `approved and filed · ${inc.approved_by} · ${fmtT(inc.approved_at)}`));
+      cta.append(el("button", { class: "btn small", type: "button", onclick: (e) => copyDraft(e.target, inc) }, "Copy"), el("a", { class: "btn small", href: `/api/incidents/${inc.id}/draft.md`, download: `${inc.id}-early-warning.md` }, "Download .md"));
+      draft.append(cta, el("p", { class: "note", style: "margin-top:12px" }, `${d.model} · ${d.elapsed_s} s · ${d.prompt_tokens || "?"} prompt tokens, ${d.completion_tokens || "?"} completion tokens · all inference through Nebius Token Factory`));
+    }
+    out.push(draft);
+    if (srcs.length) out.push(el("section", {}, el("p", { class: "label" }, "Sources"), el("h2", {}, `${srcs.length} sources read by Tavily`),
+      el("div", { class: "tbl" }, el("table", {}, el("thead", {}, el("tr", {}, el("th", {}, "Use"), el("th", {}, "Source"))), el("tbody", {}, ...srcs.map(([use, url, tt]) => el("tr", {}, el("td", {}, el("span", { class: "s n" }, use)), el("td", {}, el("a", { href: url, target: "_blank", rel: "noopener" }, tt || url)))))))));
+    return out;
   }
   function renderEmpty() {
-    const running = !!state.jobs.demo;
-    return el("div", {},
-      title("No open incident", demoButton("btn btn-primary"), running ? (state.events[state.events.length - 1] || {}).text : "When an advisory matches a watched dependency, the incident opens here and the 24 h clock starts."),
-      el("h2", { class: "f4 text-semibold mb-2" }, "Pipeline"), timeline(null));
+    return [el("section", {}, el("p", { class: "label" }, "Pipeline"), el("h2", {}, "Eight steps, one of them a person"), steps(null))];
   }
 
-  // ------------------------------------------------------------------ details (footer)
+  // ------------------------------------------------------------------ register (details)
   function renderWatchlist() {
-    $("#watchlist").replaceChildren(...state.watchlist.map((d) => el("div", { class: "Box-row row-grid watch-row f6" },
-      el("span", {}, el("span", { class: "text-semibold" }, d.name), el("span", { class: "color-fg-muted" }, d.version ? ` @${d.version}` : "", d.last_checked ? ` · polled ${hhmm(d.last_checked)}` : "")),
-      d.last_result && /^(CVE|GHSA)/.test(d.last_result) ? el("span", { class: "Label Label--danger" }, d.last_result) : el("span", { class: "color-fg-muted" }, d.last_result || "not polled"))));
+    $("#watchlist").replaceChildren(el("thead", {}, el("tr", {}, ...["Dependency", "Feed", "Last poll", "Result"].map((h) => el("th", {}, h)))),
+      el("tbody", {}, ...state.watchlist.map((d) => el("tr", {}, el("td", {}, el("code", {}, `${d.name}${d.version ? "@" + d.version : ""}`)), el("td", {}, d.bulletins?.length ? "bulletin + advisory search" : "advisory search"), el("td", {}, d.last_checked ? hhmm(d.last_checked) : "–"), el("td", {}, d.last_result && /^(CVE|GHSA)/.test(d.last_result) ? el("span", { class: "s d" }, d.last_result) : el("span", { class: "s n" }, d.last_result || "not polled"))))));
+    $("#monitor-note").textContent = `Tavily polls NVD, GitHub Advisories, OSV, cve.org, Snyk and Socket plus the registered vendor bulletins every ${Math.round(state.config.interval_s / 60)} minutes, on a Nebius Serverless Job.`;
     const b = $("#btn-monitor"); b.disabled = !state.config.tavily || !!state.jobs.monitor; b.textContent = state.jobs.monitor ? "Polling…" : "Poll feeds";
   }
   function renderCommits() {
-    $("#commits").replaceChildren(...state.commits.map((c) => { const risk = c.flag ? c.flag.risk : null; return el("div", { class: `Box-row row-grid commit-row f6${selectedCommit === c.sha ? " selected" : ""}`, role: "button", tabindex: 0, onclick: () => { selectedCommit = selectedCommit === c.sha ? null : c.sha; renderCommits(); renderCommitDetail(); } },
-      el("span", { class: "text-mono color-fg-accent" }, c.short), el("span", { class: "Truncate" }, el("span", { class: "Truncate-text" }, el("span", { class: "color-fg-muted" }, `${c.session_label} `), c.subject.replace(/^bob: /, ""))),
-      risk == null ? el("span", { class: "color-fg-muted" }, "–") : risk === "none" ? el("span", { class: "color-fg-muted" }, "clean") : el("span", { class: `Label ${RISK_LABEL[risk]}` }, risk)); }));
+    $("#commits").replaceChildren(el("thead", {}, el("tr", {}, ...["Commit", "Session", "Agent run", "Risk"].map((h) => el("th", {}, h)))),
+      el("tbody", {}, ...state.commits.map((c) => { const r = c.flag ? c.flag.risk : null; return el("tr", {}, el("td", {}, el("button", { class: "row-btn mono", type: "button", onclick: () => { selectedCommit = selectedCommit === c.sha ? null : c.sha; renderCommitDetail(); } }, c.short)), el("td", {}, c.session_label), el("td", {}, c.subject.replace(/^bob: /, "")), el("td", {}, r == null ? el("span", { class: "s n" }, "not scanned") : el("span", { class: `s ${sev(r)}` }, r === "none" ? "clean" : r))); })));
     const b = $("#btn-sentinel"); b.disabled = !state.config.nebius || !!state.jobs.sentinel; b.textContent = state.jobs.sentinel ? "Scanning…" : "Run scan";
     renderCommitDetail();
   }
   function renderCommitDetail() {
-    const root = $("#commit-detail"), c = state.commits.find((x) => x.sha === selectedCommit);
-    root.replaceChildren(); if (!c) return;
+    const root = $("#commit-detail"), c = state.commits.find((x) => x.sha === selectedCommit); root.replaceChildren(); if (!c) return;
     const f = c.flag;
-    root.append(el("div", { class: "Box-row f6" }, el("div", { class: "text-semibold mb-1" }, `${c.short} · session ${c.session_label} · ${c.subject}`),
-      el("div", { class: "color-fg-muted" }, "Read: ", el("span", { class: "text-mono" }, c.read.join(", ") || "–")), el("div", { class: "color-fg-muted" }, "Wrote: ", el("span", { class: "text-mono" }, c.wrote.join(", ") || "–")),
-      f ? el("div", { class: "mt-2" }, el("span", { class: `Label ${RISK_LABEL[f.risk]} mr-1` }, f.risk), (f.classes || []).join(", "), f.cwe?.length ? ` · ${f.cwe.join(", ")}` : "", el("div", { class: "mt-1" }, f.summary), el("ul", { class: "list-style-none mt-2" }, ...[...new Set([...(f.evidence || []), ...(f.findings || []).map((x) => `${x.source}: ${x.title} — ${x.evidence}`)])].map((e) => el("li", { class: "text-mono color-bg-subtle rounded-2 p-2 mb-1", style: "white-space:pre-wrap;overflow-wrap:anywhere" }, e)))) : el("div", { class: "mt-2 color-fg-muted" }, "not scanned yet")));
+    root.append(el("p", {}, el("strong", {}, `${c.short} · session ${c.session_label}`), ` · ${c.subject}`), el("p", { class: "note" }, "Read: ", el("code", {}, c.read.join(", ") || "–"), " · Wrote: ", el("code", {}, c.wrote.join(", ") || "–")));
+    if (f) root.append(el("p", {}, el("span", { class: `s ${sev(f.risk)}` }, f.risk), ` ${(f.classes || []).join(", ")}${f.cwe?.length ? " · " + f.cwe.join(", ") : ""} · ${f.model ? "classified by " + f.model : "pattern scan only"}`), el("p", {}, f.summary), el("ul", { class: "evidence" }, ...[...new Set([...(f.evidence || []), ...(f.findings || []).map((x) => `${x.source}: ${x.title} — ${x.evidence}`)])].map((e) => el("li", {}, e))));
   }
   function renderJournal() {
-    $("#journal").replaceChildren(...state.events.slice(-12).reverse().map((e) => el("div", { class: "Box-row row-grid journal-row f6" }, el("span", { class: "text-mono color-fg-muted" }, hhmm(e.at)), el("span", {}, el("span", { class: "text-semibold color-fg-muted mr-1" }, e.kind), e.text))));
+    $("#journal").replaceChildren(el("tbody", {}, ...state.events.slice(-14).reverse().map((e) => el("tr", {}, el("td", {}, el("code", {}, hhmm(e.at))), el("td", {}, el("span", { class: `s ${/error|detect/.test(e.kind) ? "d" : e.kind === "filed" ? "v" : "n"}` }, e.kind)), el("td", {}, e.text)))));
   }
   function renderLedger() {
     const calls = state.calls.slice().reverse(), nebius = state.calls.filter((c) => c.provider === "nebius"), tav = state.calls.filter((c) => c.provider === "tavily");
     const tokens = nebius.reduce((a, c) => a + (c.prompt_tokens || 0) + (c.completion_tokens || 0), 0);
-    $("#ledger-title").textContent = `Run ledger · ${nebius.length} Nemotron calls · ${tokens.toLocaleString()} tokens · ${tav.length} Tavily calls`;
-    $("#ledger").replaceChildren(...calls.slice(0, 40).map((c) => el("div", { class: "Box-row row-grid ledger-row f6" }, el("span", { class: "text-mono color-fg-muted" }, hhmm(c.at)), el("span", {}, c.provider === "nebius" ? "Token Factory" : "Tavily", c.fixture ? el("span", { class: "Label Label--attention ml-1" }, "fixture") : null),
-      el("span", { class: "text-mono" }, c.op, c.model ? ` · ${c.model}` : ""), el("span", { class: "text-mono color-fg-muted" }, c.prompt_tokens != null ? `${c.prompt_tokens} + ${c.completion_tokens} tok` : c.error ? "error" : c.results != null ? `${c.results} results` : ""), el("span", { class: "text-mono color-fg-muted" }, `${c.elapsed_s} s`))));
+    $("#ledger-title").textContent = `Run ledger: ${nebius.length} Nemotron calls, ${tokens.toLocaleString()} tokens, ${tav.length} Tavily calls`;
+    $("#ledger").replaceChildren(el("thead", {}, el("tr", {}, ...["Time", "System", "Call", "Model", "Tokens", "Elapsed"].map((h) => el("th", {}, h)))),
+      el("tbody", {}, ...calls.slice(0, 40).map((c) => el("tr", {}, el("td", {}, el("code", {}, hhmm(c.at))), el("td", {}, c.provider === "nebius" ? "Token Factory" : "Tavily", c.fixture ? el("span", { class: "s h" }, " fixture") : null), el("td", {}, c.op), el("td", {}, el("code", {}, c.model ? c.model.split("/").pop() : "–")), el("td", {}, c.prompt_tokens != null ? `${c.prompt_tokens} + ${c.completion_tokens}` : c.error ? "error" : c.results != null ? `${c.results} results` : "–"), el("td", {}, `${c.elapsed_s} s`)))));
   }
 
   // ------------------------------------------------------------------ clock
   function startClock(inc) {
     clearInterval(clockTimer);
-    const node = $("#clock"), band = $("#band-clock"), bt = $(".bc-time", band), live = currentIncident();
-    band.hidden = !live;
-    if (live) $(".bc-label", band).textContent = live.status === "filed" ? "filed after" : "due in";
-    const target = inc || live; if (!target) return;
+    const node = $("#clock"), bt = null, target = inc; if (!target || !node) return;
     const due = parse(target.deadlines.early_warning_24h);
     const tick = () => {
       let text, stopped = false;
@@ -199,8 +205,8 @@
   function connect() {
     const es = new EventSource("/api/events");
     const dot = $("#live-dot");
-    es.onopen = () => { dot.textContent = "live"; dot.className = "Label Label--success"; };
-    es.onerror = () => { dot.textContent = "offline"; dot.className = "Label"; };
+    es.onopen = () => { dot.textContent = "live"; dot.className = "s v"; };
+    es.onerror = () => { dot.textContent = "offline"; dot.className = "s n"; };
     es.onmessage = scheduleRefresh;
   }
   refresh().then(connect).catch((e) => { $("#report").textContent = `Cannot load state: ${e.message}`; });
