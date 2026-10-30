@@ -4,46 +4,36 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CRA Watch</title>
-<meta name="description" content="Autonomous EU Cyber Resilience Act Article 14 agent: Tavily monitors, provenance records trace the blast radius, Nemotron on Nebius classifies and drafts, a person approves.">
+<meta name="description" content="Autonomous EU Cyber Resilience Act Article 14 agent: it watches advisories, traces what the coding agent touched, drafts the early warning, and a person approves.">
 <link rel="icon" href="/static/mark.svg" type="image/svg+xml">
-<meta name="theme-color" content="#24292f">
+<meta name="theme-color" content="#ffffff">
 <link rel="stylesheet" href="/static/vendor/primer.css">
 <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
-<header class="Header">
-  <div class="Header-item">
-    <a class="Header-link d-flex flex-items-center" href="/">
-      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 8v8l5.5 3.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="ml-2 f4 text-semibold">CRA Watch</span>
+<header class="top">
+  <div class="page d-flex flex-items-center">
+    <a class="brand d-flex flex-items-center" href="/">
+      <svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 8v8l5.5 3.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="ml-2 text-semibold">CRA Watch</span>
     </a>
+    <span class="color-fg-muted ml-3 d-none d-sm-inline">{{ product }}</span>
+    <a class="ml-auto d-flex flex-items-baseline clock-mini" id="band-clock" href="#report" hidden><span class="color-fg-muted f6 mr-2 bc-label"></span><span class="bc-time text-semibold"></span></a>
   </div>
-  <div class="Header-item Header-item--full"><span class="color-fg-muted d-none d-md-inline">Article 14 early warning · {{ product }}</span></div>
-  <div class="Header-item" id="systems" aria-label="Connected systems"></div>
-  <a class="Header-item Header-link" id="band-clock" href="#report" hidden><span class="text-mono f6 mr-2 bc-no"></span><span class="bc-time text-semibold"></span></a>
 </header>
 
-<main class="container-xl p-responsive py-4">
-  <div class="d-flex flex-column flex-lg-row gutter-lg">
-    <div class="col-lg-8 col-12" id="report"></div>
-    <aside class="col-lg-4 col-12">
-      <div class="Box mb-3">
-        <div class="Box-header d-flex flex-items-center"><h3 class="Box-title flex-auto">Watched dependencies</h3><button class="btn btn-sm" id="btn-monitor" type="button">Poll feeds</button></div>
-        <div id="watchlist"></div>
-        <div class="Box-footer color-fg-muted f6" id="monitor-note"></div>
-      </div>
-      <div class="Box mb-3">
-        <div class="Box-header d-flex flex-items-center"><h3 class="Box-title flex-auto">Sentinel checks</h3><button class="btn btn-sm" id="btn-sentinel" type="button">Run scan</button></div>
-        <div class="Box-row color-fg-muted f6" id="sentinel-note"></div>
-        <div id="commits"></div>
-      </div>
-      <div class="Box">
-        <div class="Box-header d-flex flex-items-center"><h3 class="Box-title flex-auto">Journal</h3><span class="Label" id="live-dot">offline</span></div>
-        <div id="journal"></div>
-      </div>
-    </aside>
-  </div>
-</main>
+<main class="page py-5" id="report"></main>
+
+<footer class="page py-4 f6 color-fg-muted">
+  <details id="details">
+    <summary class="mb-3">Details: watched dependencies, Sentinel register, journal, run ledger</summary>
+    <div class="Box mb-3"><div class="Box-header d-flex flex-items-center"><h3 class="Box-title flex-auto">Watched dependencies</h3><button class="btn btn-sm" id="btn-monitor" type="button">Poll feeds</button></div><div id="watchlist"></div></div>
+    <div class="Box mb-3"><div class="Box-header d-flex flex-items-center"><h3 class="Box-title flex-auto">Sentinel register</h3><button class="btn btn-sm" id="btn-sentinel" type="button">Run scan</button></div><div id="commits"></div><div id="commit-detail"></div></div>
+    <div class="Box mb-3"><div class="Box-header d-flex flex-items-center"><h3 class="Box-title flex-auto">Journal</h3><span class="Label" id="live-dot">offline</span></div><div id="journal"></div></div>
+    <div class="Box"><div class="Box-header"><h3 class="Box-title" id="ledger-title">Run ledger</h3></div><div id="ledger"></div></div>
+  </details>
+  <p class="mt-4 mb-0">All Nemotron inference runs through Nebius Token Factory. Nothing is sent to ENISA by this console; a person copies the approved text into the reporting platform.</p>
+</footer>
 
 <script src="/static/vendor/marked.min.js" defer></script>
 <script src="/static/vendor/purify.min.js" defer></script>

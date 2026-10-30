@@ -1,25 +1,24 @@
-/* CRA Watch on Primer CSS. Only what Primer does not provide: the countdown, the risk label colours, small layout glue. */
-.clock { font-size: 40px; line-height: 1; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--fgColor-danger, #d1242f); }
-.clock.stopped { color: var(--fgColor-success, #1a7f37); }
-.bc-time { font-variant-numeric: tabular-nums; color: var(--fgColor-danger, #ff8182); }
-.bc-time.stopped { color: var(--fgColor-success, #4ac26b); }
-.Header { font-size: 14px; }
-.Header .Label { background: transparent; }
-.summary dt { font-size: 12px; color: var(--fgColor-muted); font-weight: 400; }
-.summary dd { margin: 2px 0 0; font-weight: 500; overflow-wrap: anywhere; }
-.TimelineItem-body .text { color: var(--fgColor-muted); }
-.step-time { font-variant-numeric: tabular-nums; }
+/* CRA Watch on Primer CSS. One column, Primer's own type and colours; the only additions are the clock sizes and row grids. */
+.page { max-width: 760px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+.top { border-bottom: 1px solid var(--borderColor-default); padding: 12px 0; background: var(--bgColor-default); position: sticky; top: 0; z-index: 2; }
+.brand { color: var(--fgColor-default); text-decoration: none; font-size: 16px; }
+.brand:hover { text-decoration: none; }
+.clock { font-size: 56px; line-height: 1; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--fgColor-danger); }
+.clock.stopped { color: var(--fgColor-success); }
+.clock-mini { color: var(--fgColor-default); text-decoration: none; }
+.clock-mini:hover { text-decoration: none; }
+.bc-time { font-variant-numeric: tabular-nums; color: var(--fgColor-danger); }
+.bc-time.stopped { color: var(--fgColor-success); }
 .TimelineItem-badge.pending { color: var(--fgColor-muted); }
 .TimelineItem-badge.running { background: var(--bgColor-accent-emphasis); color: #fff; }
 .TimelineItem-badge.failed { background: var(--bgColor-danger-emphasis); color: #fff; }
 .markdown-body { font-size: 14px; }
 .markdown-body .ph { background: var(--bgColor-attention-muted); border-radius: 4px; padding: 0 3px; }
-.commit-row { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 8px; align-items: center; cursor: pointer; }
+.row-grid { display: grid; gap: 8px; align-items: center; }
+.commit-row { grid-template-columns: 64px minmax(0, 1fr) auto; cursor: pointer; }
 .commit-row.selected { background: var(--bgColor-accent-muted); }
-.watch-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; }
-.sources li { overflow-wrap: anywhere; }
-.journal-row { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 8px; }
-.ledger-row { display: grid; grid-template-columns: 56px 120px minmax(0, 1fr) 110px 80px; gap: 8px; }
-@media (max-width: 767px) { .ledger-row { grid-template-columns: 56px minmax(0, 1fr); } .ledger-row > :nth-child(n+3) { display: none; } }
-.affected-row { display: grid; grid-template-columns: 72px 40px minmax(0, 1fr) auto; gap: 10px; align-items: start; }
-@media (max-width: 767px) { .affected-row { grid-template-columns: 72px 40px minmax(0, 1fr); } .affected-row > :nth-child(4) { grid-column: 1 / -1; } }
+.watch-row { grid-template-columns: minmax(0, 1fr) auto; }
+.journal-row { grid-template-columns: 56px minmax(0, 1fr); }
+.ledger-row { grid-template-columns: 56px 110px minmax(0, 1fr) 100px 60px; }
+.affected-row { grid-template-columns: 64px 36px minmax(0, 1fr) auto; align-items: start; }
+@media (max-width: 543px) { .ledger-row { grid-template-columns: 56px minmax(0, 1fr); } .ledger-row > :nth-child(n+3) { display: none; } .affected-row { grid-template-columns: 64px 36px minmax(0, 1fr); } .affected-row > :nth-child(4) { grid-column: 1 / -1; } .clock { font-size: 40px; } }
