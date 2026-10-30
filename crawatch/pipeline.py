@@ -65,7 +65,7 @@ def _run(inc: dict[str, Any]) -> dict[str, Any]:
         secs = (dt.datetime.strptime(inc["awareness"], "%Y-%m-%dT%H:%M:%SZ") - dt.datetime.strptime(first, "%Y-%m-%dT%H:%M:%SZ")).total_seconds()
         lead = f" {int(secs // 3600)} h {int(secs % 3600 // 60)} min" if secs >= 3600 else f" {int(secs // 60)} min {int(secs % 60)} s"
         lead += " before the advisory"
-    _step(inc, "trace", f"Origit taint: {len(t['affected'])} commits across sessions {', '.join(t['session_labels']) or 'none'}; "
+    _step(inc, "trace", f"Provenance trace: {len(t['affected'])} commits across sessions {', '.join(t['session_labels']) or 'none'}; "
                         f"{len(t['files_written'])} files written; rollback {t['rollback_short'] or 'n/a'}; "
                         f"{len(inc['prior_flags'])} of them already flagged by Sentinel{lead}",
           affected=len(t["affected"]), sessions=t["session_labels"], rollback=t["rollback_short"], prior_flags=len(inc["prior_flags"]))

@@ -92,7 +92,7 @@ def flag_commit(c: dict[str, Any], rec: dict[str, Any], *, classify: bool = True
 
 def run(*, classify: bool = True, only_unflagged: bool = False) -> list[dict[str, Any]]:
     """Scan every recorded agent commit. Emits one event per flagged commit."""
-    store.emit("sentinel", "Sentinel scan started over the Origit store", stage="sentinel")
+    store.emit("sentinel", "Sentinel scan started over the provenance records", stage="sentinel")
     existing = store.flags()
     out = []
     recs = {sha: rec for sha, _s, rec in O.commits()}

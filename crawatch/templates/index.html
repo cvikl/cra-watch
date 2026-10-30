@@ -1,79 +1,52 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-color-mode="light" data-light-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CRA Watch</title>
-<meta name="description" content="Autonomous EU Cyber Resilience Act Article 14 agent: Tavily monitors, Origit traces, Nemotron on Nebius classifies and drafts, a person approves.">
+<meta name="description" content="Autonomous EU Cyber Resilience Act Article 14 agent: Tavily monitors, provenance records trace the blast radius, Nemotron on Nebius classifies and drafts, a person approves.">
 <link rel="icon" href="/static/mark.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/static/mark.svg">
-<meta name="theme-color" content="#f6f8fa">
-<link rel="preload" href="/static/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/static/fonts/onest.css">
+<meta name="theme-color" content="#24292f">
+<link rel="stylesheet" href="/static/vendor/primer.css">
 <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
-<header class="band" role="banner">
-  <a class="brand" href="/" aria-label="CRA Watch, part of the Origit console">
-    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="16" cy="16" r="4" fill="currentColor"/><path d="M16 3v8.5M16 20.5V29M3 16h8.5M20.5 16H29" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-    <span class="brand-name">Origit <span>Console</span></span>
-    <span class="brand-sub">CRA Watch · Article 14 early warning</span>
-  </a>
-  <div class="band-product">
-    <span class="label">Manufacturer</span><span id="manufacturer" class="value">…</span>
-    <span class="label">Product</span><span id="product" class="value">{{ product }}</span>
+<header class="Header">
+  <div class="Header-item">
+    <a class="Header-link d-flex flex-items-center" href="/">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 8v8l5.5 3.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="ml-2 f4 text-semibold">CRA Watch</span>
+    </a>
   </div>
-  <ul class="systems" id="systems" aria-label="Connected systems"></ul>
-  <a class="band-clock" id="band-clock" href="#report" hidden><span class="bc-no"></span><span class="bc-time num"></span><span class="bc-label"></span></a>
+  <div class="Header-item Header-item--full"><span class="color-fg-muted d-none d-md-inline">Article 14 early warning · {{ product }}</span></div>
+  <div class="Header-item" id="systems" aria-label="Connected systems"></div>
+  <a class="Header-item Header-link" id="band-clock" href="#report" hidden><span class="text-mono f6 mr-2 bc-no"></span><span class="bc-time text-semibold"></span></a>
 </header>
 
-<div class="desk">
-  <aside class="register" aria-label="Register">
-    <section class="reg-block">
-      <div class="reg-head">
-        <h2>Watched dependencies</h2>
-        <button class="btn btn-ghost" id="btn-monitor" title="Poll the advisory feeds through Tavily now">Poll feeds</button>
+<main class="container-xl p-responsive py-4">
+  <div class="d-flex flex-column flex-lg-row gutter-lg">
+    <div class="col-lg-8 col-12" id="report"></div>
+    <aside class="col-lg-4 col-12">
+      <div class="Box mb-3">
+        <div class="Box-header d-flex flex-items-center"><h3 class="Box-title flex-auto">Watched dependencies</h3><button class="btn btn-sm" id="btn-monitor" type="button">Poll feeds</button></div>
+        <div id="watchlist"></div>
+        <div class="Box-footer color-fg-muted f6" id="monitor-note"></div>
       </div>
-      <ol class="watch" id="watchlist"></ol>
-      <p class="reg-note" id="monitor-note"></p>
-    </section>
-    <section class="reg-block">
-      <div class="reg-head">
-        <h2>Sentinel checks</h2>
-        <button class="btn btn-ghost" id="btn-sentinel" title="Scan every agent commit in the Origit store with Nemotron Nano">Run scan</button>
+      <div class="Box mb-3">
+        <div class="Box-header d-flex flex-items-center"><h3 class="Box-title flex-auto">Sentinel checks</h3><button class="btn btn-sm" id="btn-sentinel" type="button">Run scan</button></div>
+        <div class="Box-row color-fg-muted f6" id="sentinel-note"></div>
+        <div id="commits"></div>
       </div>
-      <p class="reg-note" id="sentinel-note"></p>
-      <ol class="legend" aria-label="Risk scale"><li><span class="scale" data-risk="low"><i></i><i></i><i></i><i></i></span>low</li><li><span class="scale" data-risk="medium"><i></i><i></i><i></i><i></i></span>medium</li><li><span class="scale" data-risk="high"><i></i><i></i><i></i><i></i></span>high</li><li><span class="scale" data-risk="critical"><i></i><i></i><i></i><i></i></span>critical</li></ol>
-      <ol class="commits" id="commits"></ol>
-    </section>
-    <section class="reg-block journal-block">
-      <div class="reg-head"><h2>Journal</h2><span class="live" id="live-dot" title="Live event stream">live</span></div>
-      <ol class="journal" id="journal"></ol>
-    </section>
-  </aside>
+      <div class="Box">
+        <div class="Box-header d-flex flex-items-center"><h3 class="Box-title flex-auto">Journal</h3><span class="Label" id="live-dot">offline</span></div>
+        <div id="journal"></div>
+      </div>
+    </aside>
+  </div>
+</main>
 
-  <main class="report" id="report"></main>
-</div>
-
-<template id="tpl-empty">
-  <article class="doc">
-    <header class="doc-head">
-      <div class="doc-no"><h1 class="value">Pre-incident checks</h1><span class="sub">Sentinel register and advisory watch, before any incident</span></div>
-      <div class="doc-status"><span class="stamp stamp-quiet">No open incident</span></div>
-    </header>
-    <section class="fields fields-3">
-      <div class="field"><span class="label">Monitor</span><span class="value" data-k="monitor"></span></div>
-      <div class="field"><span class="label">Sentinel coverage</span><span class="value" data-k="coverage"></span></div>
-      <div class="field"><span class="label">Risk flags</span><span class="value" data-k="flags"></span></div>
-    </section>
-    <section class="doc-section">
-      <h2 class="sec-title"><span class="sec-no">1</span>How an incident is handled</h2>
-      <ol class="ladder" data-k="ladder"></ol>
-    </section>
-    <section class="doc-section" data-k="commit-detail"></section>
-  </article>
-</template>
-
+<script src="/static/vendor/marked.min.js" defer></script>
+<script src="/static/vendor/purify.min.js" defer></script>
 <script src="/static/app.js" defer></script>
 </body>
 </html>
