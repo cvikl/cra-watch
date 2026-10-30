@@ -80,12 +80,13 @@ def already_open(dep_name: str) -> bool:
     return any(i["dependency"] == dep_name and i["status"] not in ("filed", "failed") for i in store.incidents())
 
 
-def run_once(run_pipeline: bool = True) -> list[dict[str, Any]]:
+def run_once(run_pipeline: bool = True, only: list[str] | None = None) -> list[dict[str, Any]]:
     opened = []
     wl = watchlist()
-    store.emit("monitor", f"Monitor poll: {sum(1 for d in wl if d.get('enabled', True))} watched dependencies", stage="monitor")
+    polled = [d for d in wl if d.get("enabled", True) and (only is None or d["name"] in only)]
+    store.emit("monitor", f"Monitor poll: {len(polled)} watched dependenc{'y' if len(polled) == 1 else 'ies'}", stage="monitor")
     for dep in wl:
-        if not dep.get("enabled", True):
+        if dep not in polled:
             continue
         dep["last_checked"] = store.now()
         try:

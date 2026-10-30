@@ -111,11 +111,23 @@
     const report = $("#report");
     const inc = selectedCommit ? null : currentIncident();
     report.replaceChildren();
+    report.append(renderDemoBar());
     if (state.incidents.length > 1 && !selectedCommit) report.append(renderTabs());
     if (inc) report.append(renderIncident(inc));
     else report.append(renderEmpty());
     report.append(renderLedger());
     startClock(inc);
+  }
+  function renderDemoBar() {
+    const d = state.demo || {}, running = !!state.jobs.demo;
+    const last = state.events[state.events.length - 1];
+    const bar = el("section", { class: "demo-bar", "aria-label": "Live demo" },
+      el("div", { class: "demo-text" },
+        el("strong", {}, running ? "Demo running: watch the register and the pipeline fill in." : "Run the scenario yourself, live."),
+        el("span", {}, running && last ? ` ${last.text}` : ` Sentinel scans the ten agent commits with Nemotron Nano, Tavily reads the vendor bulletin for ${d.dependency || "the dependency"}, Origit traces the blast radius, Nemotron Nano triages, Nemotron Ultra drafts the early warning. About a minute, real calls. Then approve it yourself.`)),
+      el("button", { class: `btn btn-primary${running ? " busy" : ""}`, disabled: (!d.available || running || !d.can_start) ? "" : null, title: d.reason || "", onclick: (e) => act(e.target, "/api/demo/run") }, running ? "Running" : "Run the live demo"));
+    if (!running && d.reason) bar.append(el("span", { class: "demo-reason" }, d.reason));
+    return bar;
   }
   function renderTabs() {
     return el("div", { class: "incident-tabs", role: "tablist" }, ...state.incidents.map((i) => el("button", { role: "tab", "aria-selected": String(currentIncident().id === i.id), onclick: () => { selectedIncident = i.id; selectedCommit = null; render(); } }, `${i.dependency} · ${i.advisory.advisory_id || "advisory"} · ${i.status}`)));
@@ -286,7 +298,7 @@
   async function act(btn, path, body) {
     btn.classList.add("busy"); btn.disabled = true;
     try { await api(path, { method: "POST", body: body ? JSON.stringify(body) : undefined }); await refresh(); }
-    catch (e) { alert(e.message); btn.classList.remove("busy"); btn.disabled = false; }
+    catch (e) { btn.classList.remove("busy"); btn.disabled = false; alert(e.message); }
   }
   async function copyDraft(btn, inc) {
     try { await navigator.clipboard.writeText(inc.draft.text); btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy notification"), 1500); }

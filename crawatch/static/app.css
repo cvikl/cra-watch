@@ -256,3 +256,9 @@ pre.diff span { display: block; padding: 0 12px; } pre.diff .add { background: v
   .tbl-x { margin: 0 -16px; padding: 0 16px; }
 }
 @media (prefers-reduced-motion: reduce) { .step.running::before, .skeleton, .stamp-big { animation: none; } }
+
+/* live demo bar */
+.demo-bar { display: flex; align-items: center; gap: 16px; padding: 14px 18px; margin-bottom: 16px; background: var(--panel); backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); border: 1px solid rgba(9, 105, 218, .35); border-radius: var(--r-lg); box-shadow: var(--shadow); flex-wrap: wrap; }
+.demo-text { flex: 1; min-width: 260px; font-size: var(--fs-base); color: var(--fg-2); line-height: 1.5; }
+.demo-text strong { color: var(--fg); }
+.demo-reason { flex-basis: 100%; font-size: var(--fs-xs); color: var(--muted); }

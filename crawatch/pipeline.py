@@ -59,9 +59,15 @@ def _run(inc: dict[str, Any]) -> dict[str, Any]:
     t = O.taint(dep)
     inc["taint"] = t
     inc["prior_flags"] = sentinel.flags_for([c["sha"] for c in t["affected"]])
+    lead = ""
+    if inc["prior_flags"]:
+        first = min(f["scanned_at"] for f in inc["prior_flags"])
+        secs = (dt.datetime.strptime(inc["awareness"], "%Y-%m-%dT%H:%M:%SZ") - dt.datetime.strptime(first, "%Y-%m-%dT%H:%M:%SZ")).total_seconds()
+        lead = f" {int(secs // 3600)} h {int(secs % 3600 // 60)} min" if secs >= 3600 else f" {int(secs // 60)} min {int(secs % 60)} s"
+        lead += " before the advisory"
     _step(inc, "trace", f"Origit taint: {len(t['affected'])} commits across sessions {', '.join(t['session_labels']) or 'none'}; "
                         f"{len(t['files_written'])} files written; rollback {t['rollback_short'] or 'n/a'}; "
-                        f"{len(inc['prior_flags'])} commits already flagged by Sentinel",
+                        f"{len(inc['prior_flags'])} of them already flagged by Sentinel{lead}",
           affected=len(t["affected"]), sessions=t["session_labels"], rollback=t["rollback_short"], prior_flags=len(inc["prior_flags"]))
 
     # 2. Read the advisory in full (Tavily extract) so the models work from the real text, not a snippet

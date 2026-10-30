@@ -13,7 +13,7 @@ from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, Str
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from . import __version__, monitor, origit_bridge as O, pipeline, sentinel, store
+from . import __version__, demo, monitor, origit_bridge as O, pipeline, sentinel, store
 from .config import settings
 
 HERE = Path(__file__).parent
@@ -64,6 +64,8 @@ def state() -> dict[str, Any]:
         "config": {"nebius": settings.nebius_ready, "tavily": settings.tavily_ready, "nano": settings.nemotron_nano,
                    "ultra": settings.nemotron_ultra, "fake_llm": settings.fake_llm, "interval_s": settings.monitor_interval_s},
         "jobs": {k: t.is_alive() for k, t in _jobs.items()},
+        "demo": {"available": settings.nebius_ready and settings.tavily_ready, "can_start": demo.can_start()[0], "reason": demo.can_start()[1],
+                 "dependency": settings.demo_dependency},
         "watchlist": monitor.watchlist(), "commits": commits, "incidents": store.incidents()[::-1],
         "events": store.events(300), "calls": store.calls()[-200:],
     }
@@ -145,9 +147,26 @@ def api_rerun(iid: str, request: Request):
     return {"started": _background(f"pipeline:{iid}", pipeline.run, inc)}
 
 
+@app.post("/api/demo/run")
+def api_demo():
+    """Public: replay the scenario live. Rate limited; see demo.py."""
+    if not (settings.nebius_ready and settings.tavily_ready):
+        raise HTTPException(503, "Nebius Token Factory and Tavily must both be configured")
+    ok, why = demo.can_start()
+    if not ok:
+        raise HTTPException(429, why)
+    if not _background("demo", demo.run):
+        raise HTTPException(409, "a demo run is already in progress")
+    return {"started": True}
+
+
 @app.post("/api/incidents/{iid}/approve")
 def api_approve(iid: str, request: Request, body: dict[str, Any] | None = None):
-    _require_token(request)
+    inc = store.incident(iid)
+    if not inc:
+        raise HTTPException(404)
+    if inc.get("source") != "bulletin":  # the demo's own incident may be approved by whoever is watching
+        _require_token(request)
     try:
         return pipeline.approve(iid, (body or {}).get("by", "reviewer"))
     except ValueError as e:

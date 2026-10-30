@@ -1,357 +1,415 @@
 ---
 name: CRA Watch
-description: A controlled document on a desk. One incident, one clock, one stamp.
+description: A page of the Origit console in daylight. Glass panels on paper, pills for everything you touch, one clock.
 colors:
-  desk: "#e9ecf0"
-  desk-2: "#dfe3e9"
-  paper: "#ffffff"
-  paper-2: "#f6f7f9"
-  ink: "#17213a"
-  ink-2: "#4a5468"
-  ink-3: "#7a8396"
-  rule: "#c9cfd9"
-  rule-2: "#e3e7ed"
-  accent: "#d6381c"
-  accent-ink: "#b22d14"
-  accent-soft: "#fbe9e5"
-  ok: "#1f7a4d"
-  ok-soft: "#e3f3ea"
-  warn: "#b7791f"
-  warn-soft: "#fbf0d9"
-  focus: "#1f4fd6"
+  ink: "#0d1117"
+  fg: "#1f2328"
+  fg-2: "#424a53"
+  muted: "#59636e"
+  muted-2: "#818b98"
+  paper: "#f6f8fa"
+  panel: "rgba(255, 255, 255, .78)"
+  panel-solid: "#ffffff"
+  topbar: "rgba(255, 255, 255, .72)"
+  tile: "#f6f8fa"
+  tile-2: "#eaeef2"
+  btn: "#f6f8fa"
+  btn-hover: "#eaeef2"
+  tab-selected: "#ffffff"
+  hair: "rgba(31, 35, 40, .15)"
+  hair-2: "rgba(31, 35, 40, .08)"
+  glass-border: "rgba(31, 35, 40, .1)"
+  link: "#0969da"
+  link-bg: "rgba(9, 105, 218, .1)"
+  accent: "#9a6700"
+  accent-bg: "rgba(212, 167, 44, .2)"
+  danger: "#d1242f"
+  danger-bg: "rgba(255, 129, 130, .22)"
+  ok: "#1a7f37"
+  ok-bg: "rgba(74, 194, 107, .22)"
+  green-btn: "#1f883d"
+  purple: "#8250df"
+  tab: "#fd8c73"
 typography:
   display:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "3.75rem"
-    fontWeight: 700
+    fontFamily: "Onest, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif"
+    fontSize: "40px"
+    fontWeight: 600
     lineHeight: 1
-    letterSpacing: "-0.01em"
-    fontVariation: "'wdth' 90"
+    letterSpacing: "-0.03em"
     fontFeature: "tabular-nums"
   headline:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "1.5rem"
-    fontWeight: 700
-    letterSpacing: "0.005em"
-    fontVariation: "'wdth' 85"
-  title:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 700
-    letterSpacing: "-0.005em"
-  body:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 400
-    lineHeight: 1.45
-    fontVariation: "'wdth' 100"
-    fontFeature: "'tnum' 1"
-  label:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "0.74rem"
+    fontFamily: "Onest, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif"
+    fontSize: "22px"
     fontWeight: 600
-    letterSpacing: "0.08em"
-  mono:
-    fontFamily: "ui-monospace, SF Mono, Menlo, monospace"
-    fontSize: "0.78rem"
+    lineHeight: 1.25
+    letterSpacing: "-0.02em"
+  title:
+    fontFamily: "Onest, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif"
+    fontSize: "15px"
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: "-0.015em"
+  body:
+    fontFamily: "Onest, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif"
+    fontSize: "13px"
     fontWeight: 400
-  ramp:
-    display: "3.75rem"
-    displayMobile: "2.4rem"
-    xl: "1.5rem"
-    lg: "1.25rem"
-    base: "1rem"
-    md: "0.9rem"
-    sm: "0.8rem"
-    xs: "0.74rem"
-    mono: "0.78rem"
-    root: "15px"
-    rootMobile: "14px"
+    lineHeight: 1.5
+    letterSpacing: "-0.005em"
+    fontFeature: "tabular-nums"
+  label:
+    fontFamily: "Onest, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif"
+    fontSize: "12px"
+    fontWeight: 500
+    lineHeight: 1.5
+    letterSpacing: "0"
+  key:
+    fontFamily: "'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    fontSize: "10px"
+    fontWeight: 600
+    letterSpacing: "0.06em"
+  mono:
+    fontFamily: "'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    fontSize: "11.5px"
+    fontWeight: 400
+    letterSpacing: "0"
 rounded:
-  none: "0"
-  control: "2px"
-  stamp: "3px"
-  stamp-big: "4px"
+  pill: "999px"
+  lg: "16px"
+  tile: "12px"
+  md: "10px"
+  code: "6px"
   dot: "50%"
 spacing:
-  hair: "0.2rem"
-  xs: "0.5rem"
-  sm: "0.8rem"
-  md: "1rem"
-  lg: "1.25rem"
-  xl: "1.5rem"
-  2xl: "2rem"
+  2xs: "2px"
+  xs: "4px"
+  sm: "6px"
+  md: "8px"
+  lg: "10px"
+  xl: "12px"
+  2xl: "16px"
+  3xl: "24px"
+  gutter: "32px"
 components:
-  button-outline:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.control}"
-    padding: "0.4rem 0.8rem"
-  button-outline-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
+  button:
+    backgroundColor: "{colors.btn}"
+    textColor: "{colors.fg}"
+    rounded: "{rounded.pill}"
+    padding: "0 16px"
+    height: "36px"
+  button-hover:
+    backgroundColor: "{colors.btn-hover}"
+    textColor: "{colors.fg}"
   button-ghost:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink-2}"
-    rounded: "{rounded.control}"
-    padding: "0.3rem 0.6rem"
-  button-primary:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.control}"
-    padding: "0.7rem 1.2rem"
-  button-primary-hover:
-    backgroundColor: "{colors.accent-ink}"
-    textColor: "{colors.paper}"
-  chip-system:
-    backgroundColor: "{colors.paper-2}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "0.2rem 0.45rem"
+    backgroundColor: "{colors.btn}"
+    textColor: "{colors.fg}"
+    rounded: "{rounded.pill}"
+    padding: "0 13px"
+    height: "30px"
     typography: "{typography.label}"
-  severity-high:
-    backgroundColor: "{colors.accent-soft}"
-    textColor: "{colors.accent-ink}"
-    rounded: "{rounded.none}"
-    padding: "0.1rem 0.5rem"
-  severity-medium:
-    backgroundColor: "{colors.warn-soft}"
-    textColor: "{colors.warn}"
-    rounded: "{rounded.none}"
-    padding: "0.1rem 0.5rem"
-  severity-low:
-    backgroundColor: "{colors.ok-soft}"
-    textColor: "{colors.ok}"
-    rounded: "{rounded.none}"
-    padding: "0.1rem 0.5rem"
+  button-primary:
+    backgroundColor: "{colors.green-btn}"
+    textColor: "{colors.panel-solid}"
+    rounded: "{rounded.pill}"
+    padding: "0 20px"
+    height: "40px"
+  button-primary-hover:
+    backgroundColor: "{colors.ok}"
+    textColor: "{colors.panel-solid}"
+  pill-system:
+    backgroundColor: "transparent"
+    textColor: "{colors.muted}"
+    rounded: "{rounded.pill}"
+    padding: "3px 9px"
+  pill-sha:
+    backgroundColor: "{colors.link-bg}"
+    textColor: "{colors.link}"
+    rounded: "{rounded.pill}"
+    height: "22px"
+    width: "72px"
+    typography: "{typography.mono}"
+  counter:
+    backgroundColor: "rgba(31, 35, 40, .1)"
+    textColor: "{colors.fg-2}"
+    rounded: "{rounded.pill}"
+    padding: "0 6px"
+    height: "20px"
   stamp:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink-3}"
-    rounded: "{rounded.stamp}"
-    padding: "0.25rem 0.7rem"
+    backgroundColor: "rgba(31, 35, 40, .08)"
+    textColor: "{colors.fg-2}"
+    rounded: "{rounded.pill}"
+    padding: "0 10px"
+    height: "24px"
   stamp-live:
-    backgroundColor: "transparent"
-    textColor: "{colors.accent-ink}"
-    rounded: "{rounded.stamp}"
-    padding: "0.25rem 0.7rem"
+    backgroundColor: "{colors.accent-bg}"
+    textColor: "{colors.accent}"
+    rounded: "{rounded.pill}"
+    padding: "0 10px"
+    height: "24px"
   stamp-ok:
-    backgroundColor: "transparent"
+    backgroundColor: "{colors.ok-bg}"
     textColor: "{colors.ok}"
-    rounded: "{rounded.stamp}"
-    padding: "0.25rem 0.7rem"
+    rounded: "{rounded.pill}"
+    padding: "0 10px"
+    height: "24px"
+  stamp-fail:
+    backgroundColor: "{colors.danger-bg}"
+    textColor: "{colors.danger}"
+    rounded: "{rounded.pill}"
+    padding: "0 10px"
+    height: "24px"
   stamp-filed:
-    backgroundColor: "transparent"
+    backgroundColor: "{colors.ok-bg}"
     textColor: "{colors.ok}"
-    rounded: "{rounded.stamp-big}"
-    padding: "0.5rem 0.9rem"
-  document:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "1.6rem 2rem 2.2rem"
+    rounded: "{rounded.tile}"
+    padding: "8px 14px"
+  severity-high:
+    backgroundColor: "{colors.danger-bg}"
+    textColor: "{colors.danger}"
+    rounded: "{rounded.pill}"
+    padding: "0 9px"
+    height: "22px"
+  severity-medium:
+    backgroundColor: "{colors.accent-bg}"
+    textColor: "{colors.accent}"
+    rounded: "{rounded.pill}"
+    padding: "0 9px"
+    height: "22px"
+  severity-low:
+    backgroundColor: "{colors.link-bg}"
+    textColor: "{colors.link}"
+    rounded: "{rounded.pill}"
+    padding: "0 9px"
+    height: "22px"
+  panel:
+    backgroundColor: "{colors.panel}"
+    textColor: "{colors.fg}"
+    rounded: "{rounded.lg}"
+    padding: "20px 22px 24px"
   register-block:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "0.9rem 1rem 1rem"
+    backgroundColor: "{colors.panel}"
+    textColor: "{colors.fg}"
+    rounded: "{rounded.lg}"
+    padding: "16px 18px 14px"
+  tile:
+    backgroundColor: "{colors.tile}"
+    textColor: "{colors.fg}"
+    rounded: "{rounded.tile}"
+    padding: "12px 14px"
+  step:
+    backgroundColor: "{colors.panel-solid}"
+    textColor: "{colors.fg}"
+    rounded: "{rounded.tile}"
+    padding: "12px 12px 14px"
   sheet:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "2rem 2.4rem 1.6rem"
-  notice:
-    backgroundColor: "{colors.accent-soft}"
-    textColor: "{colors.accent-ink}"
-    rounded: "{rounded.none}"
-    padding: "0.7rem 0.9rem"
+    backgroundColor: "{colors.panel-solid}"
+    textColor: "{colors.fg}"
+    rounded: "{rounded.tile}"
+    padding: "22px 26px 18px"
   callout:
-    backgroundColor: "{colors.paper-2}"
-    textColor: "{colors.ink-2}"
-    rounded: "{rounded.none}"
-    padding: "0.7rem 0.9rem"
+    backgroundColor: "{colors.tile}"
+    textColor: "{colors.muted}"
+    rounded: "{rounded.tile}"
+    padding: "12px 14px"
+  notice:
+    backgroundColor: "rgba(255, 129, 130, .14)"
+    textColor: "{colors.fg}"
+    rounded: "{rounded.lg}"
+    padding: "14px 18px"
   tab:
-    backgroundColor: "{colors.paper-2}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "0.3rem 0.7rem"
+    backgroundColor: "transparent"
+    textColor: "{colors.fg-2}"
+    rounded: "{rounded.pill}"
+    padding: "0 14px"
+    height: "32px"
   tab-selected:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
+    backgroundColor: "{colors.tab-selected}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "0 14px"
+    height: "32px"
 ---
 
 # Design System: CRA Watch
 
 ## Overview
 
-**Creative North Star: "The Deviation Report"**
+**Creative North Star: "The Origit Console, in Daylight"**
 
-CRA Watch is a controlled document, not a dashboard. The page is built the way a GMP deviation report is built: a numbered incident record with a header grid of fields, a classification scale, an evidence index, a drafted notice on its own sheet and a signature block at the end. Reading the page is reviewing it. The register of pre-incident checks sits beside the record like a binder on the same desk. The build refuses the category default (KPI tiles, charts, a feed) and the terminal opposite (a log dump); the machinery is shown once, in words, with the model id and the time it took.
+CRA Watch is not a product with its own look. It is one page of the Origit console (origit.uk, the provenance console the founder built in September 2026) rendered for a lit office instead of a dark room. Every piece of grammar is Origit's: frosted glass panels with 16px corners floating on a ground that carries three faint radial glows (blue top-left, purple top-right, green bottom-centre), pills for every button, tag, tab and counter, SHA chips in link blue mono, session numbers in purple mono, Onest at a 13px base with Origit's nine-step size ramp, SF Mono for identifiers. What changed is only the light: the dark `#0d1117` ground became `#f6f8fa` paper, the panels became white at 78% opacity, the GitHub-dark accents became their GitHub-light counterparts. A reviewer who knows the console recognises it immediately; nothing on the page asks to be learned.
 
-The scene is office daylight: white paper on a cool grey desk, navy ink, hairline rules. There is one accent, signal vermilion, and it is spent on exactly three things: the live countdown, the "awaiting approval" stamp and the primary action. Verified green answers it when the draft is approved and the clock stops. Everything else is ink at three strengths. Density is high but ruled: fields and table rows are separated by hairlines, not whitespace, so the reviewer can scan a long record without losing the column.
+Colour is role-bound, not decorative. Link blue is the colour of anything that is a reference (SHAs, hunks, low risk, the running step, focus); amber is the colour of waiting and caution (the "awaiting approval" tag, medium severity, fixture markers, placeholders in the draft); red is the live clock, danger and failure; green is health, approval and the one primary action. Everything else is five greys on paper. The build refuses the category dashboard (no KPI cards, no charts, no feed) and the terminal (no log dump); the machinery is shown once, in words, with the model id and the time it took, inside the same glass.
 
-Archivo, a single variable face, carries the whole document. Its width axis does the hierarchy work: condensed (wdth 85 to 90) for the incident number, the brand and the clock; normal width for everything readable; tabular figures wherever a time or a count appears. Controls are form controls on a form: rectangular, one-pixel ink border, two-pixel corners. The stamp is the only rotated element and the only thing that moves with any theatre.
+Density is Origit's: 13px body, 12px labels, 11.5px metadata, hairlines between rows, tiles for fields. Depth is real but soft: panels blur what is behind them and cast a diffuse ink-tinted shadow; tiles, steps and the draft sheet sit flat inside them. Motion is state only: a sweep on the running step, a spin in a busy button, the approval stamp pressing onto the sheet.
 
 **Key Characteristics:**
-- Two-layer light scene: white paper documents on a cool grey desk, no dark surfaces.
-- One accent (vermilion) reserved for the clock, the stamp and the primary action.
-- Hairline rules and 1px ink borders structure the page; whitespace is secondary.
-- One face (Archivo variable), width axis for hierarchy, tabular numerals for every figure.
-- Rectangular, 2px-cornered controls; stamps are the single rotated, rounded element.
-- Depth is flat except the draft sheet, which lifts off the record with one soft shadow.
+- Inherited world: origit.uk's component grammar and type ramp; the palette is its light counterpart, hue for hue.
+- Paper ground with three fixed radial glows (blue, purple, green) under frosted white glass panels.
+- Pills everywhere you touch or read a status: buttons, tags, tabs, SHAs, counters, system chips.
+- Four role colours (link blue, amber, danger red, verified green) plus purple for session ids; five greys for text.
+- Onest 13px base, nine fixed pixel sizes, tabular numerals on the whole page, SF Mono for identifiers.
+- Three corner sizes: 16px glass, 12px tiles, 10px rows and code blocks; everything else is a pill.
 
 ## Colors
 
-A daylight desk: three neutral layers, three ink strengths, and one signal red with green and amber as its answers.
+GitHub-light on paper: the Origit console's dark accents transposed to their light-mode equivalents, with ink-tinted translucency where the original used near-black.
 
 ### Primary
-- **Signal Vermilion** (`accent`): the live countdown, the running step's sweep, the "awaiting approval" stamp border, the Approve and file button, the "off" dot on a system chip and the Sentinel scale at high. Used on well under a tenth of the page; its rarity is what makes the clock read as urgent.
-- **Pressed Vermilion** (`accent-ink`): the darker, legible form of the accent for text and large figures: the clock digits, stamp text, severity chip text, watchlist hits, failed step bars, deletion lines in a diff, and the hover state of the primary button.
-- **Vermilion Wash** (`accent-soft`): the background of high and critical severity chips, the error notice and the un-swept part of a running step bar.
+- **Link Blue** (`link`): the reference colour. Commit SHAs, diff hunks, the "more" link, the running step's sweep, the low-risk cell of the Sentinel scale, low severity, text selection and every keyboard focus ring. In the band clock the incident number sits in it. Its tint (`link-bg`, 10%) backs SHA pills, the current commit row and low-severity chips.
 
 ### Secondary
-- **Verified Green** (`ok`): approval and health. The stopped clock, the "Approved · Filed" stamp, the step checkmark, the "on" dot on a system chip, the live journal dot, low severity, added diff lines.
-- **Green Wash** (`ok-soft`): low severity chip background and the rollback commit row in the affected-components table.
+- **Verified Green** (`ok`): health and resolution. The stopped clock, "on" system pills, completed step bars, the step checkmark, approval stamps, the rollback row, added diff lines. Its tint (`ok-bg`) backs the approval stamps and the rollback row. **Action Green** (`green-btn`): the fill of the single primary button, which hovers to `ok`.
+- **Danger Red** (`danger`): the live countdown, "off" system pills, failed step bars, high and critical severity, watchlist hits, error journal keys, deleted diff lines and the error notice border. Its tint (`danger-bg`) backs high-severity chips, the fail stamp, deleted lines and the notice.
 
 ### Tertiary
-- **Audit Amber** (`warn`): medium severity text, the "fixture" marker in the ledger, placeholder text in the draft (with a dashed underline in the same colour).
-- **Amber Wash** (`warn-soft`): medium severity chip background and placeholder highlight in the draft.
-- **Focus Blue** (`focus`): the 2px keyboard focus outline only. It appears nowhere else.
+- **Audit Amber** (`accent`): waiting and caution. The "awaiting approval" tag, medium severity, the medium cells of the Sentinel scale, the FIXTURE marker in the ledger, placeholder text in the draft. Its tint (`accent-bg`) backs the live stamp, medium chips and placeholders.
+- **Session Purple** (`purple`): Origit session numbers (`#42`) under a SHA, in mono. Nothing else.
+- **Tab Coral** (`tab`): the 2px inset underline of the selected incident tab, inherited from Origit's selected-tab mark. Never used as text or fill.
 
 ### Neutral
-- **Desk** (`desk`): page background, the grey desk every document sits on.
-- **Desk Shade** (`desk-2`): the mid tone in the loading skeleton sweep; the only second desk tone.
-- **Paper** (`paper`): every document, register block, band and sheet; also the text colour on inverted controls (ink or accent fill).
-- **Paper Shade** (`paper-2`): tinted surfaces inside a document: system chips, hovered and current register rows, inline code, evidence lines, diff blocks, callouts, unselected tabs.
-- **Ink** (`ink`): body text, headings, 1px control borders, the 2px rule under the document head, the 1px rule above the signature block, the current-commit bar, selection background, filled "done" step bars.
-- **Ink Light** (`ink-2`): secondary text: register headings, step actor and text, commit SHAs, file lists, callouts, ghost buttons.
-- **Ink Faint** (`ink-3`): field labels, hints, timestamps, metadata, the quiet stamp, pending ladder steps. Always paired with 0.74 to 0.85rem sizes; never used for body copy.
-- **Rule** (`rule`): document, register, chip and ladder borders; the dashed "unscanned" scale.
-- **Rule Faint** (`rule-2`): hairlines between rows, fields and ladder steps; the idle step bar and empty scale cells.
+- **Ink** (`ink`): the brand name, the mark, selected tab text, and the mask colour for the sideways-scroll fade.
+- **Foreground** (`fg`): body text, values, headings, step names, prose.
+- **Foreground 2** (`fg-2`): secondary reading text: table cells, step text, commit subjects, stamps, counters, tabs at rest, journal rows.
+- **Muted** (`muted`): labels, register headings, hints, sub lines, actors, legends, "quiet" states, pending step names.
+- **Muted 2** (`muted-2`): timestamps, system ids, idle dots, the signature line, the scrollbar thumb.
+- **Paper** (`paper`): the page ground under the glows. **Tile** (`tile`, same value): field tiles, callouts, evidence lines, diff blocks, default button fill (`btn`). **Tile 2** (`tile-2`): button hover and the mid tone of the skeleton sweep.
+- **Panel** (`panel`): the frosted glass of documents, register blocks and the ledger, 78% white. **Panel Solid** (`panel-solid`): ladder steps, the draft sheet, the selected tab, primary button text. **Topbar** (`topbar`): the band's glass, 72% white.
+- **Hair** (`hair`) and **Hair 2** (`hair-2`): 15% and 8% ink rules. `hair` borders controls, system pills, the band and table heads; `hair-2` divides rows, fields and steps. **Glass Border** (`glass-border`): the 10% ink edge of every frosted panel.
 
 ### Named Rules
-**The One Accent Rule.** Vermilion marks the live clock, the awaiting stamp, the primary action and high or critical severity. Nothing else on the page is red. A new red element must be one of those four things.
+**The Light Counterpart Rule.** Every colour here is the GitHub-light counterpart of the Origit console's dark token of the same name (`--link #4493f8` to `#0969da`, `--danger #f85149` to `#d1242f`, `--ok #3fb950` to `#1a7f37`, `--accent #d29922` to `#9a6700`, `--purple #a371f7` to `#8250df`). A new colour must have a dark twin in origit.uk's `:root` or it does not belong.
 
-**The Answering Green Rule.** Green is only ever the answer to a vermilion state: the clock that stopped, the stamp that pressed, the step that completed, the system that is on. It never introduces a state of its own.
+**The Reference Blue Rule.** Blue means "this points at something": a SHA, a hunk, a link, focus. It is never a brand colour and never fills a button.
 
-**The Three Inks Rule.** Text is `ink` (read it), `ink-2` (read it second) or `ink-3` (metadata, labels, times). No fourth grey.
+**The Tinted State Rule.** Status chips, stamps and severity pills are always text in a role colour on that colour's own translucent tint, never a solid fill with white text. The only solid fill on the page is the primary button.
 
 ## Typography
 
-**Display Font:** Archivo variable (wdth 62 to 125, wght 100 to 900), self-hosted woff2 under the OFL, with Helvetica Neue and Arial as fallbacks
-**Body Font:** Archivo (same file; the width axis changes, the face does not)
-**Label/Mono Font:** system monospace stack (ui-monospace, SF Mono, Menlo) for commit SHAs, evidence lines and diffs
+**Display Font:** Onest variable (wght 400 to 700), self-hosted woff2 under the OFL, with -apple-system, "SF Pro Text", "Segoe UI", Helvetica and Arial as fallbacks
+**Body Font:** Onest (same file)
+**Label/Mono Font:** "SF Mono", ui-monospace, Menlo, Consolas for SHAs, session numbers, evidence, diffs, timestamps and uppercase keys
 
-**Character:** One grotesque at three widths. Condensed Archivo for the document number and the clock reads like a form's pre-printed header; normal-width Archivo for the body reads like what was typed into it. Tabular numerals are on for the whole body (`tnum`), so columns of times and counts align without extra classes.
+**Character:** Origit's console voice: a geometric grotesque at small sizes, tightened a little (-0.005em body, -0.015em headings, -0.03em on the clock), weights 400, 500 and 600 only (700 appears once, on the filed stamp). Tabular numerals are on for the whole body so the clock, counts and times never jitter.
 
 ### Hierarchy
-The ramp is eight tokens in `:root`, and every `font-size` in app.css uses one of them. Root is 15px (14px under 720px), so the rem values below are the only sizes on the page.
+The ramp is nine pixel tokens in `:root`, Origit's sizes exactly, and every `font-size` in app.css uses one (the only exceptions are the 10px and 10.5px mono keys and the 28px mobile clock):
 
 | Token | Size | Used for |
 |---|---|---|
-| `--fs-display` | 3.75rem (56px), 700, line-height 1, wdth 90, -0.01em | the early-warning countdown only; `--fs-display-mobile` 2.4rem under 720px; vermilion while running, green when stopped |
-| `--fs-xl` | 1.5rem, 700, wdth 85, 0.005em | the incident number (h1) |
-| `--fs-lg` | 1.25rem | the band's running-header clock; the draft sheet's h1 |
-| `--fs-base` | 1rem, line-height 1.45 (prose 1.55 at 72ch) | body, document field values (500), the draft prose, section titles (700), the brand name (700, wdth 88) |
-| `--fs-md` | 0.9rem | buttons, step names (700), the band product line, the primary action |
-| `--fs-sm` | 0.8rem | register rows, tables, step text (line-height 1.35), hints, notes, journal, sources, tabs |
-| `--fs-xs` | 0.74rem, 600, 0.08em, uppercase for labels | field labels, table headers, step numbers, journal keys, meta lines, severity chips, stamps (800, 0.14em), the big stamp's second line |
-| `--fs-mono` | 0.78rem, ui-monospace | SHAs, evidence lines, diffs |
+| `--fs-display` | 40px, 600, line-height 1, -0.03em | the early-warning countdown only (28px under 768px); red while running, green when stopped |
+| `--fs-title` | 22px, 600, -0.02em | the incident title (h1) in the document head |
+| `--fs-h` | 19px, 600 | the band clock's time (-0.02em); the draft's h1 |
+| `--fs-xl` | 15px, 600 | section titles, the brand name, the draft's h2 and h3 |
+| `--fs-lg` | 14px | field values (500), step names (600), the primary button, the draft prose (line-height 1.6, 72ch), the signature line, the filed stamp |
+| `--fs-base` | 13px, line-height 1.5 | body, default buttons (500), incident tabs (500, 600 selected) |
+| `--fs-md` | 12.5px | tables, register rows, the band's product line, sub lines, notices, callouts, the flag grid, sources |
+| `--fs-sm` | 12px | labels and register headings (500, muted), table heads, ghost buttons, the ledger summary, section hints |
+| `--fs-xs` | 11.5px | system pills, SHAs, stamps (600), severity pills (500), journal, metadata, evidence, diffs, hints |
 
-Inline code inside the draft prose is 0.85em of its line.
+Mono keys (`STEP 1`, journal kinds, `via`) are 10px, 600, uppercase, 0.06em, muted; step timestamps are 10.5px mono. Inline code in the draft is 88% of its line on a 6px-cornered tint.
 
 ### Named Rules
-**The Width Axis Rule.** Hierarchy comes from Archivo's width axis and weight, not from a second face. Condense (wdth 85 to 90) only for the incident number, the brand and the clock; everything readable stays at wdth 100.
+**The Nine Sizes Rule.** New type uses one of the nine `--fs-*` tokens. No rem, no clamp, no eleventh size; the ramp is Origit's and it is shared across both consoles.
 
-**The Tabular Figures Rule.** Every time, duration, count, SHA column and step number renders in tabular numerals. The clock must never jitter as digits change.
+**The Quiet Label Rule.** Labels are 12px, 500, muted, sentence case, no tracking, directly above or beside the value they name. Uppercase tracking is reserved for the 10px mono keys (step numbers, journal kinds, source routes) and never applied to Onest.
 
-**The Field Label Rule.** Labels are 0.74rem, 600, tracked 0.08em, uppercase, faint ink, and sit directly above or beside the value they name. They label a field; they are never used as decorative kickers above headings.
+**The Mono Identifier Rule.** Anything a machine issued (SHA, session number, advisory id, timestamp, file path, diff) is set in SF Mono at 11.5px or below. Prose is never mono; identifiers are never Onest.
 
 ## Layout
 
-The page is a desk grid: a 340px register column and a fluid report column (`340px minmax(0, 1fr)`), 1.25rem gutter, 1.25rem 1.5rem 3rem padding, capped at 1600px and centred. The band above is a sticky four-column grid (brand, manufacturer and product, system chips, running-header clock) at 0.85rem 1.5rem padding with a 1px rule beneath it. The register sticks under the band (top 72px) only on tall viewports (min-height 1100px); otherwise it scrolls with the page.
+The page is a sticky 58px glass band over a desk grid: a 316px register column and a fluid report column (`316px minmax(0, 1fr)`), 24px gutter, `24px 32px 48px` padding, capped at 1400px and centred. The band is a four-column grid (brand, manufacturer and product, system pills right-aligned, clock) with a 20px gap and 32px side padding; it blurs the page behind it (18px blur, 160% saturate) and rules itself off with a hairline. The register sticks under the band (top 74px) only on viewports at least 1100px tall; otherwise it scrolls.
 
-Inside the document, the header grid of fields is six equal columns, with the clock field spanning two; each field has 0.8rem vertical padding, a hairline on its right and 0.9rem of gap, under a 1px rule. The three-field variant (pre-incident checks) is `repeat(3, 1fr)`. Sections open with 1.4rem of top padding and a numbered title. The ladder is seven equal columns in one bordered row. Sources read is a two-column CSS column list. The signature block is two equal columns with a 1.2rem gap above a full-width action row.
+Inside a document: a head row with the title left and status tag right, closed by a hairline after 14px; six equal field tiles with a 10px gap (the clock tile spans two), 16px above and 4px below; sections open with 22px of top padding and a numbered 15px title whose counter is a pill. The ladder is seven equal tiles with an 8px gap. Sources read is a two-column CSS column list with a 24px gutter. The signature block is two columns, 16px gap, above a full-width action row with 10px gaps.
 
-Rhythm is tight and ruled: 0.2rem inside a field, 0.5rem between register rows and grid cells, 0.8rem under titles, 1rem between register blocks, 1.25rem between documents and around the desk, 1.5rem band and desk side padding, 2rem above the signature block and inside the sheet.
+Rhythm is on a 2px grid with 8/10/12/16/24 doing the work: 6px between pills, 8px between tiles and inside rows, 10px between fields and under titles, 12px tile padding, 16px between register blocks and stacked documents, 24px the gutter, 32px the page margin. Register rows are 9px (watch), 7px (commits) and 6px (journal) tall-padded, divided by `hair-2`.
 
-Responsive behaviour (two breakpoints only):
-- **Under 1100px:** single column; the register goes static above the report; the ladder wraps to four columns with a hairline top on rows two onward; fields go to three columns with the clock spanning all three.
-- **Under 720px:** root type drops to 14px; the band stacks and loses its stickiness while the clock row inside it becomes the sticky element (full-bleed, 1px rules top and bottom, white paper); desk and document padding tighten to 1rem; fields go two columns; the ladder goes two columns; the signature block and sources stack to one column; the clock drops to 2.4rem; the affected-components table scrolls sideways inside a full-bleed wrapper with a 28px fade mask at the right edge and a "scroll sideways" hint in the section title.
+Responsive behaviour (two breakpoints):
+- **Under 1100px:** single column; the register goes static above the report; the ladder wraps to four tiles, fields to three with the clock spanning all three; tables scroll sideways inside a full-bleed wrapper with a 28px fade mask at the right edge, and a "scroll sideways" hint appears in the section title.
+- **Under 768px:** the band becomes a static two-column grid with the product line and system pills hidden, and the clock row inside it becomes the sticky element (92% white, hairlines top and bottom, full-bleed); desk and document padding tighten to 16px; fields and the ladder go two-up; the clock drops to 28px; the signature block and sources stack; the filed stamp moves inline above the prose.
 
 ## Elevation & Depth
 
-The system is flat. Depth is conveyed by the two-layer scene (white paper on grey desk) and by borders: 1px `rule` around documents and register blocks, a 2px ink rule under the document head, hairlines between rows. One exception is deliberate: the draft sheet sits on top of the incident record with a single soft shadow, so the thing the reviewer signs reads as a separate sheet of paper laid on the file. The big approval stamp uses `mix-blend-mode: multiply` so its ink sits into that paper rather than on it. Inset state is a 2px ink bar (`box-shadow: inset 2px 0 0`) on the current commit row.
+Glass on paper, Origit's depth model with light-mode shadows. Documents, register blocks, the ledger and the band are translucent white panels (`panel`, `topbar`) that blur and saturate what is behind them (24px blur for panels, 18px for the band), edged with a 10% ink `glass-border`, and lifted by one diffuse, ink-tinted shadow. Inside the glass everything is flat: tiles, steps and the draft sheet are solid or tinted fills with hairline borders and no shadow. Buttons carry a 1px hairline shadow at rest that disappears on press. The selected incident tab lifts 1px with a coral underline inset. Nothing hovers or scales except the 1px press on buttons and the stamp landing.
 
 ### Shadow Vocabulary
-- **Sheet lift** (`box-shadow: 0 1px 2px rgba(23, 33, 58, .06), 0 8px 24px -12px rgba(23, 33, 58, .25)`): the draft sheet only. Ink-tinted, diffuse, no offset edge.
+- **Glass lift** (`box-shadow: 0 8px 24px rgba(31, 35, 40, .08), 0 1px 2px rgba(31, 35, 40, .06)`): every frosted panel (documents, register blocks, ledger). The light twin of Origit's `0 12px 32px rgba(1,4,9,.5)`.
+- **Control rest** (`box-shadow: 0 1px 2px rgba(31, 35, 40, .06)`): default and ghost buttons; `0 2px 6px rgba(31, 35, 40, .15)` on the primary. Removed on `:active`.
+- **Tab lift** (`box-shadow: inset 0 -2px 0 #fd8c73, 0 1px 3px rgba(31, 35, 40, .12)`): the selected incident tab only.
 
 ### Named Rules
-**The One Sheet Rule.** Only the draft sheet casts a shadow. Documents, register blocks, chips, buttons and stamps are flat; they get a border, not a lift.
+**The Glass Casts, Tiles Don't Rule.** Only translucent panels (`panel`, `topbar`) blur and cast the glass-lift shadow. Anything inside a panel (tile, step, sheet, callout, evidence, diff) is flat with a hairline or no border.
+
+**The Fixed Glow Rule.** The three radial glows are on `body` with `background-attachment: fixed`; they are the only gradients on the page besides the running-step sweep and the skeleton. No gradient fills on components.
 
 ## Shapes
 
-Rectangular paper. Documents, register blocks, chips, tables, fields, tabs and the ladder have square corners and a 1px border. Buttons are the only control with a corner, and it is 2px. Stamps are the exception that proves the form: 3px corners (4px for the big filed stamp), a 2px (3px) border in their own colour, tracked uppercase text and a rotation of -2deg (the small stamps) or -8deg (the filed stamp). Status dots are 7px circles. The Sentinel scale is four 10px cells with 2px gaps filled left to right (one green, two amber, three vermilion, four pressed vermilion; dashed `rule` outline when unscanned). The product mark is a 22px square outline with a clock hand, square line caps.
+Rounded glass, pill controls. Three corner sizes carry the containment hierarchy: 16px (`lg`) for the frosted panels, the notice and the ledger; 12px (`tile`) for field tiles, ladder steps, the draft sheet, callouts, diff blocks and the filed stamp; 10px (`md`) for hovered commit rows, evidence lines and the focus ring. Everything the reviewer presses or reads as a status is a full pill (999px): buttons, system pills, SHAs, counters, stamps, severity, incident tabs and their track, the band clock's incident number. Inline code is 6px; the Sentinel scale cells are 2px; dots are 6px circles. The 12px tile radius is written as a literal in app.css rather than a token; keep it at 12px.
 
-Borders carry meaning: ink borders on things you act on (buttons, the section number box, the tab in focus), `rule` borders on containers, `rule-2` hairlines on dividers. The quiet stamp is dashed and unrotated; it is a placeholder for a stamp that has not been pressed.
+Borders are quiet: 1px `glass-border` on glass, 1px `hair` on controls and system pills (tinted to the role colour at 35% when a pill is on or off), 1px `hair-2` on tiles and steps, hairlines between rows. The one dashed border is the unscanned Sentinel scale. Nothing rotates; the stamp lands square. The brand mark is a 26px monochrome clock face (a ring, a hub and four ticks) in `ink`.
 
 ## Components
 
 ### Buttons
-Form controls on a controlled document: small, bordered, confident, no decoration.
-- **Shape:** rectangular with 2px corners, 1px border.
-- **Outline (default):** paper background, ink text and border, 0.4rem 0.8rem padding, 0.82rem / 600 / 0.01em. Hover inverts to ink fill with paper text. Active nudges down 1px. Disabled sits at 45% opacity and does not invert.
-- **Ghost:** `rule` border, `ink-2` text, 0.74rem, 0.3rem 0.6rem; used for register actions (Poll feeds, Run scan). Hover darkens the border to ink.
-- **Primary:** vermilion fill and border, paper text, 0.7rem 1.2rem, 0.92rem. Hover goes to pressed vermilion. Used once per page: Approve and file.
-- **Busy:** text goes transparent and a 14px two-tone ring spins in place (0.7s linear); white ring on the primary.
-- **Focus:** 2px `focus` blue outline, 2px offset, on every control.
+Origit's pills: soft grey, hairline border, a whisper of shadow, pressed down one pixel.
+- **Shape:** full pill (999px), 1px `hair` border.
+- **Default:** `btn` fill, `fg` text, 36px tall, 0 16px, 13px / 500, rest shadow `0 1px 2px rgba(31,35,40,.06)`. Hover goes to `btn-hover`. Active translates down 1px and drops the shadow. Disabled sits at 45% opacity. Transitions 0.15s on background, transform and shadow.
+- **Ghost:** the same pill at 30px tall, 0 13px, 12px text; used for register actions (Poll feeds, Run scan).
+- **Primary:** `green-btn` fill with white text, 40px tall, 0 20px, 14px, shadow `0 2px 6px rgba(31,35,40,.15)`; hovers to `ok`. Used once per page: Approve and file.
+- **Busy:** text goes transparent and a 14px two-tone ring in `fg` spins in place (0.7s linear).
+- **Focus:** 2px `link` outline, 2px offset, 10px radius, on every control.
 
 ### Chips
-- **System chip:** inline, 1px `rule` border, `paper-2` fill, 0.2rem 0.45rem, 0.74rem, square corners, with a 7px dot that is green when the system is on and vermilion when off; a faint secondary id (max 180px, ellipsed). Chips wrap within a 560px band column.
-- **Severity chip:** uppercase 0.78rem / 700 / 0.08em, 1px border in `currentColor`, 0.1rem 0.5rem. High and critical: pressed vermilion on vermilion wash. Medium: amber on amber wash. Low: green on green wash.
-- **Stamp:** inline, 2px border and text in one colour, 0.25rem 0.7rem, 0.78rem / 800 / 0.14em uppercase, 3px corners, rotated -2deg. Variants: quiet (faint ink, dashed, unrotated, 600), live (vermilion border, pressed vermilion text: "awaiting approval"), ok (green), fail (pressed vermilion).
+- **System pill:** hairline-bordered pill, 3px 9px, 11.5px `muted` text, a 6px dot (`muted-2` idle). On: `ok` text, dot and a 35% green border. Off: `danger` text, dot and a 35% red border. A faint mono system id (max 160px, ellipsed) may follow.
+- **SHA pill:** 72 by 22px, `link` mono 11.5px on `link-bg`, centred; a `purple` 600 mono session number sits under it.
+- **Counter:** 20px pill, 10% ink fill, `fg-2` 11.5px / 500; the section number in every section title.
+- **Stamp (status tag):** 24px pill, 0 10px, 11.5px / 600, 8% ink fill with `fg-2` text. Variants: quiet (`muted` text), live (`accent` on `accent-bg`, "awaiting approval"), ok (`ok` on `ok-bg`), fail (`danger` on `danger-bg`).
+- **Severity:** 22px pill, 0 9px, 11.5px / 500. High and critical: `danger` on `danger-bg`. Medium: `accent` on `accent-bg`. Low: `link` on `link-bg`.
+- **Live pill:** the journal's "live" indicator, the system pill's grammar with a `::before` dot that goes green when the stream opens.
 
 ### Cards / Containers
-- **Document (`doc`):** paper, 1px `rule` border, square corners, 1.6rem 2rem 2.2rem padding (1.1rem 1rem 1.4rem on mobile); stacked documents are 1.25rem apart. Its head is a flex row ending in a 2px ink rule.
-- **Register block:** paper, 1px `rule` border, 0.9rem 1rem 1rem padding, an uppercase 0.8rem heading with its action button on the same line, rows separated by `rule-2` hairlines.
-- **Sheet:** paper with the sheet-lift shadow, no border, 2rem 2.4rem 1.6rem padding, 72ch prose; the only container that is not flat.
-- **Notice:** vermilion wash with a vermilion border and pressed-vermilion text, 0.7rem 0.9rem; its button adopts the pressed vermilion border. **Callout:** `paper-2` with a `rule` border and `ink-2` text, same padding.
-- **Ledger:** a details element whose summary is a bordered paper bar with an uppercase 0.8rem heading left and the call counts right; open, the table sits in a bordered paper well capped at 320px with its own scroll. Fixture calls are marked in amber.
+- **Document and register block (glass):** `panel` fill, 24px blur and 160% saturate, 1px `glass-border`, 16px corners, glass-lift shadow. Document padding 20px 22px 24px (16px 16px 20px on mobile); register block 16px 18px 14px with a 30px head row holding a 12px muted heading and its ghost button. Stacked documents are 16px apart.
+- **Tile (field):** `tile` fill, 12px corners, 12px 14px padding, no border; a 12px label over a 14px / 500 value with an optional 11.5px muted sub line. Values break anywhere so hashes never overflow.
+- **Step:** `panel-solid` fill, 1px `hair-2`, 12px corners, 12px 12px 14px padding, clipped, with a 3px state bar across its top edge.
+- **Sheet:** `panel-solid`, 1px `hair-2`, 12px corners, 22px 26px 18px padding (16px on mobile); prose at 14px / 1.6 / 72ch. The only white surface with long text.
+- **Callout:** `tile` with 1px `hair-2`, 12px corners, 12px 14px, 12.5px `muted` text. **Notice:** 14% danger wash with a 35% `danger` border, 16px corners, 14px 18px, 12.5px `fg` text; its button borrows a 45% red border.
+- **Ledger:** a details element whose summary is a glass bar (12px 18px, 12px / 500 muted, counts right); open, its corners square off at the bottom and a glass well (max 320px, own scroll) holds the call table. FIXTURE calls are marked in `accent` 600.
+- **Evidence line:** `tile` with a 25% red hairline, 10px corners, 8px 12px, 11.5px mono. **Diff:** `tile`, 12px corners, 11.5px/20px mono, rows tinted `ok-bg` (add), `danger-bg` (del) and `link-bg` with `link` text (hunk).
 
 ### Inputs / Fields
-There are no text inputs. The document field is the input-like unit: a label above a 0.95rem / 500 value with an optional 0.76rem faint sub line, 0.8rem vertical padding, a hairline on its right. Values break anywhere so hashes never overflow the column.
+There are no text inputs. The field tile is the input-like unit (see Tile above). The signature line is a 30px-tall `muted-2` bottom rule that fills with the approver's name at 14px / 600.
 
 ### Navigation
-- **Band:** sticky paper strip with a 1px rule beneath; brand mark and name (condensed 700) with a faint subtitle, manufacturer and product as label/value pairs, the system chips, and a running-header clock (incident number in condensed 0.9rem, time in 1.25rem pressed vermilion tabular figures, a faint uppercase label beneath) separated by a 1px left rule. Under 720px the band is static and the clock row is the sticky element.
-- **Incident tabs:** `paper-2` bordered buttons, 0.78rem; the selected tab inverts to ink fill with paper text.
-- **Register rows:** commit rows hover to `paper-2` bleeding 0.5rem outside the block; the current one adds a 2px inset ink bar on the left.
+- **Band:** sticky 58px glass strip (`topbar`, 18px blur, hairline beneath). Brand: 26px ink mark, "Origit" 15px / 600 with "Console" in `muted` 500, then a 12.5px `muted` product subtitle. Manufacturer and product as inline label and value pairs. System pills right-aligned. The band clock behind a hairline left rule: incident number as a `link` mono pill on `link-bg`, time at 19px / 600 in `danger` (`ok` when stopped), an 11.5px muted label beneath. Under 768px the band is static and the clock row is the sticky element.
+- **Incident tabs:** Origit's segmented pill track (8% ink fill, 3px padding, 2px gaps); each tab a 32px pill in `fg-2` 13px / 500; the selected tab is white, `ink`, 600, with the coral underline inset and a 1px lift.
+- **Register rows:** commit rows are 10px-cornered, bleed 8px outside the block, hover to 4% ink and sit on `link-bg` when current.
 
 ### Step Ladder (signature component)
-Seven numbered steps in one bordered row, hairlines between. Each step: a faint tracked step number, a 0.9rem / 700 name, a 0.76rem actor line in `ink-2`, a 0.76rem text block and a faint tabular timestamp. A 3px bar on the top edge carries state: `rule-2` when pending (and the step's text drops to faint ink), ink when done (with a 12px green inline checkmark after the name), pressed vermilion when failed, and when running a vermilion sweep that scrolls across a vermilion-wash track (1.1s linear). Background transitions are 0.25s ease-out. Reduced motion stops the sweep.
+Seven white tiles in one row with 8px gaps. Each step: a 10px mono key (`STEP 1`), a 14px / 600 name, an 11.5px `muted` actor line, an 11.5px `fg-2` text block clamped to seven lines, and a 10.5px mono `muted-2` timestamp. The 3px top bar carries state: 12% ink when pending (and the name drops to `muted`), `ok` when done (with a 12px green inline checkmark after the name), `danger` when failed, and when running a `link` sweep scrolling across a `link-bg` track (1.1s linear). Reduced motion stops the sweep.
 
 ### Clock (signature component)
-The early-warning countdown is the display face: 3.75rem condensed tabular figures in pressed vermilion, in a field spanning two header columns, with the three deadlines beneath in faint 0.76rem. It turns green and stops on approval. A copy at 1.25rem rides in the band so the reviewer can read the draft without losing the time.
+The early-warning countdown is the display face: 40px / 600 / -0.03em tabular figures in `danger`, in a tile spanning two field columns, with the three deadlines beneath in 11.5px muted mono-aligned figures. It turns `ok` and stops on approval. A 19px copy rides in the band so the reviewer can read the draft without losing the time.
 
 ### Approval Stamp (signature component)
-On approval the sheet is stamped: "Approved · Filed" and the elapsed time since awareness, absolutely placed top right of the sheet, green 3px border and text, 1rem / 900 / 0.16em uppercase, 4px corners, rotated -8deg, multiply-blended into the paper. It presses in over 0.35s with a `cubic-bezier(.2, .9, .3, 1)` scale from 1.6 to 1 and fades in by 60%. The animation is removed under reduced motion; the stamp still appears.
+On approval the sheet gets a stamp top right: "Approved · Filed" over the elapsed time since awareness, `ok` 700 / 14px on `ok-bg` with a 45% green border, 12px corners, 8px 14px padding, the small line in 11.5px `fg-2` mono. It presses in over 0.35s with `cubic-bezier(.2, .9, .3, 1)` from scale 1.4 and fades by 60%; the prose's first block clears it with right padding. Under reduced motion the stamp appears without the press. Under 768px it sits inline above the prose.
 
-### Signature Block
-Two columns above the actions, separated from the prose by a 1px ink rule and 2rem of space: "Drafted by" (model id, 0.86rem) and "Reviewed and approved by", whose value is an empty 1.9rem-tall signature line (1px ink bottom border) until approval writes the name onto it at 0.9rem / 600. The action row holds the primary button, outline buttons for copy and download, and a faint 0.78rem hint.
+### Sentinel Scale
+Four 8px-tall cells with 2px gaps and 2px corners, 12% ink when empty, filled left to right: one `link` (low), two `accent` (medium), three `danger` (high), four `danger` (critical); dashed `hair` outline when unscanned. A 28 by 6px copy sits in the legend.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** put every document, register block and sheet on white paper with a 1px `rule` border over the grey desk; the two-layer scene is the whole depth model.
-- **Do** spend vermilion only on the live clock, the awaiting stamp, the primary action and high or critical severity, and answer it with green when the state resolves.
-- **Do** set every figure (times, counts, SHAs, step numbers) in tabular numerals and keep the countdown in condensed Archivo (wdth 90) at 3.75rem.
-- **Do** build new controls as 1px-ink-bordered rectangles with 2px corners, 0.82rem / 600 text, inverting to ink fill on hover.
-- **Do** structure dense data with `rule-2` hairlines between rows and fields rather than extra vertical space.
-- **Do** keep field labels at 0.74rem / 600 / 0.08em uppercase in faint ink, directly attached to the value they name.
-- **Do** give every live or running state a motion that stops under `prefers-reduced-motion` and leaves the state still legible.
+- **Do** build every new container as Origit glass: `panel` fill, 24px blur and 160% saturate, 1px `glass-border`, 16px corners, the glass-lift shadow; put tiles (`tile`, 12px corners, no shadow) inside it for fields.
+- **Do** make every control and status a pill (999px) with text in a role colour on that colour's translucent tint; the only solid-filled control is the green primary.
+- **Do** pick colours by role: `link` for references and focus, `accent` for waiting and medium, `danger` for the live clock and failure, `ok` for health and approval, `purple` for session numbers only.
+- **Do** use one of the nine `--fs-*` sizes, weights 400 to 600, and keep labels at 12px / 500 muted sentence case with no tracking.
+- **Do** set identifiers (SHAs, session numbers, timestamps, paths, diffs) in SF Mono at 11.5px or below; keep the 10px uppercase mono key for ordinals and kinds only.
+- **Do** check any new token against origit.uk's `:root`; it needs a dark twin there (The Light Counterpart Rule).
+- **Do** give every live or running state a motion that stops under `prefers-reduced-motion` and leaves the state legible.
 
 ### Don't:
-- **Don't** add a second accent, a chart, a KPI tile, a gradient surface or a dark panel; this is a document in daylight, not a dashboard.
-- **Don't** cast shadows on anything except the draft sheet; containers get borders.
-- **Don't** round corners beyond 2px on controls; only stamps carry 3 to 4px corners and only stamps rotate.
-- **Don't** introduce a second typeface for display or headings; use Archivo's width axis instead. Monospace is for commit SHAs, evidence paths and diffs only.
-- **Don't** use `ink-3` for body copy or at sizes above 0.85rem; it is a metadata colour.
-- **Don't** use focus blue for anything but the keyboard focus outline.
+- **Don't** add a chart, a KPI card, a dark panel, a solid coloured chip or a gradient fill; the only gradients are the three fixed body glows and the sweep.
+- **Don't** cast shadows on anything inside a glass panel; tiles, steps, the sheet and callouts are flat.
+- **Don't** use a fourth corner size: 16px glass, 12px tiles, 10px rows and code, 999px pills.
+- **Don't** fill a button with blue, or use blue as a brand colour; blue points at things.
+- **Don't** set Onest in uppercase or with letter-spacing above 0; tracked uppercase exists only in the 10px mono keys.
+- **Don't** introduce a second sans or a display face; Onest 400 to 700 carries everything, SF Mono carries identifiers.

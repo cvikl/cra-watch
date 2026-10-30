@@ -4,8 +4,12 @@
 **Tagline:** When a CVE hits a dependency your AI coding agent used, you have 24 hours under the EU Cyber Resilience Act. CRA Watch finds what the agent touched, drafts the Article 14 early warning on private Nemotron inference, and puts it in front of a human in minutes.
 **Track:** Best Apps and Agents
 **Also entering:** Best Use of Tavily
-**Live demo:** https://cra-watch.vantapointlabs.com (read-only for visitors; the actions need the review token)
+**Live demo:** https://cra-watch.vantapointlabs.com (press "Run the live demo": Sentinel, detection, trace, triage, draft run with real Nemotron and Tavily calls while you watch, then approve the filing yourself; rate limited)
 **Repository:** https://github.com/cvikl/cra-watch (MIT)
+
+## The idea in one paragraph
+
+An autonomous agent that monitors for a legal obligation, determines its exact scope through git provenance analysis, and prepares the filing before any human knows the incident exists. Sentinel watches every agent commit for vulnerability patterns at commit time, not CVE time. When the advisory for `fast-pay-utils` dropped, Sentinel had already flagged the hidden Unicode instruction in sessions #42, #43 and #45. CRA Watch matched the advisory, traced the blast radius through Origit and drafted the Article 14 early warning; a compliance lead approved it 37 seconds after awareness. Most CVE tools react to what is in the NVD. This one operates on code structure, and the only thing it waits for is a person.
 
 ## Inspiration
 
