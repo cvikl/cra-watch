@@ -22,6 +22,21 @@ warning and puts it in front of a reviewer, inside the 24-hour window. Built for
 Tiered inference is deliberate: the small model runs often (one call per commit, one per advisory) and the large model
 runs once per incident on the full context. Unpatched code and provenance records never leave Nebius.
 
+## Nebius and NVIDIA usage
+
+All Nemotron inference runs through Nebius Token Factory.
+
+| What | Exactly which |
+|---|---|
+| **Nemotron, fast tier** | `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B` (Nemotron 3 Nano): CVE triage (severity, class, data at risk, Article 14 applicability) and the Sentinel per-commit risk classification. One call per advisory, one per commit. Structured JSON via `response_format: json_schema`. |
+| **Nemotron, reasoning tier** | `nvidia/Nemotron-3-Ultra-550b-a55b` (Nemotron 3 Ultra): drafts the Article 14(4)(a) early warning from the advisory, the taint result, the triage, the Sentinel flags and the CRA guidance. One call per incident. |
+| **Token Factory endpoint** | `https://api.tokenfactory.nebius.com/v1/` (OpenAI-compatible `chat/completions`), `chat_template_kwargs.enable_thinking=false` so the token budget is spent on the answer. Every call is logged with model, tokens and latency and shown in the console's run ledger. |
+| **Nebius Serverless Job** | `cra-watch-monitor`: the container runs `cra-watch monitor --loop`, polling the advisory feeds every 5 minutes for the job's lifetime (`nebius/monitor-job.sh`). Keys come from SecretStash. |
+| **Nebius Serverless Endpoint** | The review console (`cra-watch serve`, FastAPI) from the same image (`Dockerfile`). |
+| **Tavily** | Three uses: advisory feed polling (domain-restricted search over NVD, GitHub Advisories, OSV, cve.org, Snyk, Socket plus registered vendor bulletins), full-text extraction of the matched advisory, and grounding searches for the vulnerability class and the CRA Article 14 guidance that feed the drafter. Each call is shown on screen under "Sources read" and in the run ledger. |
+| **Provenance engine** | A hashed record on every agent commit (what the agent read, wrote, added and ran, who approved) stored as git notes; the taint query walks those records to return the affected commits, sessions, files, first-read time and the last clean commit. Deterministic, no model involved. |
+
+
 ## Why private inference
 
 The analysis needs the vulnerable code, the agent's inputs and the firm's provenance records. Sending that to a public
