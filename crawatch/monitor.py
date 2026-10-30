@@ -37,10 +37,13 @@ def watchlist() -> list[dict[str, Any]]:
 
 
 def _is_match(dep: dict[str, Any], title: str, text: str, url: str) -> str | None:
-    blob = f"{title}\n{text}\n{url}"
-    if dep["name"].lower() not in blob.lower():
+    """An advisory is about the package when the package is named in its title or URL (not merely mentioned in the
+    body, where generic advisory pages list dozens of packages) and it carries a CVE or GHSA identifier."""
+    name = dep["name"].lower()
+    about = name in (title or "").lower() or name in (url or "").lower()
+    if not about:
         return None
-    m = ADVISORY_ID.search(blob)
+    m = ADVISORY_ID.search(f"{title}\n{text}\n{url}")
     return m.group(1).upper() if m else None
 
 

@@ -24,9 +24,10 @@ def test_sentinel_flags_hidden_instruction():
 
 def test_match_requires_name_and_identifier():
     dep = {"name": "fast-pay-utils"}
-    assert _is_match(dep, "x", "fast-pay-utils 2.1.0 GHSA-demo-f4st-pay0-2100", "") == "GHSA-DEMO-F4ST-PAY0-2100"
-    assert _is_match(dep, "x", "fast-pay-utils is great", "") is None
-    assert _is_match(dep, "x", "CVE-2026-1234 in lodash", "") is None
+    assert _is_match(dep, "Malicious code in fast-pay-utils 2.1.0", "GHSA-demo-f4st-pay0-2100", "") == "GHSA-DEMO-F4ST-PAY0-2100"
+    assert _is_match(dep, "Vendor bulletin", "see GHSA-demo-f4st-pay0-2100", "https://x/advisories/fast-pay-utils.md") == "GHSA-DEMO-F4ST-PAY0-2100"
+    assert _is_match(dep, "fast-pay-utils release notes", "fast-pay-utils is great", "") is None
+    assert _is_match(dep, "Weekly npm advisories", "lodash CVE-2026-1234, fast-pay-utils, express", "https://x/weekly") is None  # mentioned, not about
 
 
 def test_deadlines():
