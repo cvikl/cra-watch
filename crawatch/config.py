@@ -26,7 +26,7 @@ class Settings:
     tavily_api_key: str = field(default_factory=lambda: _env("TAVILY_API_KEY"))
     data_dir: Path = field(default_factory=lambda: Path(_env("CRAWATCH_DATA", str(ROOT / "data"))))
     repo_dir: Path = field(default_factory=lambda: Path(_env("CRAWATCH_REPO", str(ROOT / "data" / "payments-api"))))
-    demo_bundle: Path = field(default_factory=lambda: ROOT / "demo" / "payments-api.bundle")
+    demo_bundle: Path = field(default_factory=lambda: Path(_env("CRAWATCH_DEMO_BUNDLE", str(ROOT / "demo" / "payments-api.bundle"))))
     product_name: str = field(default_factory=lambda: _env("CRAWATCH_PRODUCT", "acme-payments/payments-api"))
     manufacturer: str = field(default_factory=lambda: _env("CRAWATCH_MANUFACTURER", "Acme Payments B.V."))
     public_base_url: str = field(default_factory=lambda: _env("CRAWATCH_PUBLIC_URL", ""))

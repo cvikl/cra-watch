@@ -7,7 +7,7 @@ COPY vendor/origit ./vendor/origit
 COPY crawatch ./crawatch
 COPY demo ./demo
 RUN pip install --no-cache-dir ./vendor/origit && pip install --no-cache-dir .
-ENV CRAWATCH_DATA=/data CRAWATCH_REPO=/data/payments-api PORT=8000
+ENV CRAWATCH_DATA=/data CRAWATCH_REPO=/data/payments-api CRAWATCH_DEMO_BUNDLE=/app/demo/payments-api.bundle PORT=8000
 EXPOSE 8000
 # Endpoint: `cra-watch serve`; Job: `cra-watch monitor --loop`
 CMD ["sh", "-c", "cra-watch serve --port ${PORT}"]
