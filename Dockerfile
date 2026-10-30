@@ -2,7 +2,7 @@
 FROM python:3.12-slim
 RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-COPY pyproject.toml README.md LICENSE ./
+COPY pyproject.toml README.md LICENSE pytest.ini ./
 COPY vendor/origit ./vendor/origit
 COPY crawatch ./crawatch
 COPY demo ./demo

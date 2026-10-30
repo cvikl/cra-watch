@@ -1,0 +1,27 @@
+# CRA Watch on the shared box. One container on the existing Caddy network (deploy_default) so the Caddy in
+# /opt/compass/deploy can reverse_proxy to it by name. Site config: /opt/caddy-sites/cra-watch.caddy (see publish.sh).
+name: cra-watch
+
+services:
+  cra-watch:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: cra-watch
+    env_file: .env
+    environment:
+      CRAWATCH_DATA: /data
+      CRAWATCH_REPO: /data/payments-api
+      PORT: "8000"
+    volumes:
+      - cra_watch_data:/data
+    restart: unless-stopped
+    mem_limit: 768m
+
+volumes:
+  cra_watch_data:
+
+networks:
+  default:
+    name: deploy_default
+    external: true

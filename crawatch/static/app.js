@@ -34,6 +34,10 @@
   async function api(path, opts = {}) {
     const r = await fetch(path, { headers: { "Content-Type": "application/json", "X-CRAWatch-Token": localStorage.getItem("crawatch_token") || "" }, ...opts });
     const body = await r.json().catch(() => ({}));
+    if (r.status === 401 && !opts._retried) {
+      const t = window.prompt("This console is public. Enter the review token to run actions:");
+      if (t) { localStorage.setItem("crawatch_token", t.trim()); return api(path, { ...opts, _retried: true }); }
+    }
     if (!r.ok) throw new Error(body.detail || body.error || r.statusText);
     return body;
   }

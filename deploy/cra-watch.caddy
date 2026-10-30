@@ -1,0 +1,7 @@
+# CRA Watch, drop-in for the shared Caddy (/opt/caddy-sites). Published by deploy/publish.sh.
+cra-watch.vantapointlabs.com {
+	encode zstd gzip
+	reverse_proxy cra-watch:8000 {
+		flush_interval -1
+	}
+}
