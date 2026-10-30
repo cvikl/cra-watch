@@ -9,6 +9,15 @@ from . import origit_bridge as O, store
 from .config import settings
 
 
+def _live() -> None:
+    """Print every pipeline event as it happens (for the terminal and the job logs)."""
+    def show(ev: dict) -> None:
+        if ev["kind"] == "sentinel" and ev.get("sha"):
+            return  # per-commit flags are printed as a table at the end
+        print(f"{ev['at'][11:19]}  {ev['kind']:<8} {ev['text']}", flush=True)
+    store.subscribe(show)
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="cra-watch")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -19,6 +28,7 @@ def main(argv: list[str] | None = None) -> int:
     m = sub.add_parser("monitor", help="poll advisory feeds for watched dependencies")
     m.add_argument("--loop", action="store_true")
     m.add_argument("--interval", type=int, default=None)
+    m.add_argument("--only", help="poll one dependency only")
     sub.add_parser("taint", help="Origit taint for a dependency").add_argument("needle")
     sub.add_parser("reset", help="clear incidents, flags, calls and events (keeps the repo)")
     sub.add_parser("status", help="configuration and counts")
@@ -29,15 +39,20 @@ def main(argv: list[str] | None = None) -> int:
         uvicorn.run("crawatch.web:app", host=a.host, port=a.port, log_level="info")
     elif a.cmd == "sentinel":
         from . import sentinel
+        _live()
         for f in sentinel.run():
-            print(f"{f['short']} {f['session_label']:>4} {f['risk']:<8} {', '.join(f['classes'] or [])}  {f['summary'][:90]}")
+            flag = f"{f['risk'].upper():<9}{', '.join(f['classes'] or [])}" if f["risk"] != "none" else "clean"
+            print(f"  {f['short']}  {f['session_label']:>4}  {flag}")
     elif a.cmd == "monitor":
         from . import monitor
+        _live()
         if a.loop:
             monitor.loop(a.interval)
         else:
-            for inc in monitor.run_once():
-                print(json.dumps({k: inc[k] for k in ("id", "dependency", "status")}))
+            for inc in monitor.run_once(only=[a.only] if a.only else None):
+                print(f"\n  incident {inc['id']}  {inc['dependency']}  status: {inc['status']}  awareness {inc['awareness']}")
+                if inc.get("draft"):
+                    print(f"  early warning drafted by {inc['draft']['model']} in {inc['draft']['elapsed_s']} s, awaiting approval at {settings.public_base_url or 'the console'}")
     elif a.cmd == "taint":
         print(json.dumps(O.taint(a.needle), indent=1))
     elif a.cmd == "reset":

@@ -33,6 +33,10 @@ def watchlist() -> list[dict[str, Any]]:
     if not wl:
         wl = default_watchlist()
         store.set_watchlist(wl)
+    for d in wl:  # the demo dependency always carries its vendor-bulletin feed
+        if d["name"] == settings.demo_dependency and settings.demo_bulletin and settings.demo_bulletin not in d.get("bulletins", []):
+            d.setdefault("bulletins", []).append(settings.demo_bulletin)
+            store.set_watchlist(wl)
     return wl
 
 
