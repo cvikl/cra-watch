@@ -36,12 +36,23 @@ def watchlist() -> list[dict[str, Any]]:
     return wl
 
 
-def _is_match(dep: dict[str, Any], title: str, text: str, url: str) -> str | None:
-    """An advisory is about the package when the package is named in its title or URL (not merely mentioned in the
-    body, where generic advisory pages list dozens of packages) and it carries a CVE or GHSA identifier."""
-    name = dep["name"].lower()
-    about = name in (title or "").lower() or name in (url or "").lower()
-    if not about:
+ADVISORY_SOURCE = re.compile(
+    r"^https?://(nvd\.nist\.gov|osv\.dev|www\.cve\.org|cve\.org|security\.snyk\.io|socket\.dev)/"
+    r"|^https?://github\.com/(advisories/|[^/]+/[^/]+/security/advisories/)", re.I)
+
+
+def _names_package(name: str, text: str) -> bool:
+    """Whole-word match: `jest` must not match `jest-config-...`, `typescript` must not match `typescript-sdk`."""
+    return re.search(r"(?<![\w@/.-])" + re.escape(name.lower()) + r"(?![\w-])", (text or "").lower()) is not None
+
+
+def _is_match(dep: dict[str, Any], title: str, text: str, url: str, *, bulletin: bool = False) -> str | None:
+    """An advisory is about the package when it comes from an advisory source (or a registered vendor bulletin),
+    names the package as a whole word in its title or URL, and carries a CVE or GHSA identifier. A body mention is
+    not enough: generic advisory pages list dozens of packages, and issue trackers discuss false positives."""
+    if not bulletin and not ADVISORY_SOURCE.match(url or ""):
+        return None
+    if not (_names_package(dep["name"], title) or _names_package(dep["name"], url)):
         return None
     m = ADVISORY_ID.search(f"{title}\n{text}\n{url}")
     return m.group(1).upper() if m else None
@@ -57,7 +68,8 @@ def check(dep: dict[str, Any]) -> dict[str, Any] | None:
     for r in TV.search_advisories(dep["name"], dep.get("version")):
         candidates.append({**r, "feed": "search"})
     for c in candidates:
-        aid = _is_match(dep, c.get("title") or "", c.get("full_text") or c.get("content") or "", c.get("url") or "")
+        aid = _is_match(dep, c.get("title") or "", c.get("full_text") or c.get("content") or "", c.get("url") or "",
+                        bulletin=c.get("feed") == "bulletin")
         if aid:
             c["advisory_id"] = aid
             return c
