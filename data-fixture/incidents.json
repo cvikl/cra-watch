@@ -3,7 +3,7 @@
   "id": "inc_2280c39bcd",
   "opened_at": "2026-10-29T23:38:01Z",
   "awareness": "2026-10-29T23:38:01Z",
-  "status": "review",
+  "status": "filed",
   "dependency": "fast-pay-utils",
   "version": "2.1.0",
   "advisory": {
@@ -455,13 +455,48 @@
    "prompt_tokens": null,
    "completion_tokens": null
   },
-  "approved_at": null,
-  "approved_by": null,
+  "approved_at": "2026-10-29T23:56:48Z",
+  "approved_by": "compliance lead",
   "error": null,
   "deadlines": {
    "early_warning_24h": "2026-10-30T23:38:01Z",
    "notification_72h": "2026-11-01T23:38:01Z",
    "final_report_1m": "2026-11-28T23:38:01Z"
+  }
+ },
+ {
+  "id": "inc_5b3874ffc4",
+  "opened_at": "2026-10-29T23:56:34Z",
+  "awareness": "2026-10-29T23:56:34Z",
+  "status": "failed",
+  "dependency": "express",
+  "version": "4.21.2",
+  "advisory": {
+   "title": "CVE-2026-0000 express (fixture)",
+   "url": null,
+   "content": "> **⚠️ SYNTHETIC ADVISORY — FOR DEMONSTRATION PURPOSES ONLY**\n> This advisory is entirely fictional and was written to accompany the\n> `origit-demo-payments-api` demo repository. No real package named\n> `fast-pay-utils` is affected. The exfiltration endpoint hardcoded in the\n> malicious release is **`localhost:8080` only** — no data ever leaves the\n> local machine. The advisory is intentionally realistic so that it can be\n> used to demonstrate how compromised-dependency and prompt-injection attacks\n> work in a supply-chain scenario.\n\n---\n\n# GitHub Security Advisory GHSA-demo-f4st-pay0-2100\n\n## Malicious Code & Invisible Prompt Injection in fast-pay-utils 2.1.0\n\n| Field              | Value                                                     |\n|--------------------|-----------------------------------------------------------|\n| **Advisory ID**    | GHSA-demo-f4st-pay0-2100                                  |\n| **Package**        | fast-pay-utils (npm)                                      |\n| **Affected**       | 2.1.0                                                     |\n| **Patched**        | 2.1.1                                                     |\n| **Severity**       | **HIGH** — CVSS 3.1 Score **8.2**                         |\n| **CVSS vector**    | `CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N`           |\n| **CWEs**           | CWE-506 (Embedded Malicious Code), CWE-829 (Inclusion of Functionality from Untrusted Control Sphere) |\n| **Published**      | 2025-01-01 (synthetic)                                    |\n| **Last updated**   | 2025-01-01 (synthetic)                                    |\n\n---\n\n## Summary\n\nRelease **2.1.0** of `fast-pay-utils` contains two distinct malicious\nmechanisms introduced by a compromised contributor:\n\n1. **Embedded credential-exfiltration code** — `src/index.ts` calls\n   `initializeTelemetry()` unconditionally at module import time, snapshots\n   `process.env` and the contents of the project's `.env` file, base64-encodes\n   them, a",
+   "advisory_id": "CVE-2026-0000"
+  },
+  "source": "search",
+  "steps": [
+   {
+    "name": "trace",
+    "at": "2026-10-29T23:56:34Z",
+    "text": "Origit taint: 1 commit"
+   }
+  ],
+  "taint": null,
+  "prior_flags": [],
+  "triage": null,
+  "context": {},
+  "draft": null,
+  "approved_at": null,
+  "approved_by": null,
+  "error": "NemotronError: nvidia/Nemotron-3_5-Lightning: 401 invalid API key",
+  "deadlines": {
+   "early_warning_24h": "2026-10-30T23:56:34Z",
+   "notification_72h": "2026-11-01T23:56:34Z",
+   "final_report_1m": "2026-11-28T23:56:34Z"
   }
  }
 ]

@@ -72,6 +72,7 @@
     if (state.watchlist.length > 4) list.append(el("li", { style: "display:block;border:0;padding:.2rem 0 0" }, el("button", { class: "watch-more", onclick: () => { watchOpen = !watchOpen; render(); } }, watchOpen ? "Show fewer" : `Show all ${state.watchlist.length} watched`)));
     $("#monitor-note").textContent = `Polls NVD, GitHub Advisories, OSV and vendor bulletins through Tavily every ${Math.round(state.config.interval_s / 60)} min on a Nebius Serverless Job.`;
     const b = $("#btn-monitor"); b.classList.toggle("busy", !!state.jobs.monitor); b.disabled = !state.config.tavily;
+    b.title = state.config.tavily ? "Poll the advisory feeds through Tavily now" : "Needs TAVILY_API_KEY";
   }
   function renderCommits() {
     const list = $("#commits");
@@ -88,6 +89,8 @@
       );
     }));
     const b = $("#btn-sentinel"); b.classList.toggle("busy", !!state.jobs.sentinel); b.disabled = !state.config.nebius;
+    b.title = state.config.nebius ? "Scan every agent commit in the Origit store with Nemotron Nano" : "Needs NEBIUS_API_KEY";
+    if (!state.config.nebius && !scanned) $("#sentinel-note").textContent += " Add a Nebius Token Factory key to run the scan.";
   }
   function renderJournal() {
     const evs = state.events.slice(-14).reverse();
@@ -128,7 +131,7 @@
     return el("ol", { class: "ladder" }, ...STEPS.map(([key, name, actor], n) => {
       const st = inc ? stepStatus(inc, key) : "pending";
       const rec = inc && (key === "detect" ? { at: inc.opened_at, text: `${inc.advisory.advisory_id || "Advisory"} via ${inc.source} feed` } : inc.steps.find((s) => s.name === key));
-      const text = key === "review" && inc ? (inc.status === "filed" ? `Approved by ${inc.approved_by}` : inc.status === "review" ? "Awaiting your approval" : "") : rec?.text;
+      const text = key === "review" && inc ? (inc.status === "filed" ? `Approved by ${inc.approved_by}` : inc.status === "review" ? "Awaiting your approval" : "") : (st === "failed" ? "Stopped here, see the error below" : rec?.text);
       return el("li", { class: `step ${st}` }, el("span", { class: "st-no" }, `STEP ${n + 1}`), el("span", { class: "st-name" }, name, st === "done" ? check() : null), el("span", { class: "st-actor" }, actor),
         text ? el("p", { class: "st-text" }, text) : null, rec?.at ? el("span", { class: "st-time" }, hhmm(rec.at)) : null);
     }));
@@ -140,16 +143,16 @@
     const stampText = { detected: "Detected", trace: "Tracing", read: "Reading", triage: "Triage", context: "Context", draft: "Drafting", review: "Awaiting approval", filed: "Filed", failed: "Pipeline failed" }[inc.status] || inc.status;
     const doc = el("article", { class: "doc" },
       el("header", { class: "doc-head" },
-        el("div", { class: "doc-no" }, el("span", { class: "value" }, incNo(inc)), el("span", { class: "sub" }, `Incident record · opened ${fmtT(inc.opened_at)} · early warning under CRA Art. 14(4)(a)`)),
+        el("div", { class: "doc-no" }, el("h1", { class: "value" }, incNo(inc)), el("span", { class: "sub" }, `Incident record · opened ${fmtT(inc.opened_at)} · early warning under CRA Art. 14(4)(a)`)),
         el("div", { class: "doc-status" }, el("span", { class: `stamp ${stampClass}` }, stampText))),
       el("section", { class: "fields" },
         field("Dependency", `${inc.dependency}${inc.version ? "@" + inc.version : ""}`, "npm, introduced by an agent"),
         field("Advisory", adv.url ? el("a", { href: adv.url, target: "_blank", rel: "noopener" }, adv.advisory_id || "source") : (adv.advisory_id || "–"), adv.title),
-        field("Severity", tri ? el("span", { class: `sev sev-${tri.severity}` }, tri.severity, tri.cvss ? ` · ${tri.cvss}` : "") : el("span", { class: "skeleton w60" }), tri ? tri.vulnerability_class : "Nemotron Nano pending"),
+        field("Severity", tri ? el("span", { class: `sev sev-${tri.severity}` }, tri.severity, tri.cvss ? ` · ${tri.cvss}` : "") : inc.status === "failed" ? "not assessed" : el("span", { class: "skeleton w60" }), tri ? tri.vulnerability_class : inc.status === "failed" ? "pipeline stopped before triage" : "Nemotron Nano pending"),
         field("Awareness", fmtT(inc.awareness), "clock starts here"),
         el("div", { class: "field field-clock" }, el("span", { class: "label" }, inc.status === "filed" ? "Filed after" : "Early warning due in"), el("span", { class: "clock", id: "clock" }, "–"), el("span", { class: "sub num" }, `24 h: ${fmtT(inc.deadlines.early_warning_24h)} · 72 h: ${fmtT(inc.deadlines.notification_72h)} · final: ${inc.deadlines.final_report_1m.slice(0, 10)}`)),
       ),
-      el("section", { class: "doc-section" }, el("h3", { class: "sec-title" }, el("span", { class: "sec-no" }, "1"), "Pipeline", el("span", { class: "sec-hint" }, "seven steps, each signed by the system that did it")), renderLadder(inc)),
+      el("section", { class: "doc-section" }, el("h2", { class: "sec-title" }, el("span", { class: "sec-no" }, "1"), "Pipeline", el("span", { class: "sec-hint" }, "seven steps, each signed by the system that did it")), renderLadder(inc)),
       inc.error ? el("div", { class: "notice" }, el("span", {}, inc.error), el("button", { class: "btn", onclick: (e) => act(e.target, `/api/incidents/${inc.id}/rerun`) }, "Re-run pipeline")) : null,
       t ? renderTaint(inc) : null,
       tri ? renderTriage(inc) : null,
@@ -170,31 +173,32 @@
     });
     if (t.rollback_commit) rows.push(el("tr", { class: "rollback" }, el("td", { class: "mono" }, t.rollback_short), el("td", {}, "–"), el("td", { colspan: 4 }, "Last clean commit: roll back here and remove the dependency")));
     return el("section", { class: "doc-section" },
-      el("h3", { class: "sec-title" }, el("span", { class: "sec-no" }, "2"), "Affected components", el("span", { class: "sec-hint" }, `Origit taint for ${t.needle}: ${t.affected.length} commits, sessions ${t.session_labels.join(", ")}; first read ${fmtT(t.first_read?.at)}`, el("span", { class: "scroll-hint" }, " · scroll sideways for files and flags"))),
+      el("h2", { class: "sec-title" }, el("span", { class: "sec-no" }, "2"), "Affected components", el("span", { class: "sec-hint" }, `Origit taint for ${t.needle}: ${t.affected.length} commits, sessions ${t.session_labels.join(", ")}; first read ${fmtT(t.first_read?.at)}`, el("span", { class: "scroll-hint" }, " · scroll sideways for files and flags"))),
       el("div", { class: "tbl-x" }, el("table", { class: "tbl" }, el("thead", {}, el("tr", {}, ...["Commit", "Session", "Agent run", "Files written", "Approved by", "Sentinel flag"].map((h) => el("th", {}, h)))), el("tbody", {}, ...rows))));
   }
   function renderTriage(inc) {
     const tri = inc.triage, ctx = inc.context || {};
     const srcs = [["advisory", inc.advisory.url, inc.advisory.title], ...(ctx.class_background || []).map((r) => ["class", r.url, r.title]), ...(ctx.cra_guidance || []).map((r) => ["CRA", r.url, r.title])].filter((s) => s[1]);
     return el("section", { class: "doc-section" },
-      el("h3", { class: "sec-title" }, el("span", { class: "sec-no" }, "3"), "Assessment", el("span", { class: "sec-hint" }, `${tri.model}`)),
+      el("h2", { class: "sec-title" }, el("span", { class: "sec-no" }, "3"), "Assessment", el("span", { class: "sec-hint" }, `${tri.model}`)),
       el("div", { class: "flag-grid" },
         el("span", { class: "label" }, "Article 14"), el("span", {}, tri.article_14_applies ? "Applies. " : "Does not apply. ", tri.article_14_basis),
         el("span", { class: "label" }, "Data at risk"), el("span", {}, (tri.data_at_risk || []).join(", ") || "–"),
         el("span", { class: "label" }, "Malicious or exploited"), el("span", {}, tri.exploited_or_malicious ? "Yes" : "Not stated"),
         el("span", { class: "label" }, "Summary"), el("span", {}, tri.summary)),
-      srcs.length ? el("h3", { class: "sec-title", style: "margin-top:1.2rem" }, el("span", { class: "sec-no" }, "4"), "Sources read", el("span", { class: "sec-hint" }, "fetched by Tavily, fed to the drafter")) : null,
+      srcs.length ? el("h2", { class: "sec-title", style: "margin-top:1.2rem" }, el("span", { class: "sec-no" }, "4"), "Sources read", el("span", { class: "sec-hint" }, "fetched by Tavily, fed to the drafter")) : null,
       srcs.length ? el("ul", { class: "sources" }, ...srcs.map(([via, url, title]) => el("li", {}, el("span", { class: "via" }, via), el("a", { href: url, target: "_blank", rel: "noopener" }, title || url)))) : null);
   }
   function renderDraft(inc) {
     const d = inc.draft;
-    const sec = el("section", { class: "doc-section" }, el("h3", { class: "sec-title" }, el("span", { class: "sec-no" }, inc.triage ? "5" : "2"), "Early warning draft", el("span", { class: "sec-hint" }, d ? `drafted by ${d.model}` : "Nemotron Ultra on Nebius Token Factory")));
+    const sec = el("section", { class: "doc-section" }, el("h2", { class: "sec-title" }, el("span", { class: "sec-no" }, inc.triage ? "5" : "2"), "Early warning draft", el("span", { class: "sec-hint" }, d ? `drafted by ${d.model}` : "Nemotron Ultra on Nebius Token Factory")));
     if (!d) {
-      sec.append(el("div", { class: "sheet" }, el("div", { class: "skeleton w40" }), el("div", { class: "skeleton" }), el("div", { class: "skeleton w80" }), el("div", { class: "skeleton" }), el("div", { class: "skeleton w60" }),
-        el("p", { class: "draft-meta" }, inc.status === "failed" ? "The pipeline stopped before the draft." : "The draft appears here when Nemotron Ultra has read the advisory, the taint result and the CRA guidance.")));
+      const waiting = inc.status !== "failed";
+      sec.append(el("div", { class: "sheet sheet-empty" }, ...(waiting ? [el("div", { class: "skeleton w40" }), el("div", { class: "skeleton" }), el("div", { class: "skeleton w80" }), el("div", { class: "skeleton" }), el("div", { class: "skeleton w60" })] : []),
+        el("p", { class: "callout" }, waiting ? "The draft appears here when Nemotron Ultra has read the advisory, the taint result and the CRA guidance." : "No draft: the pipeline stopped before Nemotron Ultra ran. Fix the cause named above and re-run the pipeline.")));
       return sec;
     }
-    const sheet = el("div", { class: "sheet" }, el("div", { class: "prose", html: md(d.text) }));
+    const sheet = el("div", { class: inc.status === "filed" ? "sheet stamped" : "sheet" }, el("div", { class: "prose", html: md(d.text) }));
     if (inc.status === "filed") {
       const ms = parse(inc.approved_at) - parse(inc.awareness);
       sheet.prepend(el("div", { class: "stamp-big", "aria-label": "approved and filed" }, "Approved · Filed", el("small", {}, `${dur(ms)} after awareness`)));
@@ -225,17 +229,17 @@
   }
   async function renderCommitDetail(root, c) {
     const f = c.flag;
-    root.append(el("h3", { class: "sec-title" }, el("span", { class: "sec-no" }, "2"), `Commit ${c.short} · session ${c.session_label}`, el("span", { class: "sec-hint" }, c.subject)));
+    root.append(el("h2", { class: "sec-title" }, el("span", { class: "sec-no" }, "2"), `Commit ${c.short} · session ${c.session_label}`, el("span", { class: "sec-hint" }, c.subject)));
     const grid = el("div", { class: "flag-grid" },
       el("span", { class: "label" }, "Read"), el("span", {}, c.read.join(", ") || "–"),
       el("span", { class: "label" }, "Wrote"), el("span", {}, c.wrote.join(", ") || "–"),
       el("span", { class: "label" }, "Added"), el("span", {}, c.added_deps.join(", ") || "–"),
       el("span", { class: "label" }, "Record"), el("span", { class: "mono" }, `sha256 ${c.record_sha256 || "–"}`));
     if (f) grid.append(
-      el("span", { class: "label" }, "Sentinel"), el("span", {}, el("span", { class: `sev sev-${f.risk}` }, f.risk), " ", (f.classes || []).join(", "), f.cwe?.length ? ` · ${f.cwe.join(", ")}` : "", el("span", { class: "draft-meta" }, f.model ? `classified by ${f.model}` : "pattern scan only", `scanned ${fmtT(f.scanned_at)}`)),
+      el("span", { class: "label" }, "Sentinel"), el("span", {}, el("span", { class: `sev sev-${f.risk}` }, f.risk), " ", (f.classes || []).join(", "), f.cwe?.length ? ` · ${f.cwe.join(", ")}` : "", el("span", { class: "draft-meta" }, el("span", {}, f.model ? `classified by ${f.model}` : "pattern scan only"), el("span", {}, `scanned ${fmtT(f.scanned_at)}`))),
       el("span", { class: "label" }, "Summary"), el("span", {}, f.summary),
       el("span", { class: "label" }, "CRA relevance"), el("span", {}, f.cra_relevance || "–"),
-      el("span", { class: "label" }, "Evidence"), el("ul", { class: "evid" }, ...(f.evidence || []).map((e) => el("li", {}, e)), ...(f.findings || []).map((x) => el("li", {}, `${x.source}: ${x.title} — ${x.evidence}`))));
+      el("span", { class: "label" }, "Evidence"), el("ul", { class: "evid" }, ...[...new Set([...(f.evidence || []), ...(f.findings || []).map((x) => `${x.source}: ${x.title} — ${x.evidence}`)])].map((e) => el("li", {}, e))));
     else grid.append(el("span", { class: "label" }, "Sentinel"), el("span", {}, "not scanned yet"));
     root.append(grid);
     try {

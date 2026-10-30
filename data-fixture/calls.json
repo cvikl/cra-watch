@@ -123,5 +123,60 @@
   "tier": "ultra",
   "fixture": true,
   "prompt_chars": 29146
+ },
+ {
+  "id": "call_fd26f2b16a",
+  "at": "2026-10-30T00:01:06Z",
+  "provider": "nebius",
+  "op": "sentinel-classify",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 7144
+ },
+ {
+  "id": "call_5971dd0764",
+  "at": "2026-10-30T00:01:06Z",
+  "provider": "nebius",
+  "op": "sentinel-classify",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 3031
+ },
+ {
+  "id": "call_8db1233d98",
+  "at": "2026-10-30T00:01:06Z",
+  "provider": "nebius",
+  "op": "sentinel-classify",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 2663
+ },
+ {
+  "id": "call_b9db1ad1f1",
+  "at": "2026-10-30T00:01:07Z",
+  "provider": "nebius",
+  "op": "sentinel-classify",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 3339
+ },
+ {
+  "id": "call_15eabbd2da",
+  "at": "2026-10-30T00:01:07Z",
+  "provider": "nebius",
+  "op": "sentinel-classify",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "elapsed_s": 0.0,
+  "tier": "nano",
+  "fixture": true,
+  "prompt_chars": 8436
  }
 ]

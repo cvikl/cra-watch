@@ -142,5 +142,81 @@
   "text": "Draft ready for human review",
   "stage": "review",
   "incident": "inc_2280c39bcd"
+ },
+ {
+  "id": "ev_10e30468ee",
+  "at": "2026-10-29T23:56:34Z",
+  "kind": "detect",
+  "text": "Advisory matched watched dependency express: CVE-2026-0000 express (fixture)",
+  "stage": "detect",
+  "incident": "inc_5b3874ffc4",
+  "url": null
+ },
+ {
+  "id": "ev_f107fd2d57",
+  "at": "2026-10-29T23:56:48Z",
+  "kind": "filed",
+  "text": "Early warning approved and filed 18 min 47 s after awareness; 23 h of the 24 h window left",
+  "stage": "filed",
+  "incident": "inc_2280c39bcd"
+ },
+ {
+  "id": "ev_e6225f367c",
+  "at": "2026-10-30T00:01:06Z",
+  "kind": "sentinel",
+  "text": "Sentinel scan started over the Origit store",
+  "stage": "sentinel"
+ },
+ {
+  "id": "ev_315b34359b",
+  "at": "2026-10-30T00:01:06Z",
+  "kind": "sentinel",
+  "text": "d899879 #45: HIGH hidden-unicode-instruction, embedded-malicious-code",
+  "stage": "sentinel",
+  "sha": "d899879a31ef9dde2406d2ed1649c65458074737",
+  "risk": "high"
+ },
+ {
+  "id": "ev_4673fcbc62",
+  "at": "2026-10-30T00:01:06Z",
+  "kind": "sentinel",
+  "text": "d8f549f #43: HIGH hidden-unicode-instruction, embedded-malicious-code",
+  "stage": "sentinel",
+  "sha": "d8f549f0bf66d73b3c3d6a2e9e6460246325c313",
+  "risk": "high"
+ },
+ {
+  "id": "ev_f18ec42e01",
+  "at": "2026-10-30T00:01:06Z",
+  "kind": "sentinel",
+  "text": "3ccfc39 #43: HIGH hidden-unicode-instruction, embedded-malicious-code",
+  "stage": "sentinel",
+  "sha": "3ccfc39dd7ccab90114b88866f452603910a2a15",
+  "risk": "high"
+ },
+ {
+  "id": "ev_3a7a0b9657",
+  "at": "2026-10-30T00:01:07Z",
+  "kind": "sentinel",
+  "text": "ac31928 #42: HIGH hidden-unicode-instruction, embedded-malicious-code",
+  "stage": "sentinel",
+  "sha": "ac319287a108dd95749e31d6029226887417e4e7",
+  "risk": "high"
+ },
+ {
+  "id": "ev_c3e5c48386",
+  "at": "2026-10-30T00:01:07Z",
+  "kind": "sentinel",
+  "text": "17c436c #42: HIGH hidden-unicode-instruction, embedded-malicious-code",
+  "stage": "sentinel",
+  "sha": "17c436c99d90c6bbe1b57c6c46178099225d5983",
+  "risk": "high"
+ },
+ {
+  "id": "ev_0bdaf4e9a9",
+  "at": "2026-10-30T00:01:07Z",
+  "kind": "sentinel",
+  "text": "Sentinel scan finished: 5 of 10 agent commits carry a risk flag",
+  "stage": "sentinel"
  }
 ]

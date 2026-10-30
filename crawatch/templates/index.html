@@ -41,21 +41,22 @@
         <button class="btn btn-ghost" id="btn-sentinel" title="Scan every agent commit in the Origit store with Nemotron Nano">Run scan</button>
       </div>
       <p class="reg-note" id="sentinel-note"></p>
+      <ol class="legend" aria-label="Risk scale"><li><span class="scale" data-risk="low"><i></i><i></i><i></i><i></i></span>low</li><li><span class="scale" data-risk="medium"><i></i><i></i><i></i><i></i></span>medium</li><li><span class="scale" data-risk="high"><i></i><i></i><i></i><i></i></span>high</li><li><span class="scale" data-risk="critical"><i></i><i></i><i></i><i></i></span>critical</li></ol>
       <ol class="commits" id="commits"></ol>
     </section>
     <section class="reg-block journal-block">
       <div class="reg-head"><h2>Journal</h2><span class="live" id="live-dot" title="Live event stream">live</span></div>
-      <ol class="journal" id="journal" aria-live="polite"></ol>
+      <ol class="journal" id="journal"></ol>
     </section>
   </aside>
 
-  <main class="report" id="report" aria-live="polite"></main>
+  <main class="report" id="report"></main>
 </div>
 
 <template id="tpl-empty">
   <article class="doc">
     <header class="doc-head">
-      <div class="doc-no"><span class="value">Pre-incident checks</span><span class="sub">Sentinel register and advisory watch, before any incident</span></div>
+      <div class="doc-no"><h1 class="value">Pre-incident checks</h1><span class="sub">Sentinel register and advisory watch, before any incident</span></div>
       <div class="doc-status"><span class="stamp stamp-quiet">No open incident</span></div>
     </header>
     <section class="fields fields-3">
@@ -64,7 +65,7 @@
       <div class="field"><span class="label">Risk flags</span><span class="value" data-k="flags"></span></div>
     </section>
     <section class="doc-section">
-      <h3 class="sec-title"><span class="sec-no">1</span>How an incident is handled</h3>
+      <h2 class="sec-title"><span class="sec-no">1</span>How an incident is handled</h2>
       <ol class="ladder" data-k="ladder"></ol>
     </section>
     <section class="doc-section" data-k="commit-detail"></section>

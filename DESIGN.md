@@ -55,6 +55,18 @@ typography:
     fontFamily: "ui-monospace, SF Mono, Menlo, monospace"
     fontSize: "0.78rem"
     fontWeight: 400
+  ramp:
+    display: "3.75rem"
+    displayMobile: "2.4rem"
+    xl: "1.5rem"
+    lg: "1.25rem"
+    base: "1rem"
+    md: "0.9rem"
+    sm: "0.8rem"
+    xs: "0.74rem"
+    mono: "0.78rem"
+    root: "15px"
+    rootMobile: "14px"
 rounded:
   none: "0"
   control: "2px"
@@ -232,12 +244,20 @@ A daylight desk: three neutral layers, three ink strengths, and one signal red w
 **Character:** One grotesque at three widths. Condensed Archivo for the document number and the clock reads like a form's pre-printed header; normal-width Archivo for the body reads like what was typed into it. Tabular numerals are on for the whole body (`tnum`), so columns of times and counts align without extra classes.
 
 ### Hierarchy
-- **Display** (700, 3.75rem, line-height 1, wdth 90, letter-spacing -0.01em): the early-warning countdown only. 56px at the 15px root. Drops to 2.4rem under 720px. Vermilion while running, green when stopped. The band's running-header clock is the same style at 1.25rem.
-- **Headline** (700, 1.5rem, wdth 85, letter-spacing 0.005em): the incident number in the document head. The brand name uses the same condensed treatment at 1.1rem / wdth 88.
-- **Title** (700, 1rem): numbered section titles ("1 Pipeline"), with a 1.5rem boxed section number beside them. Prose headings inside the draft sheet are 1.25rem (h1) and 1rem (h2, h3).
-- **Body** (400, 1rem = 15px root, line-height 1.45; 14px root under 720px): document fields are 0.95rem / 500; register rows 0.86rem; tables 0.84rem; ladder step text 0.76rem / line-height 1.35. The draft prose is 0.95rem / line-height 1.55 at a 72ch measure.
-- **Label** (600, 0.74rem, letter-spacing 0.08em, uppercase, `ink-3`): field labels, table headers, step numbers, journal keys, the "live" indicator. Register headings are the same voice at 0.8rem / 700 / `ink-2`. Stamps push it to 0.78rem / 800 / 0.14em (the big stamp: 1rem / 900 / 0.16em).
-- **Mono** (0.78rem): SHAs in the register at 0.76rem, evidence lines 0.76rem, diffs 0.72rem / line-height 1.4.
+The ramp is eight tokens in `:root`, and every `font-size` in app.css uses one of them. Root is 15px (14px under 720px), so the rem values below are the only sizes on the page.
+
+| Token | Size | Used for |
+|---|---|---|
+| `--fs-display` | 3.75rem (56px), 700, line-height 1, wdth 90, -0.01em | the early-warning countdown only; `--fs-display-mobile` 2.4rem under 720px; vermilion while running, green when stopped |
+| `--fs-xl` | 1.5rem, 700, wdth 85, 0.005em | the incident number (h1) |
+| `--fs-lg` | 1.25rem | the band's running-header clock; the draft sheet's h1 |
+| `--fs-base` | 1rem, line-height 1.45 (prose 1.55 at 72ch) | body, document field values (500), the draft prose, section titles (700), the brand name (700, wdth 88) |
+| `--fs-md` | 0.9rem | buttons, step names (700), the band product line, the primary action |
+| `--fs-sm` | 0.8rem | register rows, tables, step text (line-height 1.35), hints, notes, journal, sources, tabs |
+| `--fs-xs` | 0.74rem, 600, 0.08em, uppercase for labels | field labels, table headers, step numbers, journal keys, meta lines, severity chips, stamps (800, 0.14em), the big stamp's second line |
+| `--fs-mono` | 0.78rem, ui-monospace | SHAs, evidence lines, diffs |
+
+Inline code inside the draft prose is 0.85em of its line.
 
 ### Named Rules
 **The Width Axis Rule.** Hierarchy comes from Archivo's width axis and weight, not from a second face. Condense (wdth 85 to 90) only for the incident number, the brand and the clock; everything readable stays at wdth 100.

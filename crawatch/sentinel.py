@@ -65,7 +65,14 @@ def scan_commit(c: dict[str, Any], rec: dict[str, Any]) -> tuple[list[dict[str, 
                     findings.append({"source": "sink-scan", "title": title, "class": cls, "severity": "informational",
                                      "evidence": f"{ref}: {m.group(0)}", "ref": ref})
                     snippets.append(f"== {ref} (read), {title}\n{_snippet(text, m.start())}")
-    return findings, "\n\n".join(snippets)[:9000]
+    seen: set[tuple[str, str]] = set()
+    unique = []
+    for f in findings:
+        key = (f.get("title") or f.get("asi") or "", f.get("evidence") or "")
+        if key not in seen:
+            seen.add(key)
+            unique.append(f)
+    return unique, "\n\n".join(dict.fromkeys(snippets))[:9000]
 
 
 def flag_commit(c: dict[str, Any], rec: dict[str, Any], *, classify: bool = True) -> dict[str, Any]:
