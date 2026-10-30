@@ -1,438 +1,178 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-30T13:17:35Z",
+  "generatedAt": "2026-10-30T16:40:00Z",
   "title": "Design System: CRA Watch",
   "extensions": {
     "colorMeta": {
-      "link-blue": {
-        "role": "primary",
-        "displayName": "Link Blue",
-        "canonical": "#0969da",
-        "primerVar": "--fgColor-accent",
-        "tonalRamp": [
-          "oklch(15% 0.16 255)",
-          "oklch(25% 0.16 255)",
-          "oklch(35% 0.16 255)",
-          "oklch(45% 0.16 255)",
-          "oklch(55% 0.16 255)",
-          "oklch(65% 0.16 255)",
-          "oklch(75% 0.16 255)",
-          "oklch(85% 0.16 255)"
-        ]
-      },
-      "deadline-red": {
-        "role": "secondary",
-        "displayName": "Deadline Red",
-        "canonical": "#d1242f",
-        "primerVar": "--fgColor-danger",
-        "tonalRamp": [
-          "oklch(15% 0.18 25)",
-          "oklch(25% 0.18 25)",
-          "oklch(35% 0.18 25)",
-          "oklch(45% 0.18 25)",
-          "oklch(55% 0.18 25)",
-          "oklch(65% 0.18 25)",
-          "oklch(75% 0.18 25)",
-          "oklch(85% 0.18 25)"
-        ]
-      },
-      "verified-green": {
-        "role": "secondary",
-        "displayName": "Verified Green",
-        "canonical": "#1a7f37",
-        "primerVar": "--fgColor-success",
-        "tonalRamp": [
-          "oklch(15% 0.13 150)",
-          "oklch(25% 0.13 150)",
-          "oklch(35% 0.13 150)",
-          "oklch(45% 0.13 150)",
-          "oklch(55% 0.13 150)",
-          "oklch(65% 0.13 150)",
-          "oklch(75% 0.13 150)",
-          "oklch(85% 0.13 150)"
-        ]
-      },
-      "amber": {
-        "role": "tertiary",
-        "displayName": "Amber",
-        "canonical": "#9a6700",
-        "primerVar": "--fgColor-attention",
-        "tonalRamp": [
-          "oklch(15% 0.12 80)",
-          "oklch(25% 0.12 80)",
-          "oklch(35% 0.12 80)",
-          "oklch(45% 0.12 80)",
-          "oklch(55% 0.12 80)",
-          "oklch(65% 0.12 80)",
-          "oklch(75% 0.12 80)",
-          "oklch(85% 0.12 80)"
-        ]
-      },
-      "done-purple": {
-        "role": "tertiary",
-        "displayName": "Done Purple",
-        "canonical": "#8250df",
-        "primerVar": "--bgColor-done-emphasis",
-        "tonalRamp": [
-          "oklch(15% 0.18 295)",
-          "oklch(25% 0.18 295)",
-          "oklch(35% 0.18 295)",
-          "oklch(45% 0.18 295)",
-          "oklch(55% 0.18 295)",
-          "oklch(65% 0.18 295)",
-          "oklch(75% 0.18 295)",
-          "oklch(85% 0.18 295)"
-        ]
-      },
-      "fg-default": {
-        "role": "neutral",
-        "displayName": "Default Ink",
-        "canonical": "#1f2328",
-        "primerVar": "--fgColor-default",
-        "tonalRamp": [
-          "oklch(15% 0.01 250)",
-          "oklch(25% 0.01 250)",
-          "oklch(35% 0.01 250)",
-          "oklch(45% 0.01 250)",
-          "oklch(55% 0.01 250)",
-          "oklch(65% 0.01 250)",
-          "oklch(75% 0.01 250)",
-          "oklch(85% 0.01 250)"
-        ]
-      },
-      "fg-muted": {
-        "role": "neutral",
-        "displayName": "Muted Ink",
-        "canonical": "#59636e",
-        "primerVar": "--fgColor-muted",
-        "tonalRamp": [
-          "oklch(15% 0.015 250)",
-          "oklch(25% 0.015 250)",
-          "oklch(35% 0.015 250)",
-          "oklch(45% 0.015 250)",
-          "oklch(55% 0.015 250)",
-          "oklch(65% 0.015 250)",
-          "oklch(75% 0.015 250)",
-          "oklch(85% 0.015 250)"
-        ]
-      },
-      "bg-default": {
-        "role": "neutral",
-        "displayName": "Page White",
-        "canonical": "#ffffff",
-        "primerVar": "--bgColor-default",
-        "tonalRamp": [
-          "oklch(15% 0.005 250)",
-          "oklch(25% 0.005 250)",
-          "oklch(35% 0.005 250)",
-          "oklch(45% 0.005 250)",
-          "oklch(55% 0.005 250)",
-          "oklch(65% 0.005 250)",
-          "oklch(75% 0.005 250)",
-          "oklch(85% 0.005 250)"
-        ]
-      },
-      "bg-muted": {
-        "role": "neutral",
-        "displayName": "Panel Grey",
-        "canonical": "#f6f8fa",
-        "primerVar": "--bgColor-muted",
-        "tonalRamp": [
-          "oklch(15% 0.01 240)",
-          "oklch(25% 0.01 240)",
-          "oklch(35% 0.01 240)",
-          "oklch(45% 0.01 240)",
-          "oklch(55% 0.01 240)",
-          "oklch(65% 0.01 240)",
-          "oklch(75% 0.01 240)",
-          "oklch(85% 0.01 240)"
-        ]
-      },
-      "border-default": {
-        "role": "neutral",
-        "displayName": "Hairline",
-        "canonical": "#d1d9e0",
-        "primerVar": "--borderColor-default",
-        "tonalRamp": [
-          "oklch(15% 0.015 240)",
-          "oklch(25% 0.015 240)",
-          "oklch(35% 0.015 240)",
-          "oklch(45% 0.015 240)",
-          "oklch(55% 0.015 240)",
-          "oklch(65% 0.015 240)",
-          "oklch(75% 0.015 240)",
-          "oklch(85% 0.015 240)"
-        ]
-      },
-      "button-green": {
-        "role": "secondary",
-        "displayName": "Button Green",
-        "canonical": "#1f883d",
-        "primerVar": "--button-primary-bgColor-rest",
-        "tonalRamp": [
-          "oklch(15% 0.14 150)",
-          "oklch(25% 0.14 150)",
-          "oklch(35% 0.14 150)",
-          "oklch(45% 0.14 150)",
-          "oklch(55% 0.14 150)",
-          "oklch(65% 0.14 150)",
-          "oklch(75% 0.14 150)",
-          "oklch(85% 0.14 150)"
-        ]
-      },
-      "mark-tile": {
-        "role": "neutral",
-        "displayName": "Mark Slate (favicon only)",
-        "canonical": "#24292f",
-        "tonalRamp": [
-          "oklch(15% 0.015 250)",
-          "oklch(25% 0.015 250)",
-          "oklch(35% 0.015 250)",
-          "oklch(45% 0.015 250)",
-          "oklch(55% 0.015 250)",
-          "oklch(65% 0.015 250)",
-          "oklch(75% 0.015 250)",
-          "oklch(85% 0.015 250)"
-        ]
-      },
-      "mark-arc": {
-        "role": "secondary",
-        "displayName": "Mark Arc (favicon only)",
-        "canonical": "#ff8182",
-        "tonalRamp": [
-          "oklch(15% 0.12 20)",
-          "oklch(25% 0.12 20)",
-          "oklch(35% 0.12 20)",
-          "oklch(45% 0.12 20)",
-          "oklch(55% 0.12 20)",
-          "oklch(65% 0.12 20)",
-          "oklch(75% 0.12 20)",
-          "oklch(85% 0.12 20)"
-        ]
-      }
+      "ink": { "role": "primary", "displayName": "Ink", "canonical": "#131A23", "cssVar": "--ink", "tonalRamp": ["oklch(15% 0.02 255)", "oklch(25% 0.02 255)", "oklch(35% 0.02 255)", "oklch(45% 0.02 255)", "oklch(55% 0.02 255)", "oklch(65% 0.02 255)", "oklch(75% 0.02 255)", "oklch(85% 0.02 255)"] },
+      "red": { "role": "secondary", "displayName": "Clock Red", "canonical": "#B3261E", "cssVar": "--red", "tonalRamp": ["oklch(15% 0.17 30)", "oklch(25% 0.17 30)", "oklch(35% 0.17 30)", "oklch(45% 0.17 30)", "oklch(55% 0.17 30)", "oklch(65% 0.17 30)", "oklch(75% 0.17 30)", "oklch(85% 0.17 30)"] },
+      "red-bg": { "role": "secondary", "displayName": "Red Tint", "canonical": "#FBE9E7", "cssVar": "--red-bg", "tonalRamp": ["oklch(15% 0.03 30)", "oklch(25% 0.03 30)", "oklch(35% 0.03 30)", "oklch(45% 0.03 30)", "oklch(55% 0.03 30)", "oklch(65% 0.03 30)", "oklch(75% 0.03 30)", "oklch(85% 0.03 30)"] },
+      "green": { "role": "secondary", "displayName": "Filed Green", "canonical": "#0E6A4E", "cssVar": "--green", "tonalRamp": ["oklch(15% 0.09 165)", "oklch(25% 0.09 165)", "oklch(35% 0.09 165)", "oklch(45% 0.09 165)", "oklch(55% 0.09 165)", "oklch(65% 0.09 165)", "oklch(75% 0.09 165)", "oklch(85% 0.09 165)"] },
+      "green-bg": { "role": "secondary", "displayName": "Green Tint", "canonical": "#E2F1EA", "cssVar": "--green-bg", "tonalRamp": ["oklch(15% 0.03 165)", "oklch(25% 0.03 165)", "oklch(35% 0.03 165)", "oklch(45% 0.03 165)", "oklch(55% 0.03 165)", "oklch(65% 0.03 165)", "oklch(75% 0.03 165)", "oklch(85% 0.03 165)"] },
+      "amber": { "role": "tertiary", "displayName": "Attention Amber", "canonical": "#8A5A00", "cssVar": "--amber", "tonalRamp": ["oklch(15% 0.12 75)", "oklch(25% 0.12 75)", "oklch(35% 0.12 75)", "oklch(45% 0.12 75)", "oklch(55% 0.12 75)", "oklch(65% 0.12 75)", "oklch(75% 0.12 75)", "oklch(85% 0.12 75)"] },
+      "amber-bg": { "role": "tertiary", "displayName": "Amber Tint", "canonical": "#FBF0D9", "cssVar": "--amber-bg", "tonalRamp": ["oklch(15% 0.04 85)", "oklch(25% 0.04 85)", "oklch(35% 0.04 85)", "oklch(45% 0.04 85)", "oklch(55% 0.04 85)", "oklch(65% 0.04 85)", "oklch(75% 0.04 85)", "oklch(85% 0.04 85)"] },
+      "blue": { "role": "tertiary", "displayName": "Link Blue", "canonical": "#1F4E8C", "cssVar": "--blue", "tonalRamp": ["oklch(15% 0.12 260)", "oklch(25% 0.12 260)", "oklch(35% 0.12 260)", "oklch(45% 0.12 260)", "oklch(55% 0.12 260)", "oklch(65% 0.12 260)", "oklch(75% 0.12 260)", "oklch(85% 0.12 260)"] },
+      "blue-bg": { "role": "tertiary", "displayName": "Blue Tint", "canonical": "#E4ECF7", "cssVar": "--blue-bg", "tonalRamp": ["oklch(15% 0.03 260)", "oklch(25% 0.03 260)", "oklch(35% 0.03 260)", "oklch(45% 0.03 260)", "oklch(55% 0.03 260)", "oklch(65% 0.03 260)", "oklch(75% 0.03 260)", "oklch(85% 0.03 260)"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#F4F6F8", "cssVar": "--paper", "tonalRamp": ["oklch(15% 0.008 240)", "oklch(25% 0.008 240)", "oklch(35% 0.008 240)", "oklch(45% 0.008 240)", "oklch(55% 0.008 240)", "oklch(65% 0.008 240)", "oklch(75% 0.008 240)", "oklch(85% 0.008 240)"] },
+      "surface": { "role": "neutral", "displayName": "Surface", "canonical": "#FFFFFF", "cssVar": "--surface", "tonalRamp": ["oklch(15% 0 0)", "oklch(25% 0 0)", "oklch(35% 0 0)", "oklch(45% 0 0)", "oklch(55% 0 0)", "oklch(65% 0 0)", "oklch(75% 0 0)", "oklch(85% 0 0)"] },
+      "ink-2": { "role": "neutral", "displayName": "Ink 2", "canonical": "#465262", "cssVar": "--ink-2", "tonalRamp": ["oklch(15% 0.025 250)", "oklch(25% 0.025 250)", "oklch(35% 0.025 250)", "oklch(45% 0.025 250)", "oklch(55% 0.025 250)", "oklch(65% 0.025 250)", "oklch(75% 0.025 250)", "oklch(85% 0.025 250)"] },
+      "ink-3": { "role": "neutral", "displayName": "Ink 3", "canonical": "#5F6B7A", "cssVar": "--ink-3", "tonalRamp": ["oklch(15% 0.02 250)", "oklch(25% 0.02 250)", "oklch(35% 0.02 250)", "oklch(45% 0.02 250)", "oklch(55% 0.02 250)", "oklch(65% 0.02 250)", "oklch(75% 0.02 250)", "oklch(85% 0.02 250)"] },
+      "rule": { "role": "neutral", "displayName": "Rule", "canonical": "#D5DBE2", "cssVar": "--rule", "tonalRamp": ["oklch(15% 0.012 245)", "oklch(25% 0.012 245)", "oklch(35% 0.012 245)", "oklch(45% 0.012 245)", "oklch(55% 0.012 245)", "oklch(65% 0.012 245)", "oklch(75% 0.012 245)", "oklch(85% 0.012 245)"] },
+      "primary-hover": { "role": "primary", "displayName": "Primary Hover (pure black, the stylesheet's one literal)", "canonical": "#000000", "tonalRamp": ["oklch(15% 0 0)", "oklch(25% 0 0)", "oklch(35% 0 0)", "oklch(45% 0 0)", "oklch(55% 0 0)", "oklch(65% 0 0)", "oklch(75% 0 0)", "oklch(85% 0 0)"] }
     },
     "typographyMeta": {
-      "display": {
-        "displayName": "Countdown",
-        "purpose": "The 56px clock only (40px below 544px). Red running, green stopped, tabular numerals."
-      },
-      "headline": {
-        "displayName": "Page Title",
-        "purpose": "The single h1: incident number or 'No open incident'. Primer f2 lh-condensed, 22px below 768px."
-      },
-      "title": {
-        "displayName": "Section Head",
-        "purpose": "'Pipeline' and 'Early warning' (Primer f4) and the brand wordmark."
-      },
-      "body": {
-        "displayName": "Body",
-        "purpose": "Page text, step names, the draft at 14px inside markdown-body."
-      },
-      "label": {
-        "displayName": "Label / Meta",
-        "purpose": "Pills (500), captions, descriptions, footer registers, the approval stamp (Primer f6, Label)."
-      },
-      "mono": {
-        "displayName": "Mono",
-        "purpose": "SHAs, HH:MM:SS, paths, model ids, token counts, evidence blocks; tabular numerals."
-      }
+      "display": { "displayName": "Headline sentence (h1)", "purpose": "The single h1, a complete sentence stating the incident's condition. Plex Sans Condensed 700, text-wrap balance." },
+      "headline": { "displayName": "Section sentence (h2)", "purpose": "Section h2s, also sentences." },
+      "clock": { "displayName": "Countdown", "purpose": "The 44px clock in the first stat tile (36px below 560px). Red running, green stopped." },
+      "figure": { "displayName": "Stat figure", "purpose": "The other stat tiles: awareness time, severity, affected commits." },
+      "wordmark": { "displayName": "Wordmark", "purpose": "'CRA Watch' beside the 30px stroked clock mark." },
+      "lede": { "displayName": "Lede", "purpose": "The 19px Ink 2 paragraph under the h1, max 720px." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs at 16px/1.6, max 720px; 15px inside the draft sheet." },
+      "table": { "displayName": "Table / step text", "purpose": "Table cells, step sentences, the error flash." },
+      "note": { "displayName": "Note", "purpose": "13.5px Ink 3 captions, the footer, the draft provenance line." },
+      "label": { "displayName": "Column head", "purpose": "Table heads: Mono 500 11px, 0.06em, uppercase, Ink 3. Step tags share the cut without uppercase." },
+      "tag": { "displayName": "Status tag", "purpose": "Mono 500 12px for .s tags and the advisory cite line." },
+      "mono": { "displayName": "Mono", "purpose": "Inline code, SHAs, model ids, paths at 13px; evidence lines at 12.5px/1.55." }
     },
-    "shadows": [
-      {
-        "name": "button-rest",
-        "value": "0px 1px 0px 0px #1f23280a",
-        "purpose": "Primer btn and btn-primary at rest; never applied by hand."
-      },
-      {
-        "name": "state-ring",
-        "value": "inset 0 0 0 1px var(--borderColor-<role>-emphasis)",
-        "purpose": "Primer State pills and the done badge; keeps a filled pill crisp on white."
-      },
-      {
-        "name": "running-badge-halo",
-        "value": "0 0 .2em var(--borderColor-accent-muted)",
-        "purpose": "Primer's treatment on the active TimelineItem badge."
-      }
-    ],
+    "shadows": [],
     "motion": [
-      {
-        "name": "control-transition",
-        "value": "80ms cubic-bezier(0.33, 1, 0.68, 1)",
-        "purpose": "Primer btn and details summary: color, background, shadow, border. Hover shortens to 100ms."
-      },
-      {
-        "name": "clock-tick",
-        "value": "1000ms step",
-        "purpose": "Countdown and mini clock re-render once a second; no easing, no animation."
-      }
+      { "name": "step-border", "value": "border-color .2s", "purpose": "The running step's blue border; only under prefers-reduced-motion: no-preference." },
+      { "name": "clock-tick", "value": "1000ms step", "purpose": "The countdown re-renders once a second; no easing, no animation." }
     ],
     "breakpoints": [
-      {
-        "name": "sm",
-        "value": "544px",
-        "purpose": "Below 544px: clock 40px, ledger collapses to time and provider, affected-row pill wraps, product name hidden."
-      },
-      {
-        "name": "md",
-        "value": "768px",
-        "purpose": "Primer f2 steps from 22px to 24px."
-      },
-      {
-        "name": "page",
-        "value": "760px",
-        "purpose": "Fixed measure of .page (top bar, main, footer)."
-      }
+      { "name": "narrow", "value": "560px", "purpose": "Below 560px: steps collapse to two columns with the tag under the text, clock 36px, draft sheet padding 18px." },
+      { "name": "wrap", "value": "1000px", "purpose": "Max width of .wrap; 16px body padding either side." },
+      { "name": "measure", "value": "720px", "purpose": "Max width of paragraphs and the lede; the advisory box stops at 760px." }
     ],
-    "vendor": {
-      "primer": "crawatch/static/vendor/primer.css",
-      "theme": "html[data-color-mode=light][data-light-theme=light]",
-      "markdown": "marked + DOMPurify into .markdown-body",
-      "overrides": "crawatch/static/app.css"
+    "fonts": {
+      "source": "crawatch/static/fonts/plex.css, self-hosted, SIL OFL 1.1, latin subset, font-display swap",
+      "weights": { "IBM Plex Sans": [400, 500, 600], "IBM Plex Sans Condensed": [600, 700], "IBM Plex Mono": [400, 500] },
+      "preload": "ibm-plex-sans-condensed-700.woff2"
+    },
+    "supersedes": {
+      "directionContract": ".impeccable/surfaces/crawatch-templates-index-html.md (Origit-derived glass console, dark top bar, two columns, Onest 13px): superseded by this documentary world.",
+      "priorSystem": "Primer CSS based DESIGN.md of 2026-10-30 13:17Z: discarded; app.css no longer loads Primer.",
+      "branding": "Product is CRA Watch only; the provenance engine is unnamed in the UI (the step reads 'provenance records')."
     }
   },
   "components": [
     {
-      "name": "Small Button",
+      "name": "Default Button",
       "kind": "button",
-      "refersTo": "button-small",
-      "description": "Primer btn btn-sm: register actions, Copy and Download, Re-run.",
-      "html": "<button class=\"ds-btn-sm\" type=\"button\">Poll feeds</button>",
-      "css": ".ds-btn-sm{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;font-size:12px;font-weight:500;line-height:20px;padding:3px 12px;color:var(--button-default-fgColor-rest, #25292e);background:var(--button-default-bgColor-rest, #f6f8fa);border:1px solid var(--button-default-borderColor-rest, #d1d9e0);border-radius:6px;box-shadow:0 1px 0 0 #1f23280a;cursor:pointer;transition:80ms cubic-bezier(0.33,1,0.68,1);transition-property:color,background-color,box-shadow,border-color} .ds-btn-sm:hover{background:var(--button-default-bgColor-hover, #eff2f5)} .ds-btn-sm:focus-visible{outline:2px solid var(--focus-outlineColor, #0969da);outline-offset:-2px} .ds-btn-sm:disabled{color:var(--fgColor-disabled, #818b98);cursor:default}"
+      "refersTo": "button-default",
+      "description": "White, hairline, ink text; hover darkens the border. 'Download the draft', 'Source on GitHub'.",
+      "html": "<button class=\"ds-btn\" type=\"button\">Download the draft</button>",
+      "css": ".ds-btn{display:inline-block;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1.4;padding:10px 16px;border-radius:6px;border:1px solid var(--rule,#D5DBE2);background:var(--surface,#FFFFFF);color:var(--ink,#131A23);text-decoration:none;cursor:pointer} .ds-btn:hover{border-color:var(--ink-3,#5F6B7A)} .ds-btn:focus-visible{outline:2px solid var(--blue,#1F4E8C);outline-offset:2px} .ds-btn:disabled{opacity:.5;cursor:not-allowed}"
     },
     {
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Primer btn btn-primary: 'Run the live demo' beside the empty-state title.",
-      "html": "<button class=\"ds-btn-primary\" type=\"button\">Run the live demo</button>",
-      "css": ".ds-btn-primary{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;font-size:14px;font-weight:500;line-height:20px;padding:5px 16px;color:#fff;background:var(--button-primary-bgColor-rest, #1f883d);border:1px solid var(--button-primary-borderColor-rest, #1f232826);border-radius:6px;box-shadow:0 1px 0 0 #1f23280a;cursor:pointer;transition:80ms cubic-bezier(0.33,1,0.68,1);transition-property:color,background-color,box-shadow,border-color} .ds-btn-primary:hover{background:var(--button-primary-bgColor-hover, #1c8139)} .ds-btn-primary:focus-visible{outline:2px solid var(--focus-outlineColor, #0969da);outline-offset:-2px} .ds-btn-primary:disabled{background:var(--button-primary-bgColor-disabled, #95d8a6);cursor:default}"
+      "description": "Ink fill, paper text; hover to pure black. One per state: run the demo, review, approve and file.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Approve and file</button>",
+      "css": ".ds-btn-primary{display:inline-block;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1.4;padding:10px 16px;border-radius:6px;border:1px solid var(--ink,#131A23);background:var(--ink,#131A23);color:var(--paper,#F4F6F8);cursor:pointer} .ds-btn-primary:hover{background:#000} .ds-btn-primary:focus-visible{outline:2px solid var(--blue,#1F4E8C);outline-offset:2px} .ds-btn-primary:disabled{opacity:.5;cursor:not-allowed}"
     },
     {
-      "name": "Approve Button",
+      "name": "Small Button",
       "kind": "button",
-      "refersTo": "button-primary-large",
-      "description": "Primer btn btn-primary btn-large: the one 'Approve and file' control under the draft.",
-      "html": "<button class=\"ds-btn-approve\" type=\"button\">Approve and file</button>",
-      "css": ".ds-btn-approve{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;font-size:14px;font-weight:500;line-height:1.5;padding:.75em 1.5em;color:#fff;background:var(--button-primary-bgColor-rest, #1f883d);border:1px solid var(--button-primary-borderColor-rest, #1f232826);border-radius:.5em;box-shadow:0 1px 0 0 #1f23280a;cursor:pointer;transition:80ms cubic-bezier(0.33,1,0.68,1);transition-property:color,background-color,box-shadow,border-color} .ds-btn-approve:hover{background:var(--button-primary-bgColor-hover, #1c8139)} .ds-btn-approve:focus-visible{outline:2px solid var(--focus-outlineColor, #0969da);outline-offset:-2px}"
+      "refersTo": "button-small",
+      "description": "Register and draft actions: Poll feeds, Run scan, Copy, Download .md, Re-run.",
+      "html": "<button class=\"ds-btn-small\" type=\"button\">Poll feeds</button>",
+      "css": ".ds-btn-small{display:inline-block;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:13.5px;font-weight:600;line-height:1.4;padding:6px 12px;border-radius:6px;border:1px solid var(--rule,#D5DBE2);background:var(--surface,#FFFFFF);color:var(--ink,#131A23);cursor:pointer} .ds-btn-small:hover{border-color:var(--ink-3,#5F6B7A)} .ds-btn-small:focus-visible{outline:2px solid var(--blue,#1F4E8C);outline-offset:2px} .ds-btn-small:disabled{opacity:.5;cursor:not-allowed}"
     },
     {
-      "name": "Risk Label",
+      "name": "Status Tags",
       "kind": "chip",
-      "refersTo": "label-neutral",
-      "description": "Primer Label outline pill; risk ladder: low accent, medium attention, high and critical danger, success for live and the approval stamp.",
-      "html": "<span class=\"ds-label\">advisory</span> <span class=\"ds-label ds-label--accent\">low</span> <span class=\"ds-label ds-label--attention\">medium</span> <span class=\"ds-label ds-label--danger\">high 8.2</span> <span class=\"ds-label ds-label--success ds-label--large\">Approved and filed 00:41:07 after awareness</span>",
-      "css": ".ds-label{display:inline-block;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;font-size:12px;font-weight:500;line-height:18px;padding:0 6px;border:1px solid var(--borderColor-default, #d1d9e0);border-radius:9999px;white-space:nowrap;color:var(--fgColor-default, #1f2328)} .ds-label--accent{border-color:currentColor;color:var(--fgColor-accent, #0969da)} .ds-label--attention{border-color:currentColor;color:var(--fgColor-attention, #9a6700)} .ds-label--danger{border-color:currentColor;color:var(--fgColor-danger, #d1242f)} .ds-label--success{border-color:currentColor;color:var(--fgColor-success, #1a7f37)} .ds-label--large{line-height:22px;padding:0 8px}"
+      "refersTo": "tag-verified",
+      "description": "Mono 12px tag on its hue's tint: verified, pending, attention, danger, neutral. The word is always printed.",
+      "html": "<span class=\"ds-s ds-v\">live</span> <span class=\"ds-s ds-p\">low</span> <span class=\"ds-s ds-h\">medium</span> <span class=\"ds-s ds-d\">high</span> <span class=\"ds-s ds-n\">clean</span>",
+      "css": ".ds-s{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;font-weight:500;padding:2px 7px;border-radius:3px;white-space:nowrap} .ds-v{background:var(--green-bg,#E2F1EA);color:var(--green,#0E6A4E)} .ds-p{background:var(--blue-bg,#E4ECF7);color:var(--blue,#1F4E8C)} .ds-h{background:var(--amber-bg,#FBF0D9);color:var(--amber,#8A5A00)} .ds-d{background:var(--red-bg,#FBE9E7);color:var(--red,#B3261E)} .ds-n{background:var(--paper,#F4F6F8);color:var(--ink-3,#5F6B7A)}"
     },
     {
-      "name": "State Pill",
-      "kind": "chip",
-      "refersTo": "state-open",
-      "description": "Primer State filled pill, lifecycle only: open green, merged purple, closed red, draft grey. One per page, beside the h1.",
-      "html": "<span class=\"ds-state ds-state--open\">Awaiting approval</span> <span class=\"ds-state ds-state--merged\">Filed</span> <span class=\"ds-state ds-state--closed\">Pipeline failed</span> <span class=\"ds-state ds-state--draft\">No open incident</span>",
-      "css": ".ds-state{display:inline-block;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;font-size:14px;font-weight:500;line-height:20px;padding:4px 12px;border-radius:2em;color:#fff;text-align:center;white-space:nowrap;border:1px solid transparent} .ds-state--open{background:var(--bgColor-open-emphasis, #1f883d);box-shadow:inset 0 0 0 1px var(--borderColor-open-emphasis, #1a7f37)} .ds-state--merged{background:var(--bgColor-done-emphasis, #8250df);box-shadow:inset 0 0 0 1px var(--borderColor-done-emphasis, #8250df)} .ds-state--closed{background:var(--bgColor-closed-emphasis, #cf222e);box-shadow:inset 0 0 0 1px var(--borderColor-closed-emphasis, #cf222e)} .ds-state--draft{background:var(--bgColor-neutral-emphasis, #59636e);box-shadow:inset 0 0 0 1px var(--borderColor-neutral-emphasis, #59636e)}"
-    },
-    {
-      "name": "Register Box",
+      "name": "Advisory Cite Box",
       "kind": "card",
-      "refersTo": "box",
-      "description": "Primer Box with grey Box-header, a small action, and row-grid Box-rows (commit register shown, with a selected row).",
-      "html": "<div class=\"ds-box\"><div class=\"ds-box-header\"><h3 class=\"ds-box-title\">Sentinel register</h3><button class=\"ds-box-btn\" type=\"button\">Run scan</button></div><div class=\"ds-box-row ds-commit-row\"><span class=\"ds-mono ds-accent\">a1b2c3d</span><span class=\"ds-trunc\"><span class=\"ds-muted\">#42 </span>add fast-pay-utils for IBAN parsing</span><span class=\"ds-label-sm ds-danger\">high</span></div><div class=\"ds-box-row ds-commit-row ds-selected\"><span class=\"ds-mono ds-accent\">e4f5a6b</span><span class=\"ds-trunc\"><span class=\"ds-muted\">#47 </span>wire payout retries</span><span class=\"ds-muted\">clean</span></div><div class=\"ds-box-row ds-commit-row\"><span class=\"ds-mono ds-accent\">9c8d7e6</span><span class=\"ds-trunc\"><span class=\"ds-muted\">#49 </span>refactor ledger export</span><span class=\"ds-muted\">–</span></div></div>",
-      "css": ".ds-box{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;font-size:12px;line-height:1.5;color:var(--fgColor-default, #1f2328);background:var(--bgColor-default, #fff);border:1px solid var(--borderColor-default, #d1d9e0);border-radius:6px;max-width:420px} .ds-box-header{display:flex;align-items:center;padding:16px;background:var(--bgColor-muted, #f6f8fa);border-bottom:1px solid var(--borderColor-default, #d1d9e0);border-radius:6px 6px 0 0} .ds-box-title{flex:auto;margin:0;font-size:14px;font-weight:600} .ds-box-btn{font:inherit;font-weight:500;line-height:20px;padding:3px 12px;color:var(--button-default-fgColor-rest, #25292e);background:var(--button-default-bgColor-rest, #f6f8fa);border:1px solid var(--button-default-borderColor-rest, #d1d9e0);border-radius:6px;box-shadow:0 1px 0 0 #1f23280a;cursor:pointer} .ds-box-btn:hover{background:var(--button-default-bgColor-hover, #eff2f5)} .ds-box-row{padding:16px;border-top:1px solid var(--borderColor-muted, #d1d9e0b3)} .ds-box-row:first-of-type{border-top:0} .ds-commit-row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:8px;align-items:center;cursor:pointer} .ds-commit-row:hover{background:var(--bgColor-muted, #f6f8fa)} .ds-selected,.ds-selected:hover{background:var(--bgColor-accent-muted, #ddf4ff)} .ds-mono{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace} .ds-accent{color:var(--fgColor-accent, #0969da)} .ds-muted{color:var(--fgColor-muted, #59636e)} .ds-trunc{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .ds-label-sm{display:inline-block;font-weight:500;line-height:18px;padding:0 6px;border:1px solid currentColor;border-radius:9999px} .ds-danger{color:var(--fgColor-danger, #d1242f)}"
+      "refersTo": "advisory-cite",
+      "description": "The cited advisory under the h1: mono cite line with the advisory id as a link, then the title.",
+      "html": "<div class=\"ds-advisory\"><span class=\"ds-cite\"><a href=\"#\">GHSA-demo-f4st-pay0-2100</a> · fast-pay-utils@2.1.0 (npm) · CVSS 8.2 · tavily feed, 2026-10-30 09:12 UTC</span>Hidden Unicode-tag prompt injection in fast-pay-utils exfiltrates credentials.</div>",
+      "css": ".ds-advisory{font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;color:var(--ink,#131A23);background:var(--surface,#FFFFFF);border:1px solid var(--rule,#D5DBE2);border-radius:8px;padding:18px 20px;max-width:760px} .ds-cite{display:block;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;font-weight:500;line-height:1.5;color:var(--ink-3,#5F6B7A);margin-bottom:6px} .ds-cite a{color:inherit} .ds-cite a:focus-visible{outline:2px solid var(--blue,#1F4E8C);outline-offset:2px}"
     },
     {
-      "name": "Top Bar",
-      "kind": "nav",
-      "refersTo": "top-bar",
-      "description": "Sticky white bar on the 760px measure: clock mark and wordmark, muted product name, mini clock link at right.",
-      "html": "<header class=\"ds-top\"><div class=\"ds-top-page\"><a class=\"ds-brand\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" aria-hidden=\"true\"><circle cx=\"16\" cy=\"16\" r=\"13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\"/><path d=\"M16 8v8l5.5 3.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg><span class=\"ds-brand-name\">CRA Watch</span></a><span class=\"ds-top-product\">payments-api</span><a class=\"ds-clock-mini\" href=\"#\"><span class=\"ds-clock-mini-label\">INC-0001</span><span class=\"ds-clock-mini-time\">22:14:09</span></a></div></header>",
-      "css": ".ds-top{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;font-size:14px;line-height:1.5;background:var(--bgColor-default, #fff);border-bottom:1px solid var(--borderColor-default, #d1d9e0);padding:12px 0;color:var(--fgColor-default, #1f2328)} .ds-top-page{max-width:760px;margin:0 auto;padding:0 16px;display:flex;align-items:center} .ds-brand{display:flex;align-items:center;color:inherit;text-decoration:none;font-size:16px;font-weight:600} .ds-brand:hover,.ds-clock-mini:hover{text-decoration:none} .ds-brand:focus-visible,.ds-clock-mini:focus-visible{outline:2px solid var(--focus-outlineColor, #0969da);outline-offset:2px;border-radius:6px} .ds-brand-name{margin-left:8px} .ds-top-product{margin-left:16px;color:var(--fgColor-muted, #59636e)} .ds-clock-mini{margin-left:auto;display:flex;align-items:baseline;color:inherit;text-decoration:none} .ds-clock-mini-label{font-size:12px;color:var(--fgColor-muted, #59636e);margin-right:8px} .ds-clock-mini-time{font-weight:600;font-variant-numeric:tabular-nums;color:var(--fgColor-danger, #d1242f)}"
-    },
-    {
-      "name": "Pipeline Timeline",
+      "name": "Stat Tiles with Clock",
       "kind": "custom",
-      "description": "Primer TimelineItem--condensed: 16px badges on a 2px muted spine; done green check, running accent dot, failed red x, pending muted dot.",
-      "html": "<div class=\"ds-tl\"><div class=\"ds-tl-item\"><div class=\"ds-tl-badge ds-tl-done\"><svg viewBox=\"0 0 16 16\" width=\"12\" height=\"12\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z\"/></svg></div><div class=\"ds-tl-body\"><div><span class=\"ds-tl-name\">Sentinel</span><span class=\"ds-tl-actor\"> · Nemotron Nano, at commit time</span><span class=\"ds-tl-time\">09:12:04</span></div><div class=\"ds-tl-text\">10 agent commits scanned, 2 flagged before any advisory</div></div></div><div class=\"ds-tl-item\"><div class=\"ds-tl-badge ds-tl-running\"><svg viewBox=\"0 0 16 16\" width=\"12\" height=\"12\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z\"/></svg></div><div class=\"ds-tl-body\"><div><span class=\"ds-tl-name\">Draft</span><span class=\"ds-tl-actor\"> · Nemotron Ultra on Nebius</span></div><div class=\"ds-tl-text\">The Article 14(4)(a) early warning, from the evidence only.</div></div></div><div class=\"ds-tl-item\"><div class=\"ds-tl-badge ds-tl-pending\"><svg viewBox=\"0 0 16 16\" width=\"12\" height=\"12\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z\"/></svg></div><div class=\"ds-tl-body\"><div><span class=\"ds-tl-name\">Review</span><span class=\"ds-tl-actor\"> · compliance lead</span></div><div class=\"ds-tl-text\">A person reads it and approves. Nothing is sent without them.</div></div></div></div>",
-      "css": ".ds-tl{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;font-size:14px;line-height:1.5;color:var(--fgColor-default, #1f2328);max-width:560px} .ds-tl-item{display:flex;position:relative;margin-left:16px;padding:4px 0 0} .ds-tl-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--borderColor-muted, #d1d9e0b3)} .ds-tl-badge{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:16px;height:16px;margin:8px 8px 8px -7px;border-radius:50%;background:var(--bgColor-muted, #f6f8fa);color:var(--fgColor-muted, #59636e)} .ds-tl-done{background:var(--bgColor-success-emphasis, #1f883d);color:#fff} .ds-tl-running{background:var(--bgColor-accent-emphasis, #0969da);color:#fff;box-shadow:0 0 .2em var(--borderColor-accent-muted, #54aeff66)} .ds-tl-failed{background:var(--bgColor-danger-emphasis, #cf222e);color:#fff} .ds-tl-body{flex:auto;min-width:0;margin-top:4px;color:var(--fgColor-muted, #59636e)} .ds-tl-name{font-weight:600;color:var(--fgColor-default, #1f2328)} .ds-tl-time{float:right;font-size:12px;font-variant-numeric:tabular-nums} .ds-tl-text{font-size:12px}"
+      "refersTo": "stat-tile",
+      "description": "Bordered auto-fit grid with 1px rule gaps; the first tile is the 44px countdown, red running, green once filed.",
+      "html": "<div class=\"ds-stats\"><div><b class=\"ds-clock\">22:14:09</b><span>left in the 24-hour window</span></div><div><b>2026-10-30 09:12</b><span>awareness, UTC</span></div><div><b>high 8.2</b><span>severity, Nemotron Nano</span></div><div><b class=\"ds-clock ds-stopped\">00:41:07</b><span>time from awareness to filing</span></div></div>",
+      "css": ".ds-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--rule,#D5DBE2);border:1px solid var(--rule,#D5DBE2);border-radius:8px;overflow:hidden;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink,#131A23)} .ds-stats div{background:var(--surface,#FFFFFF);padding:16px 18px;min-width:0} .ds-stats b{display:block;font-family:'IBM Plex Sans Condensed','Arial Narrow',system-ui,sans-serif;font-size:30px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums;overflow-wrap:anywhere} .ds-stats .ds-clock{color:var(--red,#B3261E);font-size:44px} .ds-stats .ds-clock.ds-stopped{color:var(--green,#0E6A4E)} .ds-stats span{font-size:14px;color:var(--ink-2,#465262)} @media (max-width:560px){.ds-stats .ds-clock{font-size:36px}}"
     },
     {
-      "name": "Countdown",
+      "name": "Steps",
       "kind": "custom",
-      "refersTo": "countdown",
-      "description": "The 56px clock between a 12px caption and the deadlines line; red running, green once stopped.",
-      "html": "<div class=\"ds-count\"><div class=\"ds-count-cap\">Early warning due in</div><div class=\"ds-clock\">22:14:09</div><div class=\"ds-count-cap ds-count-sub\">Awareness 2026-10-30 09:12 UTC · 24 h 2026-10-31 09:12 UTC · 72 h 2026-11-02 09:12 UTC</div></div><div class=\"ds-count\"><div class=\"ds-count-cap\">Filed after</div><div class=\"ds-clock ds-stopped\">00:41:07</div></div>",
-      "css": ".ds-count{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;margin-bottom:32px} .ds-count-cap{font-size:12px;line-height:1.5;color:var(--fgColor-muted, #59636e)} .ds-count-sub{margin-top:4px} .ds-clock{font-size:56px;line-height:1;font-weight:600;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;color:var(--fgColor-danger, #d1242f)} .ds-stopped{color:var(--fgColor-success, #1a7f37)} @media (max-width:543px){.ds-clock{font-size:40px}}"
+      "refersTo": "step",
+      "description": "Counted list of white rows: red mono counter (green when done, grey when pending), bold step name and sentence, right-aligned actor tag; the running row takes a blue border.",
+      "html": "<ol class=\"ds-steps\"><li class=\"ds-done\"><div><strong>Sentinel.</strong> <span class=\"ds-text\">10 agent commits scanned, 2 flagged before any advisory.</span></div><span class=\"ds-tag\">Nemotron Nano · at commit time · 09:12:04</span></li><li class=\"ds-running\"><div><strong>Draft.</strong> <span class=\"ds-text\">The Article 14(4)(a) early warning, from the evidence only.</span></div><span class=\"ds-tag\">Nemotron Ultra · running</span></li><li class=\"ds-pending\"><div><strong>Review.</strong> <span class=\"ds-text\">A person reads it and approves. Nothing is sent without them.</span></div><span class=\"ds-tag\">a person</span></li></ol>",
+      "css": ".ds-steps{list-style:none;padding:0;margin:0;display:grid;gap:8px;counter-reset:s;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;color:var(--ink,#131A23)} .ds-steps li{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:baseline;background:var(--surface,#FFFFFF);border:1px solid var(--rule,#D5DBE2);border-radius:6px;padding:10px 14px;transition:border-color .2s} .ds-steps li::before{counter-increment:s;content:counter(s);font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:14px;font-weight:600;color:var(--red,#B3261E)} .ds-steps li.ds-done::before{color:var(--green,#0E6A4E)} .ds-steps li.ds-pending{color:var(--ink-3,#5F6B7A)} .ds-steps li.ds-pending::before{color:var(--ink-3,#5F6B7A)} .ds-steps li.ds-running{border-color:var(--blue,#1F4E8C)} .ds-steps .ds-text{font-size:14.5px;color:var(--ink-2,#465262)} .ds-steps .ds-tag{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;font-weight:500;color:var(--ink-3,#5F6B7A);white-space:nowrap} .ds-steps li.ds-running .ds-tag{color:var(--blue,#1F4E8C)} @media (max-width:560px){.ds-steps li{grid-template-columns:28px 1fr}.ds-steps .ds-tag{grid-column:2}}"
+    },
+    {
+      "name": "Register Table",
+      "kind": "custom",
+      "refersTo": "table-register",
+      "description": "White bordered table wrapper with mono uppercase heads, hairline rows, mono identifiers, status tags and the green rollback row.",
+      "html": "<div class=\"ds-tbl\"><table><thead><tr><th>Commit</th><th>Session</th><th>Agent run</th><th>Sentinel</th></tr></thead><tbody><tr><td><code>a1b2c3d</code></td><td>#42</td><td>add fast-pay-utils for IBAN parsing</td><td><span class=\"ds-s ds-d\">high</span></td></tr><tr><td><button class=\"ds-row-btn\" type=\"button\">e4f5a6b</button></td><td>#47</td><td>wire payout retries</td><td><span class=\"ds-s ds-n\">clean</span></td></tr><tr class=\"ds-rollback\"><td><code>9c8d7e6</code></td><td></td><td colspan=\"2\">Last clean commit</td></tr></tbody></table></div>",
+      "css": ".ds-tbl{overflow-x:auto;border:1px solid var(--rule,#D5DBE2);border-radius:8px;background:var(--surface,#FFFFFF);font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink,#131A23)} .ds-tbl table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6} .ds-tbl th,.ds-tbl td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--rule,#D5DBE2);vertical-align:top} .ds-tbl tr:last-child td{border-bottom:0} .ds-tbl th{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3,#5F6B7A)} .ds-tbl code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13px} .ds-tbl tr.ds-rollback td{background:var(--green-bg,#E2F1EA)} .ds-row-btn{background:none;border:0;padding:0;color:var(--blue,#1F4E8C);cursor:pointer;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13px;text-decoration:underline;text-underline-offset:3px} .ds-row-btn:focus-visible{outline:2px solid var(--blue,#1F4E8C);outline-offset:2px} .ds-s{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;font-weight:500;padding:2px 7px;border-radius:3px;white-space:nowrap} .ds-d{background:var(--red-bg,#FBE9E7);color:var(--red,#B3261E)} .ds-n{background:var(--paper,#F4F6F8);color:var(--ink-3,#5F6B7A)}"
     },
     {
       "name": "Draft Sheet",
       "kind": "card",
-      "refersTo": "draft-sheet",
-      "description": "markdown-body inside a Box at 24px padding, 14px type, amber placeholder runs; approve row below.",
-      "html": "<section class=\"ds-draft\"><h2 class=\"ds-draft-head\">Early warning <span class=\"ds-draft-meta\">drafted by Nemotron Ultra in 38 s</span></h2><div class=\"ds-draft-sheet\"><h1>Early warning under Article 14(4)(a)</h1><p><strong>Manufacturer:</strong> <span class=\"ds-ph\">&lt;manufacturer legal name&gt;</span></p><p>On 30 October 2026 at 09:12 UTC we became aware that <code>fast-pay-utils</code> 2.1.0, a dependency of payments-api, carries a credential exfiltration flaw (GHSA-demo-f4st-pay0-2100, CVSS 8.2).</p></div><div class=\"ds-draft-foot\"><button class=\"ds-btn-approve\" type=\"button\">Approve and file</button><span class=\"ds-draft-note\">Approval stops the clock. You paste the text into the ENISA platform yourself.</span></div></section>",
-      "css": ".ds-draft{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;font-size:14px;line-height:1.5;color:var(--fgColor-default, #1f2328);max-width:760px} .ds-draft-head{font-size:16px;font-weight:600;margin:0 0 8px} .ds-draft-meta{font-size:12px;font-weight:400;color:var(--fgColor-muted, #59636e);margin-left:8px} .ds-draft-sheet{background:var(--bgColor-default, #fff);border:1px solid var(--borderColor-default, #d1d9e0);border-radius:6px;padding:24px;word-wrap:break-word} .ds-draft-sheet h1{font-size:2em;font-weight:600;line-height:1.25;margin:0 0 16px;padding-bottom:.3em;border-bottom:1px solid var(--borderColor-muted, #d1d9e0b3)} .ds-draft-sheet p{margin:0 0 16px} .ds-draft-sheet p:last-child{margin-bottom:0} .ds-draft-sheet code{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-size:85%;padding:.2em .4em;background:var(--bgColor-neutral-muted, #818b981f);border-radius:6px} .ds-ph{background:var(--bgColor-attention-muted, #fff8c5);border-radius:4px;padding:0 3px} .ds-draft-foot{display:flex;align-items:center;flex-wrap:wrap;margin-top:12px} .ds-draft-note{font-size:12px;color:var(--fgColor-muted, #59636e)} .ds-btn-approve{font:inherit;font-weight:500;padding:.75em 1.5em;margin-right:16px;color:#fff;background:var(--button-primary-bgColor-rest, #1f883d);border:1px solid var(--button-primary-borderColor-rest, #1f232826);border-radius:.5em;box-shadow:0 1px 0 0 #1f23280a;cursor:pointer;transition:80ms cubic-bezier(0.33,1,0.68,1)} .ds-btn-approve:hover{background:var(--button-primary-bgColor-hover, #1c8139)} .ds-btn-approve:focus-visible{outline:2px solid var(--focus-outlineColor, #0969da);outline-offset:-2px}"
+      "refersTo": "doc-sheet",
+      "description": "The rendered early warning: white sheet, 24px 28px padding, 15px body with its own Condensed heading ramp, paper inline code, amber placeholder runs.",
+      "html": "<div class=\"ds-doc\"><h1>Early warning under Article 14(4)(a)</h1><p><strong>Manufacturer:</strong> <span class=\"ds-ph\">&lt;manufacturer legal name&gt;</span></p><h2>Summary</h2><p>On 30 October 2026 at 09:12 UTC we became aware that <code>fast-pay-utils</code> 2.1.0, a dependency of payments-api, carries a credential exfiltration flaw (GHSA-demo-f4st-pay0-2100, CVSS 8.2).</p></div>",
+      "css": ".ds-doc{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--surface,#FFFFFF);border:1px solid var(--rule,#D5DBE2);border-radius:8px;padding:24px 28px;font-size:15px;line-height:1.6;color:var(--ink,#131A23)} .ds-doc h1{font-family:'IBM Plex Sans Condensed','Arial Narrow',system-ui,sans-serif;font-size:24px;font-weight:600;line-height:1.2;margin:0 0 16px} .ds-doc h2{font-family:'IBM Plex Sans Condensed','Arial Narrow',system-ui,sans-serif;font-size:19px;font-weight:600;line-height:1.25;margin:22px 0 8px} .ds-doc p{margin:0 0 10px} .ds-doc code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13px;background:var(--paper,#F4F6F8);padding:1px 5px;border-radius:3px} .ds-doc .ds-ph{background:var(--amber-bg,#FBF0D9);color:var(--amber,#8A5A00);border-radius:3px;padding:0 4px} @media (max-width:560px){.ds-doc{padding:18px}}"
+    },
+    {
+      "name": "Error Flash",
+      "kind": "custom",
+      "refersTo": "flash-error",
+      "description": "Red tint, red border and text, message left and a small Re-run button pushed right. Appears under the steps when the pipeline fails.",
+      "html": "<div class=\"ds-flash\"><span>Nemotron Ultra timed out after 120 s.</span><button class=\"ds-btn-small\" type=\"button\">Re-run</button></div>",
+      "css": ".ds-flash{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--red-bg,#FBE9E7);color:var(--red,#B3261E);border:1px solid var(--red,#B3261E);border-radius:6px;padding:12px 16px;display:flex;gap:12px;align-items:center;font-size:14.5px;line-height:1.6} .ds-flash .ds-btn-small{margin-left:auto;font:inherit;font-size:13.5px;font-weight:600;line-height:1.4;padding:6px 12px;border-radius:6px;border:1px solid var(--rule,#D5DBE2);background:var(--surface,#FFFFFF);color:var(--ink,#131A23);cursor:pointer} .ds-flash .ds-btn-small:hover{border-color:var(--ink-3,#5F6B7A)} .ds-flash .ds-btn-small:focus-visible{outline:2px solid var(--blue,#1F4E8C);outline-offset:2px}"
     }
   ],
   "narrative": {
-    "northStar": "The Filing, Read Top to Bottom",
-    "overview": "CRA Watch is a single 760px column read like a document: title and status, the time left, the pipeline that produced the evidence, two folded details, the draft, one green button. It inherits Primer CSS directly (GitHub's design system, vendored at `crawatch/static/vendor/primer.css`, light theme fixed through `data-color-mode=\"light\"` on the root element). Nothing is themed or wrapped; the page is Primer's type ramp, colour variables, Box, Label, State, btn and TimelineItem, and the only custom stylesheet (`crawatch/static/app.css`, 23 lines) adds what Primer has no word for: the countdown sizes, the 760px page and its sticky white top bar, and column grids inside Box rows. The draft is rendered by marked, sanitised by DOMPurify and typeset by Primer's `markdown-body` inside a Box.\n\nThe world is quiet and bordered. White page, default ink, muted grey for everything secondary, 1px hairlines where a panel is needed. Status is said with pills: outline Labels classify (risk, source kind, a system up or down), filled State pills state the lifecycle of the incident (awaiting approval, filed, pipeline failed, demo running). Colour is reserved for meaning: blue is a link or a commit SHA, amber is a warning, red is the deadline and the failed step, green is the done step, the stopped clock and the approve button. The operational registers (watched dependencies, Sentinel register, journal, run ledger) live in a collapsed `details` in the footer so the reviewer's column stays the filing.\n\nThe product is branded CRA Watch only. The top bar carries a 24px clock-face mark in default ink and the words \"CRA Watch\"; the provenance engine behind the blast-radius trace is not named in the UI and has no mark, colour or typeface here. The earlier direction contract for this surface named an Origit-derived world (glass panels, glows, Onest at 13px, a dark console bar, two columns); the build supersedes it. Where brief and build disagree, the build is the system.",
+    "northStar": "The Record, Read as a Page",
+    "overview": "CRA Watch is one page that explains itself while it runs. It is built as a documentary product page in the manner of a long-form technical write-up (the model was the `amend` project page, light only): a headline sentence that states the situation in plain words, a short lede, a cited advisory in a box, a few buttons, then one section after another in fixed order, each a white panel on a pale paper ground, divided by a single hairline. The same markup is the live console: the headline changes with incident state, the clock ticks in a stat tile, the eight steps fill in, the draft lands in a sheet, and the operational registers sit folded at the bottom. There is no dashboard chrome, no top bar, no sidebar, no cards floating on shadows. Everything is typeset, bordered and left-aligned inside a 1000px column.\n\nThe material is IBM Plex, self-hosted under the OFL in three cuts: Sans for reading, Sans Condensed for every headline and figure, Mono for anything a machine said (identifiers, timestamps, model ids, table heads, status tags). Colour is scarce and semantic: a cool near-black ink and two greys on paper and white; one red that belongs to the running clock and to danger; green for verified, done and filed; amber for attention; blue for links and the step that is running. Tints of each exist only as the ground of a small tag or a highlighted row. Nothing casts a shadow, nothing blurs, nothing glows.\n\nThis world replaces the earlier direction contract for this surface (`.impeccable/surfaces/crawatch-templates-index-html.md`, which specified an Origit-derived glass console with a dark top bar, two columns and Onest at 13px) and the Primer-based system that followed it. Both are superseded by the build. The product is branded CRA Watch only: a stroked clock-face mark and the wordmark, nothing else. The provenance engine behind the blast-radius trace is not named anywhere in the UI (the step reads \"provenance records\"); it has no mark, colour or typeface here and must not acquire one.",
     "keyCharacteristics": [
-      "Primer components first; custom CSS only where Primer has no component (countdown sizes, page column and top bar, row grids).",
-      "System font stack at 14px; no webfont, no build step.",
-      "One display size on the page: the 56px countdown (40px below 544px).",
-      "Outline pills classify, filled pills state lifecycle.",
-      "Flat: hairlines and a grey Box header carry depth; the only shadows are Primer's own resting button shadow and State ring.",
-      "One column, 760px, white edge to edge; nothing dark but the favicon."
+      "One 1000px column on paper, white panels, 1px hairlines, no shadows, no gradients, light only.",
+      "IBM Plex Sans 16px/1.6 for prose; Plex Sans Condensed for headlines and figures; Plex Mono 11 to 13px for machine facts.",
+      "Headline sentences, not titles: the h1 says what is happening (\"fast-pay-utils 2.1.0 is compromised. The clock is running.\").",
+      "One red number: the 44px countdown, green once filed.",
+      "Status is a small mono tag on a tint; the word is always printed.",
+      "Registers (watchlist, Sentinel, journal, ledger) live in native `details`, folded, at the foot of the page."
     ],
     "rules": [
-      {
-        "name": "The Primer Variable Rule",
-        "body": "Colour is written as a Primer variable (`var(--fgColor-danger)`), never as a bare hex. A colour with no Primer light-theme variable is not a colour this system has.",
-        "section": "colors"
-      },
-      {
-        "name": "The Risk Ladder Rule",
-        "body": "Risk maps to Primer semantics and nothing else: none is muted text reading \"clean\", low is `Label--accent`, medium is `Label--attention`, high and critical are `Label--danger`. The word is always printed inside the pill; colour never carries risk alone.",
-        "section": "colors"
-      },
-      {
-        "name": "The One Red Rule",
-        "body": "Red at display size belongs to the countdown. Elsewhere red is 12px pill text or a journal verb. When the clock stops it turns green; nothing else on the page changes colour at approval.",
-        "section": "colors"
-      },
-      {
-        "name": "The One Display Rule",
-        "body": "One number on the page is 56px, and it is the time left. The h1 stops at 24px; section heads at 16px.",
-        "section": "typography"
-      },
-      {
-        "name": "The Tabular Time Rule",
-        "body": "Anything that ticks or is compared in a column (countdown, top-bar clock, step times, ledger latencies) sets `font-variant-numeric: tabular-nums`.",
-        "section": "typography"
-      },
-      {
-        "name": "The Drawn Depth Rule",
-        "body": "New surfaces get a 1px border and, if they need a lid, a `Box-header` fill. They do not get a shadow, a blur or a gradient.",
-        "section": "elevation"
-      }
+      { "name": "The Tag Pair Rule", "body": "A semantic hue is always used as a pair: the hue for text, its `-bg` tint for ground. Tag text never sits on white and a tint never carries anything but its own hue.", "section": "colors" },
+      { "name": "The One Red Number Rule", "body": "The only red larger than 14px is the countdown. When the incident is filed the same number turns green; nothing else on the page changes colour.", "section": "colors" },
+      { "name": "The Variable Rule", "body": "Colour is written as a `:root` custom property. The single literal in the stylesheet is `#000` on the primary button's hover; the logo mark's red is the same `#B3261E` inlined in SVG.", "section": "colors" },
+      { "name": "The Sentence Headline Rule", "body": "h1 and h2 are sentences with a full stop or a clause, never nouns or labels. The headline is the state of the system.", "section": "typography" },
+      { "name": "The Machine Mono Rule", "body": "Anything produced by a system rather than written for a reader (SHA, timestamp, model id, path, token count, status word, column head) is set in Plex Mono at 11 to 13px. Prose never is.", "section": "typography" },
+      { "name": "The Condensed Number Rule", "body": "Figures compared across tiles are Condensed 700 with `tabular-nums`; the countdown is the only one that changes colour.", "section": "typography" },
+      { "name": "The Drawn Depth Rule", "body": "A new surface gets `background: var(--surface)` and `border: 1px solid var(--rule)`. It does not get a shadow, a blur, a gradient or a second border.", "section": "elevation" }
     ],
     "dos": [
-      "Do reach for a Primer component before writing CSS: Box for any panel, Label for any classification, State for any lifecycle status, btn for any action, TimelineItem for any sequence, flash for any inline error, native `details` for anything folded.",
-      "Do write colour as a Primer variable (`var(--fgColor-danger)`), as `app.css` does; the only literal allowed is `#fff` on a filled badge.",
-      "Do keep the type ramp to Primer's `f2` (24px), `f4` (16px), body (14px), `f6` (12px) and mono at 12px; the 56px countdown is the single exception.",
-      "Do keep everything inside the 760px `.page` measure, including any new header or footer content.",
-      "Do put identifiers and machine facts (SHAs, times, paths, model ids, token counts) in `text-mono` with tabular numerals.",
-      "Do lay out Box-row content with `row-grid` and an 8px gap, collapsing to fewer columns below 544px, as the ledger and affected rows do.",
-      "Do print the risk word inside its pill (`low`, `medium`, `high`, `critical`) and reserve \"clean\" and \"–\" in muted text for none and unscanned.",
-      "Do use `btn-primary` only for the step that advances the incident (run the demo, approve and file), and `btn-large` only for approve."
+      "Do write every colour as a `:root` variable and use hue and `-bg` tint as a pair; the stylesheet's only literal is the primary button's `#000` hover.",
+      "Do make h1 and h2 sentences that state the condition of the system, in Plex Sans Condensed.",
+      "Do set machine facts (SHAs, times, model ids, paths, status words, column heads) in Plex Mono at 11 to 13px and prose in Plex Sans at 16px/1.6.",
+      "Do build a new surface as a white panel with a 1px rule border and an 8px (panel) or 6px (control, row) radius; separate bands with a single hairline.",
+      "Do keep text columns at 720px inside the 1000px wrap; let tables, tile grids and the draft sheet run full width.",
+      "Do print the status word inside its tag and use the ink-fill primary button only for the step that advances the incident.",
+      "Do keep the clock the only red figure and turn it green on filing."
     ],
     "donts": [
-      "Don't add glass, backdrop blur, background glows, gradients or custom shadows; the rebuild dropped the earlier Origit-style glass world and the page is flat by construction.",
-      "Don't add a dark bar or dark panel; the page is white edge to edge and the favicon is the only dark tile.",
-      "Don't load a webfont or add a build step; the system stack at 14px is the typeface.",
-      "Don't hard-code a hex that Primer already names, and don't invent a colour Primer's light theme lacks.",
-      "Don't name or brand the provenance engine in the UI; the product is CRA Watch, the top bar carries only its mark and wordmark.",
-      "Don't use a filled State pill for classification or an outline Label for lifecycle; the two pill families are not interchangeable.",
-      "Don't add a second column or a second display-size number; the filing reads top to bottom and the countdown owns 56px.",
-      "Don't signal with colour alone; every coloured token on the page carries its word (the risk pill, the step name, the journal verb)."
+      "Don't add shadows, blur, glows, gradients, glass or a dark bar; the page is paper and white panels, light only.",
+      "Don't introduce a top bar, sidebar, tabs or a second column; the page reads top to bottom.",
+      "Don't name or brand the provenance engine in the UI; the product is CRA Watch, the mark and wordmark are its whole identity, and the step says \"provenance records\".",
+      "Don't add a weight that is not shipped (Sans 400/500/600, Condensed 600/700, Mono 400/500) or load fonts from a third party.",
+      "Don't use pills, full-round corners or filled lifecycle badges; status is a 3px-cornered 12px mono tag.",
+      "Don't signal with colour alone or use the semantic hues as decoration; every red, green, amber or blue element carries its word or is a link."
     ]
   }
 }
