@@ -23,6 +23,12 @@ Article 14 of the EU Cyber Resilience Act has applied since 11 September 2026: a
 
 **Sentinel** is the proactive layer. Before any CVE exists it scans what every agent commit read and wrote (hidden Unicode-tag instructions, dangerous sinks, unverified dependencies) and Nemotron Nano classifies each commit's risk with quoted evidence. When the advisory lands, the blast radius is already annotated and the draft is richer.
 
+## Figures
+
+- `submission/figures/token-factory-usage.png`: Nebius Token Factory usage dashboard. All Nemotron inference runs through Nebius Token Factory.
+- `submission/figures/serverless-job.png`: the `cra-watch-monitor` Serverless Job (to be captured once the job is created).
+- The live console: https://cra-watch.vantapointlabs.com
+
 ## How we built it
 
 Python, FastAPI, vanilla JS. Nebius Token Factory serves both Nemotron tiers through the OpenAI-compatible API (`response_format: json_schema` for the classifiers). The console runs as a Nebius Serverless Endpoint; the monitor runs `cra-watch monitor --loop` on a Nebius Serverless Job with keys from SecretStash. Tavily search (domain-restricted, time-ranged) and extract are the intelligence layer; every Tavily and Nemotron call is logged with model, tokens and latency and shown in the run ledger. Origit is vendored as an MIT dependency. The demo repository ships as a git bundle with Origit records for agent sessions #42 to #49.
