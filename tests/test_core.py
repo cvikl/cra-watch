@@ -27,7 +27,7 @@ def test_match_requires_name_and_identifier():
     gh = "https://github.com/advisories/GHSA-demo-f4st-pay0-2100"
     assert _is_match(dep, "Malicious code in fast-pay-utils 2.1.0", "GHSA-demo-f4st-pay0-2100", gh) == "GHSA-DEMO-F4ST-PAY0-2100"
     assert _is_match(dep, "Vendor bulletin", "see GHSA-demo-f4st-pay0-2100", "https://x/advisories/fast-pay-utils.md", bulletin=True) == "GHSA-DEMO-F4ST-PAY0-2100"
-    assert _is_match(dep, "fast-pay-utils release notes", "fast-pay-utils is great", gh) is None  # no identifier
+    assert _is_match(dep, "fast-pay-utils release notes", "fast-pay-utils is great", "https://osv.dev/list") is None  # no identifier
     assert _is_match(dep, "Weekly npm advisories", "lodash CVE-2026-1234, fast-pay-utils, express", "https://nvd.nist.gov/weekly") is None  # mentioned, not about
     assert _is_match(dep, "fast-pay-utils CVE-2026-1", "", "https://github.com/x/y/issues/1") is None  # an issue tracker is not an advisory source
     assert _is_match({"name": "jest"}, "jest-config-ibm 1.0: CVE-2026-33750", "", "https://osv.dev/x") is None  # substring, not the package
