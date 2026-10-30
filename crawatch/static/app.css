@@ -45,7 +45,7 @@ h1, h2, h3 { margin: 0; line-height: 1.25; font-weight: 600; letter-spacing: -.0
 .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); }
 .brand:hover { text-decoration: none; }
 .mark { width: 26px; height: 26px; color: var(--ink); }
-.brand-name { font-weight: 600; font-size: var(--fs-xl); letter-spacing: -.01em; }
+.brand-name { font-weight: 600; font-size: var(--fs-xl); letter-spacing: -.01em; white-space: nowrap; }
 .brand-name span { color: var(--muted); font-weight: 500; }
 .brand-sub { color: var(--muted); font-size: var(--fs-md); font-weight: 500; }
 .band-product { display: flex; gap: 14px; align-items: center; white-space: nowrap; font-size: var(--fs-md); }
@@ -231,6 +231,7 @@ pre.diff span { display: block; padding: 0 12px; } pre.diff .add { background: v
 @media (max-width: 1100px) {
   .desk { grid-template-columns: 1fr; }
   .register { position: static; }
+  .report { order: -1; }
   .ladder { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .field-clock { grid-column: span 3; }
@@ -240,6 +241,7 @@ pre.diff span { display: block; padding: 0 12px; } pre.diff .add { background: v
 }
 @media (max-width: 768px) {
   .band { grid-template-columns: 1fr auto; gap: 10px; height: auto; padding: 10px 16px; position: static; }
+  .brand-sub { display: none; }
   .band-product, .systems { display: none; }
   .band-clock { position: sticky; top: 0; z-index: 5; grid-column: 1 / -1; background: rgba(255, 255, 255, .92); margin: 0 -16px -10px; padding: 8px 16px; border-left: 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
   .desk { padding: 16px; }
